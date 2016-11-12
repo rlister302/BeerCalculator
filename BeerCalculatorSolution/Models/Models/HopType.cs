@@ -11,5 +11,6 @@ namespace Models.Models
         public int HopTypeID { get; set; }
         public string HopName { get; set; }
         public string FlavorNotes { get; set; }
+        public string Temp { get; set; }
     }
 }
