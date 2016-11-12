@@ -7,11 +7,37 @@
 
 <div id="main-content">
     <div>Hello, World</div>
+    <div>Push this button</div>
+    <input type="button" value="Push me" onclick="getRecipes()" />
+    <div id="recipeBox" ></div>
 </div>
+
+<script>
+    function getRecipes()
+    {
+        $.ajax({
+            url: "/Recipe/GetRecipes",
+            type: "POST",
+            datatype: "json",
+            success: function(response)
+            {
+                for(var i = 0; i < response.length; i++)
+                {
+                    $('#recipeBox').append(response[i].RecipeName);
+                    $('#recipeBox').append(' ');
+                }
+            },
+            error: function () {
+
+                alert("Error");
+
+            }
+        })
+    }
+</script>
 
 
     @section scripts {
         @Scripts.Render("~/bundles/knockout")
         @Scripts.Render("~/bundles/jqueryval")
-        @Scripts.Render("~/bundles/todo")
     }

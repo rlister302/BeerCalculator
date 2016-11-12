@@ -11,7 +11,14 @@ namespace BeerCalculatorWebApplication.Controllers
     {
         public ActionResult GetRecipes()
         {
-            return null;
+            var recipeList = new List<RecipeDTO>();
+            var recipe1 = new RecipeDTO { RecipeName = "Lager" };
+            var recipe2 = new RecipeDTO { RecipeName = "IPA" };
+            var recipe3 = new RecipeDTO { RecipeName = "Stout" };
+            recipeList.Add(recipe1);
+            recipeList.Add(recipe2);
+            recipeList.Add(recipe3);
+            return Json(recipeList);
         }
 
         public ActionResult GetRecipe(int id)
