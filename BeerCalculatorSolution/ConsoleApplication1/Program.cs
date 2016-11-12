@@ -12,6 +12,7 @@ namespace ConsoleApplication1
         static void Main(string[] args)
         {
             GetHops();
+            Console.WriteLine("Please Press a Key");
             Console.ReadKey();
         }
         static void GetHops()
