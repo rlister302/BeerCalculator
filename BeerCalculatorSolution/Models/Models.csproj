@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Models\GrainTypeDTO.cs" />
     <Compile Include="Models\HopTypeDTO.cs" />
+    <Compile Include="Models\YeastTypeDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
