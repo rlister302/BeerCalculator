@@ -48,8 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\GrainDTO.cs" />
     <Compile Include="Models\GrainTypeDTO.cs" />
+    <Compile Include="Models\HopDTO.cs" />
     <Compile Include="Models\HopTypeDTO.cs" />
+    <Compile Include="Models\RecipeDTO.cs" />
+    <Compile Include="Models\YeastDTO.cs" />
     <Compile Include="Models\YeastTypeDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
