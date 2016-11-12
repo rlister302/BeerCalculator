@@ -39,7 +39,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Models\GrainTypeDTO.cs" />
     <Compile Include="Models\HopTypeDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
