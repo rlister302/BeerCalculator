@@ -3,22 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Threading.Tasks;
 using Models.Models;
+using Models.Communication;
 
 namespace BeerCalculatorWebApplication.Controllers
 {
     public class RecipeController : Controller
     {
-        public ActionResult GetRecipes()
+        public async Task<ActionResult> GetRecipes()
         {
-            var recipeList = new List<RecipeDTO>();
-            var recipe1 = new RecipeDTO { RecipeName = "Lager" };
-            var recipe2 = new RecipeDTO { RecipeName = "IPA" };
-            var recipe3 = new RecipeDTO { RecipeName = "Stout" };
-            recipeList.Add(recipe1);
-            recipeList.Add(recipe2);
-            recipeList.Add(recipe3);
-            return Json(recipeList);
+            var response = await new RequestManager().Test();
+            return Json(response);
         }
 
         public ActionResult GetRecipe(int id)

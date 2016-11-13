@@ -1,0 +1,27 @@
+﻿
+<div>
+    <div>
+        <input type="button" value="Create Hop" onclick="getCreateHopTypePage()" />
+    </div>
+    <div>
+        Grid for hop types goes here....
+    </div>
+
+
+</div>
+
+<script>
+    function getCreateHopTypePage()
+    {
+        $.ajax({
+            url: "/HopType/CreateHopTypePage",
+            type: "GET",
+            success: function (response) {
+                $('#body').html(response);
+            },
+            error: function () {
+                alert("Handle error");
+            }
+        })
+    }
+</script>

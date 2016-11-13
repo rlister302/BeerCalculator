@@ -30,6 +30,15 @@ namespace BeerCalculatorWebApplication
                 "~/Scripts/app/todo.model.js",
                 "~/Scripts/app/todo.viewmodel.js"));
 
+            bundles.Add(new ScriptBundle("~/Scripts/bootstrap-scripts").Include(
+                "~/Scripts/bootstrap.js",
+                "~/Scripts/bootstrap.min.js"
+                ));
+
+            bundles.Add(new ScriptBundle("~/Scripts/customScripts").Include(
+                "~/Scripts/NavigationScripts/Navigation.js"));
+
+
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
@@ -52,6 +61,14 @@ namespace BeerCalculatorWebApplication
                         "~/Content/themes/base/jquery.ui.datepicker.css",
                         "~/Content/themes/base/jquery.ui.progressbar.css",
                         "~/Content/themes/base/jquery.ui.theme.css"));
+
+            bundles.Add(new StyleBundle("~/Content/bootstrap-styles").Include(
+                "~/Content/BootStrap/bootstrap-theme.css",
+                "~/Content/BootStrap/bootstrap-theme.css.map",
+                "~/Content/BootStrap/bootstrap-theme.min.css",
+                "~/Content/BootStrap/bootstrap.css",
+                "~/Content/BootStrap/bootstrap.css.map",
+                "~/Content/BootStrap/bootstrap.min.css"));
         }
     }
 }
