@@ -10,7 +10,7 @@ namespace BeerCalculatorWebApplication.Controllers
     public class YeastTypeController : Controller
     {
         [HttpGet]
-        public ActionResult GetYeastTypes()
+        public ActionResult YeastManagement()
         {
             return null;
             // call web api

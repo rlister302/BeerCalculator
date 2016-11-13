@@ -1,6 +1,6 @@
 ﻿
 
-
+@model List<Models.Models.RecipeDTO>
 <header>
     <h1>Entry</h1>
 </header>
@@ -9,7 +9,7 @@
     <div>Hello, World</div>
     <div>Push this button</div>
     <input type="button" value="Push me" onclick="getRecipes()" />
-    <div id="recipeBox" ></div>
+    <div id="recipeBox"></div>
 </div>
 
 <script>
@@ -18,19 +18,12 @@
         $.ajax({
             url: "/Recipe/GetRecipes",
             type: "POST",
-            datatype: "json",
             success: function(response)
             {
-                for(var i = 0; i < response.length; i++)
-                {
-                    $('#recipeBox').append(response[i].RecipeName);
-                    $('#recipeBox').append(' ');
-                }
+                console.log(response);
             },
             error: function () {
-
                 alert("Error");
-
             }
         })
     }

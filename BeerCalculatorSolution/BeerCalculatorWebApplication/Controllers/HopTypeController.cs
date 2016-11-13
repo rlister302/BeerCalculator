@@ -2,16 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using Models.Models;
+using Models.Communication;
 
 namespace BeerCalculatorWebApplication.Controllers
 {
     public class HopTypeController : Controller
     {
-        public ActionResult GetHopTypes()
+        public ActionResult HopManagement()
         {
-            return View();
+            // call web api for hop types for grid
+            return PartialView();
+        }
+
+        public ActionResult CreateHopTypePage()
+        {
+            return PartialView();
         }
 
         public ActionResult GetHopTypeDetails(int id)
@@ -20,10 +28,10 @@ namespace BeerCalculatorWebApplication.Controllers
             //call web api
         }
 
-        public ActionResult CreateHopType(HopTypeDTO create)
+        public async Task<ActionResult> CreateHopType(HopTypeDTO create)
         {
-            return null;
-            // call web api
+            var response = await new HopRequestManager().Create(create);
+            return Json(response); 
         }
 
         public ActionResult UpdateHopType(HopTypeDTO update)
