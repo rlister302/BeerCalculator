@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\BaseDTO.cs" />
     <Compile Include="Models\GrainDTO.cs" />
     <Compile Include="Models\GrainTypeDTO.cs" />
     <Compile Include="Models\HopDTO.cs" />

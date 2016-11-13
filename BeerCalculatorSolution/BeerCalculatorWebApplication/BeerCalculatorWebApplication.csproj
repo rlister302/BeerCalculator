@@ -341,6 +341,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
+      <Project>{4ef85cd9-95db-4ec8-bb09-cdfa42c03cae}</Project>
+      <Name>DataAccessLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{aa64d2b3-ad45-4424-b3c9-b7ea5762ef46}</Project>
       <Name>Models</Name>

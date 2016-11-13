@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Models.Models
 {
-    public class GrainDTO
+    public class GrainDTO : BaseDTO
     {
         public int GrainID { get; set; }
         public int GrainTypeID { get; set; }

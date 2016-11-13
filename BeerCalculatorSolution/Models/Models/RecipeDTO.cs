@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Models.Models
 {
-    public class RecipeDTO
+    public class RecipeDTO : BaseDTO
     {
         public int RecipeID { get; set; }
         public string RecipeName { get; set; }
