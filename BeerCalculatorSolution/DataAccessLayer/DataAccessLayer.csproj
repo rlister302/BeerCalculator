@@ -50,14 +50,75 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BeerModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BeerModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BeerModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BeerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BeerModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BeerModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="BrewProcess.cs">
+      <DependentUpon>BeerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Grain.cs">
+      <DependentUpon>BeerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GrainType.cs">
+      <DependentUpon>BeerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Hop.cs">
+      <DependentUpon>BeerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HopType.cs">
+      <DependentUpon>BeerModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Recipe.cs">
+      <DependentUpon>BeerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>BeerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Yeast.cs">
+      <DependentUpon>BeerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="YeastType.cs">
+      <DependentUpon>BeerModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="BeerModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BeerModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="BeerModel.edmx.diagram">
+      <DependentUpon>BeerModel.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BeerModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BeerModel.edmx</DependentUpon>
+      <LastGenOutput>BeerModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="BeerModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BeerModel.edmx</DependentUpon>
+      <LastGenOutput>BeerModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
