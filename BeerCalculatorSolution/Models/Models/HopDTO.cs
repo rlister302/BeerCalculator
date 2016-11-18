@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Models.Models
 {
-    public class HopDTO : BaseDTO
+    public class HopDTO
     {
         public int HopID { get; set; }
         public int HopTypeID { get; set; }

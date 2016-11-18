@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Models.Models
 {
-    public class YeastDTO : BaseDTO
+    public class YeastDTO
     {
         public int YeastID { get; set; }
         public int YeastTypeID { get; set; }

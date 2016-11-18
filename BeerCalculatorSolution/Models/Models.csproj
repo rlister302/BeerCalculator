@@ -58,7 +58,6 @@
     <Compile Include="Communication\HopRequestManager.cs" />
     <Compile Include="Communication\IRequestManager.cs" />
     <Compile Include="Communication\RequestManager.cs" />
-    <Compile Include="Models\BaseDTO.cs" />
     <Compile Include="Models\GrainDTO.cs" />
     <Compile Include="Models\GrainTypeDTO.cs" />
     <Compile Include="Models\HopDTO.cs" />
