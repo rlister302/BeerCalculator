@@ -36,7 +36,8 @@ namespace BeerCalculatorWebApplication
                 ));
 
             bundles.Add(new ScriptBundle("~/Scripts/customScripts").Include(
-                "~/Scripts/NavigationScripts/Navigation.js"));
+                "~/Scripts/NavigationScripts/Navigation.js",
+                "~/Scripts/HopScripts/HopScripts.js"));
 
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
@@ -62,13 +63,15 @@ namespace BeerCalculatorWebApplication
                         "~/Content/themes/base/jquery.ui.progressbar.css",
                         "~/Content/themes/base/jquery.ui.theme.css"));
 
-            bundles.Add(new StyleBundle("~/Content/bootstrap-styles").Include(
+            bundles.Add(new StyleBundle("~/Content/bootstrap-styles/css").Include(
                 "~/Content/BootStrap/bootstrap-theme.css",
-                "~/Content/BootStrap/bootstrap-theme.css.map",
-                "~/Content/BootStrap/bootstrap-theme.min.css",
+                //"~/Content/BootStrap/bootstrap-theme.css.map",
+                //"~/Content/BootStrap/bootstrap-theme.min.css",
                 "~/Content/BootStrap/bootstrap.css",
-                "~/Content/BootStrap/bootstrap.css.map",
+                //"~/Content/BootStrap/bootstrap.css.map",
                 "~/Content/BootStrap/bootstrap.min.css"));
+
+
         }
     }
 }

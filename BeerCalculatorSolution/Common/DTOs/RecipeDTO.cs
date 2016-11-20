@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Abstract;
 
-namespace Models.Models
+namespace Common.DTOs
 {
-    public class RecipeDTO : BaseDTO
+    public class RecipeDTO : ModelBase
     {
         public int RecipeID { get; set; }
         public string RecipeName { get; set; }

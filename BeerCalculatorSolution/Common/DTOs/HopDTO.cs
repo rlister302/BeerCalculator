@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Abstract;
 
-namespace Models.Models
+namespace Common.DTOs
 {
-    public class HopDTO : BaseDTO
+    public class HopDTO : ModelBase
     {
         public int HopID { get; set; }
         public int HopTypeID { get; set; }

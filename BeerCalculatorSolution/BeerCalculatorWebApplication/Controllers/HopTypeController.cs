@@ -4,8 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using Models.Models;
-using Models.Communication;
+using Common.DTOs;
+using Common.Communication;
+
+
+
 
 namespace BeerCalculatorWebApplication.Controllers
 {
@@ -30,8 +33,8 @@ namespace BeerCalculatorWebApplication.Controllers
 
         public async Task<ActionResult> CreateHopType(HopTypeDTO create)
         {
-            var response = await new HopRequestManager().Create(create);
-            return Json(response); 
+            var response = await new HopTypeRequestManager().Create(create);
+            return Json(response);
         }
 
         public ActionResult UpdateHopType(HopTypeDTO update)

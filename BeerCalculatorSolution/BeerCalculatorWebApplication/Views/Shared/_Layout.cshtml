@@ -8,7 +8,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/Content/themes/base/css")
-    @Styles.Render("~/Content/bootstrap-styles")
+    @Styles.Render("~/Content/bootstrap-styles/css")
     <style>
         .wrapper{
             margin-right:auto;
@@ -29,13 +29,24 @@
                     <a href="javascript:void(0)">Create Recipes</a>
                 </li>
                 <li>
-                    <a href="javascript:void(0)">Grain Management</a>
+                    <a href="javascript:void(0)">View Grains</a>
                 </li>
                 <li>
-                    <a href="javascript:void(0)" onclick="getHopManagementPage()">Hop Management</a>
+                    <a href="javascript:void(0)">View Hops</a>
                 </li>
-                <li class="navbar-link">
-                    <a href="javascript:void(0)">Yeast Management</a>
+                <li>
+                    <a href="javascript:void(0)">View Yeast</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" data-toggle="dropdown">Ingredient Management</a>
+                    <ul class="dropdown-menu">
+                        <li><a>Grain Management</a></li>
+                        <li><a href="javascript:void(0)" data-toggle="modal" data-target="#hop-modal">Hop Management</a></li>
+                        <li><a href=javascript:void(0)>Yeast Management</a></li>
+                    </ul>
+                </li>
+               
+                
             </ul>
         </div>
     </nav>
@@ -53,6 +64,5 @@
     @Scripts.Render("~/bundles/ajaxlogin")
     @Scripts.Render("~/Scripts/bootstrap-scripts")
     @Scripts.Render("~/Scripts/customScripts")
-    @RenderSection("scripts", required: false)
 </body>
 </html>
