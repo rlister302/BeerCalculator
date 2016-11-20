@@ -7,25 +7,19 @@ using System.Web.Mvc;
 using Common.DTOs;
 using Common.Communication;
 
-
-
-
 namespace BeerCalculatorWebApplication.Controllers
 {
     public class HopTypeController : Controller
     {
-        public ActionResult HopManagement()
-        {
-            // call web api for hop types for grid
-            return PartialView();
-        }
-
         public ActionResult CreateHopTypePage()
         {
             return PartialView();
         }
-
-        public ActionResult GetHopTypeDetails(int id)
+        public ActionResult GetAllHopTypes()
+        {
+            return null;
+        }
+        public ActionResult GetHopTypeDetails(HopTypeDTO details)
         {
             return null;
             //call web api

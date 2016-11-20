@@ -12,7 +12,7 @@ namespace Common.Abstract
 {
     public class AbstractRequestManager<T> : IRequestManager<T> where T : ModelBase
     {
-        public async Task<T> Create(T create)
+        public async Task<bool> Create(T create)
         {
             using (var client = new HttpClient())
             {
@@ -26,11 +26,11 @@ namespace Common.Abstract
 
                 var content = await response.Content.ReadAsStringAsync();
 
-                return await Task.Run(() => JsonConvert.DeserializeObject<T>(content));
+                return await Task.Run(() => JsonConvert.DeserializeObject<bool>(content));
             }
         }
 
-        public async Task<T> Delete(T delete)
+        public async Task<bool> Delete(T delete)
         {
             using (var client = new HttpClient())
             {
@@ -45,7 +45,7 @@ namespace Common.Abstract
 
                 var content = await response.Content.ReadAsStringAsync();
 
-                return await Task.Run(() => JsonConvert.DeserializeObject<T>(content));
+                return await Task.Run(() => JsonConvert.DeserializeObject<bool>(content));
             }
         }
 
@@ -84,7 +84,7 @@ namespace Common.Abstract
             }
         }
 
-        public async Task<T> Update(T update)
+        public async Task<bool> Update(T update)
         {
             using (var client = new HttpClient())
             {
@@ -96,7 +96,7 @@ namespace Common.Abstract
                 var response = await client.PutAsJsonAsync<T>(targetUrl, update);
                 var content = await response.Content.ReadAsStringAsync();
 
-                return await Task.Run(() => JsonConvert.DeserializeObject<T>(content));
+                return await Task.Run(() => JsonConvert.DeserializeObject<bool>(content));
 
             }
         }

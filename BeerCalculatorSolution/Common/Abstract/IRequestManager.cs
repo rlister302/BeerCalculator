@@ -10,8 +10,8 @@ namespace Common.Abstract
     {
         Task<T> Retreive(T retreive);
         Task<List<T>> RetreiveAll(T retreive);
-        Task<T> Create(T create);
-        Task<T> Update(T update);
-        Task<T> Delete(T delete);
+        Task<bool> Create(T create);
+        Task<bool> Update(T update);
+        Task<bool> Delete(T delete);
     }
 }
