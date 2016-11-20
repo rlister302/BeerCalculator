@@ -47,11 +47,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-
     <Compile Include="Abstract\AbstractRequestManager.cs" />
     <Compile Include="Abstract\IRequestManager.cs" />
     <Compile Include="Abstract\ModelBase.cs" />
+    <Compile Include="Communication\GrainTypeRequestManager.cs" />
     <Compile Include="Communication\HopTypeRequestManager.cs" />
+    <Compile Include="Communication\RecipeRequestManager.cs" />
+    <Compile Include="Communication\YeastTypeRequestManager.cs" />
     <Compile Include="DTOs\GrainTypeDTO.cs" />
     <Compile Include="DTOs\HopDTO.cs" />
     <Compile Include="DTOs\HopTypeDTO.cs" />

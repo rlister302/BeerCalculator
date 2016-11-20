@@ -7,6 +7,12 @@ using Common.Abstract;
 
 namespace Common.DTOs
 {
+    [Controller("YeastType")]
+    [GetAllAction("GetAllYeastTypes")]
+    [GetDetailsAction("GetYeastTypeDetails")]
+    [CreateAction("CreateYeastType")]
+    [UpdateAction("UpdateYeastType")]
+    [DeleteAction("DeleteYeastType")]
 
     public class YeastTypeDTO : ModelBase
     {

@@ -9,15 +9,13 @@ namespace BeerCalculatorService.Controllers
 {
     public class RecipeController : Controller
     {
-        //
-        // GET: /Recipe/
 
-        public ActionResult GetRecipes()
+        public ActionResult GetAllRecipes()
         {
             return View();
         }
 
-        public ActionResult GetRecipe(int id)
+        public ActionResult GetRecipeDetails(RecipeDTO details)
         {
             return null;
         }

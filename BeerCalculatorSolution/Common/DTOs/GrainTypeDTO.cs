@@ -10,9 +10,9 @@ namespace Common.DTOs
     [Controller("GrainType")]
     [GetAllAction("GetAllGrainTypes")]
     [GetDetailsAction("GetGrainTypeDetails")]
-    [CreateAction("CreateGrain")]
-    [UpdateAction("UpdateGrain")]
-    [DeleteAction("DeleteGrain")]
+    [CreateAction("CreateGrainType")]
+    [UpdateAction("UpdateGrainType")]
+    [DeleteAction("DeleteGrainType")]
     public class GrainTypeDTO : ModelBase
     {
         [PrimaryKey]

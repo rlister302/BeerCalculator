@@ -7,6 +7,12 @@ using Common.Abstract;
 
 namespace Common.DTOs
 {
+    [Controller("Recipe")]
+    [GetAllAction("GetAllRecipes")]
+    [GetDetailsAction("GetRecipeDetails")]
+    [CreateAction("CreateRecipe")]
+    [UpdateAction("UpdateRecipe")]
+    [DeleteAction("DeleteRecipe")]
     public class RecipeDTO : ModelBase
     {
         public int RecipeID { get; set; }
