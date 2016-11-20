@@ -11,32 +11,48 @@
     @Styles.Render("~/Content/bootstrap-styles/css")
     <style>
         .wrapper{
+            align-content:center;
             margin-right:auto;
             margin-left:auto;
-            width:70%;
+            width:80%;
+            padding:10px;
+            background-color:#fff;
+            min-height:100%;
+        }
+        .navbar{
+            margin-bottom:0;
+        }
+        body{
+            background-color:lightgray;
         }
     </style>
 </head>
+
+
 <body>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            @Html.ActionLink("Beer Calculator", "Index", "Home", new { @class = "navbar-brand" })
-            <ul class="navbar-nav nav">
-                <li>
-                    <a href="javascript:void(0)">View Recipes</a>
-                </li>
-                <li>
-                    <a href="javascript:void(0)" onclick="getGrainManagementPage()">View Grains</a>
-                </li>
-                <li>
-                    <a href="javascript:void(0)" onclick="getHopManagementPage()">View Hops</a>
-                </li>
-                <li>
-                    <a href="javascript:void(0)">View Yeast</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <div>
+        <nav class="navbar navbar-default">
+            <div class="container" style="float:left;">
+                @Html.ActionLink("Beer Calculator", "Index", "Home", new { @class = "navbar-brand" })
+                <ul class="navbar-nav nav">
+                    <li>
+                        <a href="javascript:void(0)">View Recipes</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" onclick="getGrainManagementPage()">View Grains</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" onclick="getHopManagementPage()">View Hops</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">View Yeast</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+   
+    
 
     <div id="body" class="wrapper">
         @RenderBody()

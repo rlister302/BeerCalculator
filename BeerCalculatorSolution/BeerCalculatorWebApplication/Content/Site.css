@@ -4,10 +4,10 @@
 }
 
 body {
-    background-color: #fff;
+    background-color: blue;
     color: #333;
-    max-width: 980px; /*Remove this to make it full screen*/
     margin: 1em auto;
+    clear:both;
 }
 
 button, input[type=submit] {

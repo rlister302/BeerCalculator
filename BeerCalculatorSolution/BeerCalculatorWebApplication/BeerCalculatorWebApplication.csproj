@@ -221,6 +221,7 @@
     <Content Include="Content\BootStrap\bootstrap-theme.min.css" />
     <Content Include="Content\BootStrap\bootstrap.css" />
     <Content Include="Content\BootStrap\bootstrap.min.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -325,7 +326,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
-    <Content Include="Content\Site.css" />
     <Content Include="Content\TodoList.css" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Scripts\app\ajaxlogin.js" />
