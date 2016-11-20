@@ -1,5 +1,4 @@
-﻿@model List<Common.DTOs.HopTypeDTO>
-<h2>Hop Management</h2>
+﻿<h2>Grain Management</h2>
 <div>
     <div>
         <table class="table table-striped table-bordered">
@@ -9,72 +8,58 @@
                         ID
                     </td>
                     <td>
-                        Hop Name
+                        Grain Name
                     </td>
                     <td>
-                        Flavor Notes
+                        Maximum Sugar Extraction
                     </td>
                 </tr>
             </thead>
             <tbody>
-                @foreach(var hopType in Model)
-                {
-                    <tr>
-                        <td>
-                            @hopType.HopTypeID
-                        </td>
-                        <td>
-                            @hopType.HopName
-                        </td>
-                        <td>
-                            @hopType.FlavorNotes
-                        </td>
-                    </tr>
-                }
                 @*Populate hops within foreach loop here
                     We will need to add classes to the rows as we populate the grid
-                    *@
+                *@
             </tbody>
         </table>
     </div>
     <div>
-        <input type="button" class="btn btn-large btn-success" data-toggle="modal" data-target="#hop-modal" value="Create Hop" />
+        <input type="button" class="btn btn-large btn-success" data-toggle="modal" data-target="#grain-modal" value="Create Grain" />
     </div>
 
-    <div id="hop-modal" class="modal fade collapse" role="dialog">
+    <div id="grain-modal" class="modal fade collapse" role="dialog">
         <div class="modal-dialog">
 
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Create Hop Type</h4>
+                    <h4 class="modal-title">Create Grain Type</h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-lg-2">
                             <label>Name:</label>
                         </div>
-                        <div class="col-lg-4">
-                            <input id="hop-name" class="form-control" />
+                        <div class="col-lg-3">
+                            <input id="grain-name" class="form-control" />
                         </div>
                     </div>
 
                     <div class="row" style="margin-top:5px">
-                        <div class="col-lg-3">
-                            <label>Flavor Notes</label>
+                        <div class="col-lg-5">
+                            <label>Maximum Sugar Extraction:</label>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-6">
-                            <textarea id="flavor-notes" class="form-control" style="height:250px"></textarea>
+                            <input id="max-sugar-ppg" class="form-control"/>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
 
-                    <input type="button" class="btn btn-success" onclick="saveHop()" value="Save Hop" />
+                    <input type="button" class="btn btn-success" onclick="saveGrain()" value="Save Grain" />
 
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                 </div>
@@ -85,4 +70,3 @@
 
 
 </div>
-

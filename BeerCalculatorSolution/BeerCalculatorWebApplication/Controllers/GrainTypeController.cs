@@ -9,6 +9,10 @@ namespace BeerCalculatorWebApplication.Controllers
 {
     public class GrainTypeController : Controller
     {
+        public ActionResult GrainManagement()
+        {
+            return PartialView();
+        }
         public ActionResult GetGrainTypes()
         {
             return null;

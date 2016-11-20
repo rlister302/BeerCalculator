@@ -11,36 +11,45 @@ namespace BeerCalculatorWebApplication.Controllers
 {
     public class HopTypeController : Controller
     {
-        public ActionResult CreateHopTypePage()
+        private HopTypeRequestManager _requestManager;
+
+        public HopTypeController()
         {
-            return PartialView();
+            _requestManager = new HopTypeRequestManager();
         }
-        public ActionResult GetAllHopTypes()
+
+        public async Task<ActionResult> HopManagement()
         {
-            return null;
+            var model = await _requestManager.RetreiveAll(new HopTypeDTO());
+            return PartialView(model);
         }
-        public ActionResult GetHopTypeDetails(HopTypeDTO details)
+        public async Task<ActionResult> GetAllHopTypes()
         {
-            return null;
-            //call web api
+            var response = await _requestManager.RetreiveAll(new HopTypeDTO());
+            return Json(response);
+        }
+        public async Task<ActionResult> GetHopTypeDetails(HopTypeDTO details)
+        {
+            var response = await _requestManager.Retreive(details);
+            return Json(response);
         }
 
         public async Task<ActionResult> CreateHopType(HopTypeDTO create)
         {
-            var response = await new HopTypeRequestManager().Create(create);
+            var response = await _requestManager.Create(create);
             return Json(response);
         }
 
-        public ActionResult UpdateHopType(HopTypeDTO update)
+        public async Task<ActionResult> UpdateHopType(HopTypeDTO update)
         {
-            return null;    
-            // Call web api
+            var response = await _requestManager.Update(update);
+            return Json(response);
         }
 
-        public ActionResult DeleteHopType(int id)
+        public async Task<ActionResult> DeleteHopType(HopTypeDTO delete)
         {
-            return null;
-            // call web api
+            var response = await _requestManager.Delete(delete);
+            return Json(response);
         }
     }
 }

@@ -10,3 +10,19 @@
         }
     })
 }
+
+function getGrainManagementPage()
+{
+    $.ajax({
+        url: "/GrainType/GrainManagement",
+        type: "GET",
+        success: function(response)
+        {
+            $('#body').html(response);
+        },
+        error: function()
+        {
+            alert("There was an error");
+        }
+    })
+}

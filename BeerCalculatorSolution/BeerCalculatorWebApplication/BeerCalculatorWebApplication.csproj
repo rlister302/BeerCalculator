@@ -354,6 +354,7 @@
     <Content Include="Views\Home\_Register.cshtml" />
     <Content Include="Views\HopType\HopManagement.cshtml" />
     <Content Include="Views\HopType\CreateHopTypePage.cshtml" />
+    <Content Include="Views\GrainType\GrainManagement.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

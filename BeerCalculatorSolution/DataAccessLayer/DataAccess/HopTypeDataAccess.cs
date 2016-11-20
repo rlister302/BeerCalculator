@@ -5,7 +5,7 @@ using System.Web;
 using Common.DTOs;
 using DataAccessLayer;
 
-namespace BeerCalculatorService.DataAccess
+namespace DataAccessLayer.DataAccess
 {
     public class HopTypeDataAccess
     {
