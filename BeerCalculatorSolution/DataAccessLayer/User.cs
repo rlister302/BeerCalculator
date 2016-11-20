@@ -12,21 +12,19 @@ namespace DataAccessLayer
     using System;
     using System.Collections.Generic;
     
-    public partial class Recipe
+    public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Recipe()
+        public User()
         {
             this.BrewProcesses = new HashSet<BrewProcess>();
         }
     
-        public int RecipeID { get; set; }
-        public string RecipeName { get; set; }
-        public Nullable<double> ExpectedABV { get; set; }
-        public Nullable<double> ExpectedOG { get; set; }
-        public Nullable<double> ExpectedFG { get; set; }
-        public Nullable<int> IBU { get; set; }
-        public Nullable<int> MaxMashEfficiency { get; set; }
+        public long UserID { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BrewProcess> BrewProcesses { get; set; }

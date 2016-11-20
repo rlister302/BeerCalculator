@@ -16,10 +16,10 @@ namespace DataAccessLayer
     {
         public int GrainID { get; set; }
         public Nullable<int> GrainTypeID { get; set; }
-        public Nullable<int> RecipeID { get; set; }
         public Nullable<int> Amount { get; set; }
+        public Nullable<long> BrewProcessID { get; set; }
     
+        public virtual BrewProcess BrewProcess { get; set; }
         public virtual GrainType GrainType { get; set; }
-        public virtual Recipe Recipe { get; set; }
     }
 }

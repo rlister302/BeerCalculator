@@ -7,7 +7,11 @@ using Common.Abstract;
 
 namespace Common.DTOs
 {
+<<<<<<< HEAD:BeerCalculatorSolution/Common/DTOs/RecipeDTO.cs
     public class RecipeDTO : ModelBase
+=======
+    public class RecipeDTO
+>>>>>>> 4d4d2b14b50f429e520bea005f5107de2f1c95da:BeerCalculatorSolution/Models/Models/RecipeDTO.cs
     {
         public int RecipeID { get; set; }
         public string RecipeName { get; set; }

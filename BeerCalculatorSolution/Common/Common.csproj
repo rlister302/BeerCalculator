@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD:BeerCalculatorSolution/Common/Common.csproj
     <Compile Include="Abstract\AbstractRequestManager.cs" />
     <Compile Include="Abstract\IRequestManager.cs" />
     <Compile Include="Abstract\ModelBase.cs" />
@@ -57,6 +58,18 @@
     <Compile Include="DTOs\RecipeDTO.cs" />
     <Compile Include="DTOs\YeastDTO.cs" />
     <Compile Include="DTOs\YeastTypeDTO.cs" />
+=======
+    <Compile Include="Communication\HopRequestManager.cs" />
+    <Compile Include="Communication\IRequestManager.cs" />
+    <Compile Include="Communication\RequestManager.cs" />
+    <Compile Include="Models\GrainDTO.cs" />
+    <Compile Include="Models\GrainTypeDTO.cs" />
+    <Compile Include="Models\HopDTO.cs" />
+    <Compile Include="Models\HopTypeDTO.cs" />
+    <Compile Include="Models\RecipeDTO.cs" />
+    <Compile Include="Models\YeastDTO.cs" />
+    <Compile Include="Models\YeastTypeDTO.cs" />
+>>>>>>> 4d4d2b14b50f429e520bea005f5107de2f1c95da:BeerCalculatorSolution/Models/Models.csproj
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

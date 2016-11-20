@@ -4,20 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ff018c63202c40cd9c1f5db0282b6c4c" Name="Diagram1">
-        <EntityTypeShape EntityType="BeerCalculatorModel.Grain" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BeerCalculatorModel.GrainType" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="BeerCalculatorModel.Hop" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BeerCalculatorModel.HopType" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BeerCalculatorModel.Recipe" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="BeerCalculatorModel.Yeast" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BeerCalculatorModel.YeastType" Width="1.5" PointX="5.75" PointY="1.375" IsExpanded="true" />
+      <Diagram DiagramId="e237b2f783d44edbb642e23b553fb3f1" Name="Diagram1">
+        <EntityTypeShape EntityType="BeerCalculatorModel.BrewProcess" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeerCalculatorModel.Grain" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeerCalculatorModel.GrainType" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeerCalculatorModel.Hop" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeerCalculatorModel.HopType" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeerCalculatorModel.Recipe" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeerCalculatorModel.User" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeerCalculatorModel.Yeast" Width="1.5" PointX="5.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeerCalculatorModel.YeastType" Width="1.5" PointX="7.75" PointY="1.5" IsExpanded="true" />
+        <AssociationConnector Association="BeerCalculatorModel.FK__BrewProce__Recip__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="BeerCalculatorModel.FK__BrewProce__UserI__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="BeerCalculatorModel.FK__Grain__BrewProce__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="BeerCalculatorModel.FK__Hop__BrewProcess__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="BeerCalculatorModel.FK__Yeast__BrewProce__3C69FB99" ManuallyRouted="false" />
         <AssociationConnector Association="BeerCalculatorModel.FK__Grain__GrainType__2B3F6F97" ManuallyRouted="false" />
-        <AssociationConnector Association="BeerCalculatorModel.FK__Grain__RecipeID__2C3393D0" ManuallyRouted="false" />
         <AssociationConnector Association="BeerCalculatorModel.FK__Hop__HopTypeID__2F10007B" ManuallyRouted="false" />
-        <AssociationConnector Association="BeerCalculatorModel.FK__Hop__RecipeID__300424B4" ManuallyRouted="false" />
         <AssociationConnector Association="BeerCalculatorModel.FK__Yeast__YeastType__32E0915F" ManuallyRouted="false" />
-        <AssociationConnector Association="BeerCalculatorModel.FK__Yeast__RecipeID__33D4B598" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

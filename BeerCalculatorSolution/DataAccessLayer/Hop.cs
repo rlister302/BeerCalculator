@@ -16,10 +16,10 @@ namespace DataAccessLayer
     {
         public int HopID { get; set; }
         public Nullable<int> HopTypeID { get; set; }
-        public Nullable<int> RecipeID { get; set; }
         public Nullable<int> AlphaAcid { get; set; }
+        public Nullable<long> BrewProcessID { get; set; }
     
+        public virtual BrewProcess BrewProcess { get; set; }
         public virtual HopType HopType { get; set; }
-        public virtual Recipe Recipe { get; set; }
     }
 }

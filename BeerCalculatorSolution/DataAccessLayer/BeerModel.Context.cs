@@ -25,11 +25,13 @@ namespace DataAccessLayer
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<BrewProcess> BrewProcesses { get; set; }
         public virtual DbSet<Grain> Grains { get; set; }
         public virtual DbSet<GrainType> GrainTypes { get; set; }
         public virtual DbSet<Hop> Hops { get; set; }
         public virtual DbSet<HopType> HopTypes { get; set; }
         public virtual DbSet<Recipe> Recipes { get; set; }
+        public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Yeast> Yeasts { get; set; }
         public virtual DbSet<YeastType> YeastTypes { get; set; }
     }

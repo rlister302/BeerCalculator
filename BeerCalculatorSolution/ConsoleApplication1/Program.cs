@@ -31,14 +31,15 @@ namespace ConsoleApplication1
             {
                 try
                 {
-                    var hopsList = ctx.Hops.Where
-                        (h => h.RecipeID == ctx.Recipes.Where(r => r.RecipeName.Equals("Summer Lager", StringComparison.OrdinalIgnoreCase)).FirstOrDefault().RecipeID);
+                    //deprecated
+                    //var hopsList = ctx.Hops.Where
+                    //    (h => h.RecipeID == ctx.Recipes.Where(r => r.RecipeName.Equals("Summer Lager", StringComparison.OrdinalIgnoreCase)).FirstOrDefault().RecipeID);
 
-                    DataAccessLayer.Grain myObj = null;
+                    //DataAccessLayer.Grain myObj = null;
 
-                    myObj.Amount = 10;
+                    //myObj.Amount = 10;
 
-                    Console.WriteLine(hopsList.Count());
+                    //Console.WriteLine(hopsList.Count());
                 }
                 catch
                 {
