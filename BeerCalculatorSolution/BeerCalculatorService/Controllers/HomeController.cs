@@ -11,7 +11,7 @@ namespace BeerCalculatorService.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return Content("Service has started");
         }
 
         public ActionResult GetItem(int id)

@@ -69,8 +69,10 @@
     <Compile Include="BrewProcess.cs">
       <DependentUpon>BeerModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccess\GrainTypeDataAccess.cs" />
     <Compile Include="DataAccess\HopTypeDataAccess.cs" />
     <Compile Include="DataAccess\Interface\IDataAccess.cs" />
+    <Compile Include="DataAccess\YeastTypeDataAccess.cs" />
     <Compile Include="Grain.cs">
       <DependentUpon>BeerModel.tt</DependentUpon>
     </Compile>
