@@ -70,6 +70,7 @@
       <DependentUpon>BeerModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\HopTypeDataAccess.cs" />
+    <Compile Include="DataAccess\Interface\IDataAccess.cs" />
     <Compile Include="Grain.cs">
       <DependentUpon>BeerModel.tt</DependentUpon>
     </Compile>

@@ -49,7 +49,7 @@ namespace Common.Abstract
             }
         }
 
-        public async Task<List<T>> RetreiveAll(T retreive)
+        public async Task<IEnumerable<T>> RetreiveAll(T retreive)
         {
             using (var client = new HttpClient())
             {
