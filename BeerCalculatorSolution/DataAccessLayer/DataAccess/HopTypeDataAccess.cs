@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Common.DTOs;
+using DataAccessLayer.DataAccess.Interface;
 using DataAccessLayer;
 
 namespace DataAccessLayer.DataAccess
 {
-    public class HopTypeDataAccess
+    public class HopTypeDataAccess : IDataAccess<HopTypeDTO>
     {
-        public bool CreateHopType(HopTypeDTO create)
+        public bool Create(HopTypeDTO create)
         {
             bool status = false;
             using (var context = new BeerCalculatorEntities())
@@ -25,13 +26,13 @@ namespace DataAccessLayer.DataAccess
             return status;
         }
 
-        public List<HopTypeDTO> GetAllHopTypes()
+        public IEnumerable<HopTypeDTO> Get()
         {
             var hopTypes = new List<HopTypeDTO>();
             using (var context = new BeerCalculatorEntities())
             {
                 var hopTypeEntities = context.HopTypes.ToList();
-                foreach(var entity in hopTypeEntities)
+                foreach (var entity in hopTypeEntities)
                 {
                     var dto = new HopTypeDTO();
                     dto.HopTypeID = entity.HopTypeID;
@@ -44,13 +45,13 @@ namespace DataAccessLayer.DataAccess
             return hopTypes;
         }
 
-        public HopTypeDTO GetHopTypeDetails(HopTypeDTO details)
+        public HopTypeDTO Get(HopTypeDTO details)
         {
             var hopType = new HopTypeDTO();
             using (var context = new BeerCalculatorEntities())
             {
                 var entity = context.HopTypes.Find(details.HopTypeID);
-                if(entity != null)
+                if (entity != null)
                 {
                     hopType.HopTypeID = entity.HopTypeID;
                     hopType.HopName = entity.HopName;
@@ -61,7 +62,7 @@ namespace DataAccessLayer.DataAccess
             return hopType;
         }
 
-        public bool UpdateHopType(HopTypeDTO update)
+        public bool Update(HopTypeDTO update)
         {
             bool status = false;
             using (var context = new BeerCalculatorEntities())
@@ -76,13 +77,13 @@ namespace DataAccessLayer.DataAccess
             return status;
         }
 
-        public bool DeleteHopType(HopTypeDTO delete)
+        public bool Delete(int delete)
         {
             bool status = false;
 
             using (var context = new BeerCalculatorEntities())
             {
-                var entity = context.HopTypes.Find(delete.HopTypeID);
+                var entity = context.HopTypes.Find(delete);
                 context.HopTypes.Remove(entity);
                 context.SaveChanges();
                 status = true;
