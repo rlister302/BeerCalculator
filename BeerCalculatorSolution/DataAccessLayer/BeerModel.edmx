@@ -40,9 +40,9 @@
           </Key>
           <Property Name="HopID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="HopTypeID" Type="int" />
-          <Property Name="AlphaAcid" Type="int" />
           <Property Name="BrewProcessID" Type="bigint" />
           <Property Name="Amount" Type="float" Nullable="false" />
+          <Property Name="AlphaAcid" Type="float" Nullable="false" />
         </EntityType>
         <EntityType Name="HopType">
           <Key>
@@ -279,7 +279,7 @@
           </Key>
           <Property Name="HopID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="HopTypeID" Type="Int32" />
-          <Property Name="AlphaAcid" Type="Int32" />
+          <Property Name="AlphaAcid" Type="Int32" Nullable="false" />
           <Property Name="BrewProcessID" Type="Int64" />
           <NavigationProperty Name="BrewProcess" Relationship="Self.FK__Hop__BrewProcess__3B75D760" FromRole="Hop" ToRole="BrewProcess" />
           <NavigationProperty Name="HopType" Relationship="Self.FK__Hop__HopTypeID__2F10007B" FromRole="Hop" ToRole="HopType" />

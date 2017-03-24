@@ -20,5 +20,6 @@ namespace Common.DTOs
         public string HopName { get; set; }
         public string FlavorNotes { get; set; }
         public double Amount { get; set; }
+        public double AlphaAcid { get; set; }
     }
 }

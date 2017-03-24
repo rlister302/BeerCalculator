@@ -14,7 +14,7 @@ public partial class Hop
 {
     public int HopID { get; set; }
     public Nullable<int> HopTypeID { get; set; }
-    public Nullable<int> AlphaAcid { get; set; }
+    public int AlphaAcid { get; set; }
     public Nullable<long> BrewProcessID { get; set; }
     public double Amount { get; set; }
 

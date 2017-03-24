@@ -57,7 +57,7 @@ namespace DataAccessLayer.DataAccess
                         Join(context.HopTypes,
                         hop => hop.BrewProcessID,
                         hopType => hopType.HopTypeID,
-                        (hop, hopType) => new HopTypeDTO { HopName = hopType.HopName, FlavorNotes = hopType.FlavorNotes }).ToList();
+                        (hop, hopType) => new HopTypeDTO { HopName = hopType.HopName, FlavorNotes = hopType.FlavorNotes, Amount = hop.Amount, AlphaAcid = hop.AlphaAcid }).ToList();
                 }
             }
 
