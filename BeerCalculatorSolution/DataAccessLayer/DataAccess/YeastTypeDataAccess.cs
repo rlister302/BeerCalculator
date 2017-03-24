@@ -109,11 +109,10 @@ namespace DataAccessLayer.DataAccess
                     yeastEntity.HighAttentuationRate = update.HighAttenuationRate;
                     yeastEntity.LowTemperatureRange = update.LowTemperatureRange;
                     yeastEntity.HighTemperatureRange = update.HighTemperatureRange;
-
                 }
             }
 
-                return status;
+            return status;
         }
     }
 }

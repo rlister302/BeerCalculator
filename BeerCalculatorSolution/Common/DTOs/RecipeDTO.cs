@@ -26,5 +26,11 @@ namespace Common.DTOs
         public int IBU { get; set; }
         public int MashEfficiency { get; set; }
         public DateTime BrewDate { get; set; }
+
+        public IEnumerable<HopTypeDTO> Hops { get; set; }
+
+        public IEnumerable<GrainTypeDTO> Grains { get; set; }
+
+        public YeastTypeDTO Yeast { get; set; }
     }
 }

@@ -7,18 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DataAccessLayer
+using System;
+using System.Collections.Generic;
+
+public partial class Yeast
 {
-    using System;
-    using System.Collections.Generic;
-    
-    public partial class Yeast
-    {
-        public int YeastID { get; set; }
-        public Nullable<int> YeastTypeID { get; set; }
-        public Nullable<long> BrewProcessID { get; set; }
-    
-        public virtual BrewProcess BrewProcess { get; set; }
-        public virtual HopType HopType { get; set; }
-    }
+    public int YeastID { get; set; }
+    public Nullable<int> YeastTypeID { get; set; }
+    public Nullable<long> BrewProcessID { get; set; }
+
+    public virtual BrewProcess BrewProcess { get; set; }
+    public virtual HopType HopType { get; set; }
 }

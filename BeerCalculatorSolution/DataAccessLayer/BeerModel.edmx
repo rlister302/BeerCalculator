@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BeerCalculatorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BeerCalculatorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BrewProcess">
           <Key>
             <PropertyRef Name="BrewProcessID" />
@@ -42,6 +42,7 @@
           <Property Name="HopTypeID" Type="int" />
           <Property Name="AlphaAcid" Type="int" />
           <Property Name="BrewProcessID" Type="bigint" />
+          <Property Name="Amount" Type="float" Nullable="false" />
         </EntityType>
         <EntityType Name="HopType">
           <Key>
@@ -231,8 +232,7 @@
             <End Role="Yeast" EntitySet="Yeast" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BeerCalculatorModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -283,6 +283,7 @@
           <Property Name="BrewProcessID" Type="Int64" />
           <NavigationProperty Name="BrewProcess" Relationship="Self.FK__Hop__BrewProcess__3B75D760" FromRole="Hop" ToRole="BrewProcess" />
           <NavigationProperty Name="HopType" Relationship="Self.FK__Hop__HopTypeID__2F10007B" FromRole="Hop" ToRole="HopType" />
+          <Property Name="Amount" Type="Double" Nullable="false" />
         </EntityType>
         <EntityType Name="HopType">
           <Key>
@@ -519,6 +520,7 @@
           <EntitySetMapping Name="Hops">
             <EntityTypeMapping TypeName="BeerCalculatorModel.Hop">
               <MappingFragment StoreEntitySet="Hop">
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="HopID" ColumnName="HopID" />
                 <ScalarProperty Name="HopTypeID" ColumnName="HopTypeID" />
                 <ScalarProperty Name="AlphaAcid" ColumnName="AlphaAcid" />

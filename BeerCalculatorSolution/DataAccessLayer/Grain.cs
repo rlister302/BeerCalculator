@@ -7,19 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DataAccessLayer
+using System;
+using System.Collections.Generic;
+
+public partial class Grain
 {
-    using System;
-    using System.Collections.Generic;
-    
-    public partial class Grain
-    {
-        public int GrainID { get; set; }
-        public Nullable<int> GrainTypeID { get; set; }
-        public Nullable<int> Amount { get; set; }
-        public Nullable<long> BrewProcessID { get; set; }
-    
-        public virtual BrewProcess BrewProcess { get; set; }
-        public virtual GrainType GrainType { get; set; }
-    }
+    public int GrainID { get; set; }
+    public Nullable<int> GrainTypeID { get; set; }
+    public Nullable<int> Amount { get; set; }
+    public Nullable<long> BrewProcessID { get; set; }
+
+    public virtual BrewProcess BrewProcess { get; set; }
+    public virtual GrainType GrainType { get; set; }
 }
