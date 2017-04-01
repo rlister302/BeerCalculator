@@ -7,15 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-
-public partial class YeastType
+namespace DataAccessLayer
 {
-    public int YeastTypeID { get; set; }
-    public string YeastName { get; set; }
-    public Nullable<int> LowAttenuationRate { get; set; }
-    public Nullable<int> HighAttentuationRate { get; set; }
-    public Nullable<int> LowTemperatureRange { get; set; }
-    public Nullable<int> HighTemperatureRange { get; set; }
+    using System;
+    using System.Collections.Generic;
+    
+    public partial class YeastType
+    {
+        public int YeastTypeID { get; set; }
+        public string YeastName { get; set; }
+        public Nullable<int> LowAttenuationRate { get; set; }
+        public Nullable<int> HighAttentuationRate { get; set; }
+        public Nullable<int> LowTemperatureRange { get; set; }
+        public Nullable<int> HighTemperatureRange { get; set; }
+    }
 }

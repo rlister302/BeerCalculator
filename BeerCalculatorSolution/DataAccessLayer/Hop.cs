@@ -7,17 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-
-public partial class Hop
+namespace DataAccessLayer
 {
-    public int HopID { get; set; }
-    public Nullable<int> HopTypeID { get; set; }
-    public int AlphaAcid { get; set; }
-    public Nullable<long> BrewProcessID { get; set; }
-    public double Amount { get; set; }
-
-    public virtual BrewProcess BrewProcess { get; set; }
-    public virtual HopType HopType { get; set; }
+    using System;
+    using System.Collections.Generic;
+    
+    public partial class Hop
+    {
+        public int HopID { get; set; }
+        public Nullable<int> HopTypeID { get; set; }
+        public double Amount { get; set; }
+        public double AlphaAcid { get; set; }
+        public int RecipeID { get; set; }
+    
+        public virtual HopType HopType { get; set; }
+    }
 }

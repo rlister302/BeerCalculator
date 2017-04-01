@@ -7,24 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-
-public partial class HopType
+namespace DataAccessLayer
 {
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public HopType()
+    using System;
+    using System.Collections.Generic;
+    
+    public partial class HopType
     {
-        this.Hops = new HashSet<Hop>();
-        this.Yeasts = new HashSet<Yeast>();
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public HopType()
+        {
+            this.Hops = new HashSet<Hop>();
+            this.Yeasts = new HashSet<Yeast>();
+        }
+    
+        public int HopTypeID { get; set; }
+        public string HopName { get; set; }
+        public string FlavorNotes { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Hop> Hops { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Yeast> Yeasts { get; set; }
     }
-
-    public int HopTypeID { get; set; }
-    public string HopName { get; set; }
-    public string FlavorNotes { get; set; }
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<Hop> Hops { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<Yeast> Yeasts { get; set; }
 }

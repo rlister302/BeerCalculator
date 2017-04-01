@@ -17,6 +17,8 @@ namespace Common.DTOs
     public class YeastTypeDTO : ModelBase
     {
         public int YeastTypeID { get; set; }
+        public int YeastID { get; set; }
+        public int? RecipeID { get; set; }
         public string YeastName { get; set; }
         public int LowAttenuationRate { get; set; }
         public int HighAttenuationRate { get; set; }

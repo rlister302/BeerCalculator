@@ -70,6 +70,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{c141e34b-83ab-46ab-8522-c01022163753}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
       <Project>{4ef85cd9-95db-4ec8-bb09-cdfa42c03cae}</Project>
       <Name>DataAccessLayer</Name>

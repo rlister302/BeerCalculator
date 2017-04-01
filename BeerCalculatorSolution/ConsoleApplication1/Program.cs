@@ -5,17 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 using DataAccessLayer;
 using log4net;
+using Common.Communication;
 namespace ConsoleApplication1
 {
     class Program
     {
         private static readonly log4net.ILog log =
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        static void Main(string[] args)
+        static async void Main(string[] args)
         {
             try
             {
-                GetHops();
+                var x = new RecipeRequestManager();
+                var y = await x.RetreiveAll(new Common.DTOs.RecipeDTO());
             }
             catch (Exception e)
             {

@@ -17,7 +17,10 @@ namespace Common.DTOs
     {
         [PrimaryKey]
         public int GrainTypeID { get; set; }
+        public int GrainID { get; set; }
         public string GrainName { get; set; }
         public int MaximumSugarExtraction { get; set; }
+        public int RecipeID { get; set; }
+        public int Amount { get; set; }
     }
 }

@@ -7,21 +7,24 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-
-public partial class GrainType
+namespace DataAccessLayer
 {
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public GrainType()
+    using System;
+    using System.Collections.Generic;
+    
+    public partial class GrainType
     {
-        this.Grains = new HashSet<Grain>();
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public GrainType()
+        {
+            this.Grains = new HashSet<Grain>();
+        }
+    
+        public int GrainTypeID { get; set; }
+        public string GrainName { get; set; }
+        public Nullable<int> MaximumSugarExtraction { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Grain> Grains { get; set; }
     }
-
-    public int GrainTypeID { get; set; }
-    public string GrainName { get; set; }
-    public Nullable<int> MaximumSugarExtraction { get; set; }
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<Grain> Grains { get; set; }
 }

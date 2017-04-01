@@ -7,13 +7,21 @@ using System.Threading.Tasks;
 using Common.DTOs;
 using Common.Communication;
 
+
 namespace BeerCalculatorWebApplication.Controllers
 {
     public class RecipeController : Controller
     {
-        public Task<ActionResult> GetRecipes()
+        private RecipeRequestManager _requestManager;
+
+        public RecipeController()
         {
-            return null;
+            _requestManager = new RecipeRequestManager();
+        }
+        public async Task<ActionResult> GetRecipes()
+        {
+            var model = await _requestManager.RetreiveAll(new RecipeDTO());
+            return Json(model);
         }
 
         public ActionResult GetRecipe(int id)
