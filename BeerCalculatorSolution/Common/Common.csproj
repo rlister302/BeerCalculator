@@ -57,6 +57,7 @@
     <Compile Include="DTOs\GrainTypeDTO.cs" />
     <Compile Include="DTOs\HopDTO.cs" />
     <Compile Include="DTOs\HopTypeDTO.cs" />
+    <Compile Include="DTOs\IngredientDTO.cs" />
     <Compile Include="DTOs\RecipeDTO.cs" />
     <Compile Include="DTOs\YeastDTO.cs" />
     <Compile Include="DTOs\YeastTypeDTO.cs" />

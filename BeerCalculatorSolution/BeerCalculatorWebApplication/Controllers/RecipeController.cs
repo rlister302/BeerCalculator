@@ -18,6 +18,11 @@ namespace BeerCalculatorWebApplication.Controllers
         {
             _requestManager = new RecipeRequestManager();
         }
+        [HttpGet]
+        public ActionResult CreateRecipe()
+        {
+            return PartialView();
+        }
         public async Task<ActionResult> GetRecipes()
         {
             var model = await _requestManager.RetreiveAll(new RecipeDTO());
@@ -28,7 +33,7 @@ namespace BeerCalculatorWebApplication.Controllers
         {
             return null;
         }
-
+        [HttpPost]
         public ActionResult CreateRecipe(RecipeDTO create)
         {
             return null;

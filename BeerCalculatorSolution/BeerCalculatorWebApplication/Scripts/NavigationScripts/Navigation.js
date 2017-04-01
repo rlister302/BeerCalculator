@@ -26,3 +26,18 @@ function getGrainManagementPage()
         }
     })
 }
+
+function getAddRecipePage()
+{
+    $.ajax({
+        url: "/Recipe/CreateRecipe",
+        type: "GET",
+        success: function (response) {
+            $('#body').html(response);
+        },
+        error: function () {
+            alert("There was an error");
+        }
+    })
+
+}
