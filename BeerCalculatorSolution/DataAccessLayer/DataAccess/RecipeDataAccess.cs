@@ -49,10 +49,10 @@ namespace DataAccessLayer.DataAccess
 
                     recipeDTO.RecipeID = recipe.RecipeID;
                     recipeDTO.RecipeName = recipe.RecipeName;
-                    recipe.ExpectedABV = recipe.ExpectedABV;
-                    recipe.ExpectedOG = recipe.ExpectedOG;
-                    recipe.ExpectedFG = recipe.ExpectedFG;
-                    recipe.IBU = recipe.IBU;
+                    recipeDTO.ExpectedABV = (double)recipe.ExpectedABV;
+                    recipeDTO.ExpectedOG = (double)recipe.ExpectedOG;
+                    recipeDTO.ExpectedFG = (double)recipe.ExpectedFG;
+                    recipeDTO.IBU = (int)recipe.IBU;
 
                     recipeDTO.Grains = GetGrainsForRecipe(context, recipeDTO.RecipeID);
                     recipeDTO.Hops = GetHopsForRecipe(context, recipeDTO.RecipeID);
@@ -67,7 +67,26 @@ namespace DataAccessLayer.DataAccess
   
         public RecipeDTO Get(RecipeDTO details)
         {
-            throw new NotImplementedException();
+            RecipeDTO recipeDTO = new RecipeDTO();
+
+            using (var context = new BeerCalculatorEntities())
+            {
+                var recipe = context.Recipes.Where(x => x.RecipeID == details.RecipeID).Single();
+
+                recipeDTO.RecipeID = recipe.RecipeID;
+                recipeDTO.RecipeName = recipe.RecipeName;
+                recipeDTO.ExpectedABV = (double)recipe.ExpectedABV;
+                recipeDTO.ExpectedOG = (double)recipe.ExpectedOG;
+                recipeDTO.ExpectedFG = (double)recipe.ExpectedFG;
+                recipeDTO.IBU = (int)recipe.IBU;
+
+                recipeDTO.Grains = GetGrainsForRecipe(context, recipe.RecipeID);
+                recipeDTO.Hops = GetHopsForRecipe(context, recipe.RecipeID);
+                recipeDTO.Yeast = GetYeastForRecipe(context, recipe.RecipeID);
+
+            }
+
+            return recipeDTO;
         }
 
         public bool Update(RecipeDTO update)
