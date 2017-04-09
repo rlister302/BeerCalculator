@@ -8,6 +8,7 @@ using Common.DTOs;
 using Common.Communication;
 
 
+
 namespace BeerCalculatorWebApplication.Controllers
 {
     public class RecipeController : Controller
@@ -19,9 +20,10 @@ namespace BeerCalculatorWebApplication.Controllers
             _requestManager = new RecipeRequestManager();
         }
         [HttpGet]
-        public ActionResult CreateRecipe()
+        public async Task<ActionResult> CreateRecipe()
         {
-            return PartialView();
+            var ingredients = await new IngredientRequestManager().Retreive(new IngredientDTO());
+            return PartialView(ingredients);
         }
         public async Task<ActionResult> GetRecipes()
         {

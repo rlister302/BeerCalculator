@@ -12,7 +12,7 @@ namespace Common.Abstract
 {
     public class AbstractRequestManager<T> : IRequestManager<T> where T : ModelBase
     {
-        public async Task<bool> Create(T create)
+        public virtual async Task<bool> Create(T create)
         {
             using (var client = new HttpClient())
             {
@@ -30,7 +30,7 @@ namespace Common.Abstract
             }
         }
 
-        public async Task<bool> Delete(T delete)
+        public virtual async Task<bool> Delete(T delete)
         {
             using (var client = new HttpClient())
             {
@@ -49,7 +49,7 @@ namespace Common.Abstract
             }
         }
 
-        public async Task<IEnumerable<T>> RetreiveAll(T retreive)
+        public virtual async Task<IEnumerable<T>> RetreiveAll(T retreive)
         {
             using (var client = new HttpClient())
             {
@@ -66,7 +66,7 @@ namespace Common.Abstract
             }
         }
 
-        public async Task<T> Retreive(T retreive)
+        public virtual async Task<T> Retreive(T retreive)
         {
             using (var client = new HttpClient())
             {
@@ -84,7 +84,7 @@ namespace Common.Abstract
             }
         }
 
-        public async Task<bool> Update(T update)
+        public virtual async Task<bool> Update(T update)
         {
             using (var client = new HttpClient())
             {

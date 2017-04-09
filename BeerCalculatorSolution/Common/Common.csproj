@@ -52,6 +52,7 @@
     <Compile Include="Abstract\ModelBase.cs" />
     <Compile Include="Communication\GrainTypeRequestManager.cs" />
     <Compile Include="Communication\HopTypeRequestManager.cs" />
+    <Compile Include="Communication\IngredientRequestManager.cs" />
     <Compile Include="Communication\RecipeRequestManager.cs" />
     <Compile Include="Communication\YeastTypeRequestManager.cs" />
     <Compile Include="DTOs\GrainTypeDTO.cs" />

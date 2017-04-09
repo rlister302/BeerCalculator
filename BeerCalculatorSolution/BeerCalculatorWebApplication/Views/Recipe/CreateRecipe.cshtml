@@ -1,4 +1,6 @@
-﻿<h2>Create Recipe</h2>
+﻿@model Common.DTOs.IngredientDTO
+
+<h2>Create Recipe</h2>
 <div>
     <div class="row">
         <div class="col-lg-1"><h4>Name:</h4></div>
@@ -17,4 +19,19 @@
 
     <div>Yeast</div>
     <div>Add yeast selection dropdown box here</div>
+
+    @foreach(var hop in Model.HopTypes)
+    {
+        <div>@hop.HopName</div>
+    }
+
+    @foreach (var hop in Model.GrainTypes)
+    {
+        <div>@hop.GrainName</div>
+    }
+
+    @foreach (var hop in Model.YeastTypes)
+    {
+        <div>@hop.YeastName</div>
+    }
 </div>
