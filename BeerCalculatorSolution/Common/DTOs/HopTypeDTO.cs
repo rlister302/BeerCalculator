@@ -24,5 +24,6 @@ namespace Common.DTOs
         public double AlphaAcid { get; set; }
 
         public int RecipeID { get; set; }
+        public int BoilTime { get; set; }
     }
 }

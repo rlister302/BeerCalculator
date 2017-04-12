@@ -35,10 +35,13 @@ namespace BeerCalculatorWebApplication.Controllers
         {
             return null;
         }
+
         [HttpPost]
-        public ActionResult CreateRecipe(RecipeDTO create)
+        public async Task<ActionResult> CreateRecipe(RecipeDTO create)
         {
-            return null;
+            var x = create;
+            var result = await _requestManager.Create(create);
+            return Json(result);
         }
 
         public ActionResult UpdateRecipe(RecipeDTO update)

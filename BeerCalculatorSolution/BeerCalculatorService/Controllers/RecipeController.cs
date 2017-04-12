@@ -27,9 +27,11 @@ namespace BeerCalculatorService.Controllers
             return null;
         }
 
+        [HttpPost]
         public ActionResult CreateRecipe(RecipeDTO create)
         {
-            return null;
+            var data = _dataAccess.Create(create);
+            return Json(data);
         }
 
         public ActionResult UpdateRecipe(RecipeDTO update)

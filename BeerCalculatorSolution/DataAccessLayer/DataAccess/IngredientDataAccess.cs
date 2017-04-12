@@ -27,9 +27,7 @@ namespace DataAccessLayer.DataAccess
 
         public IngredientDTO Get(IngredientDTO details)
         {
-            GrainTypeDataAccess grainAccess = new DataAccess.GrainTypeDataAccess();
-
-            var grains = grainAccess.Get();
+            var grains = new GrainTypeDataAccess().Get();
 
             var hops = new HopTypeDataAccess().Get();
 

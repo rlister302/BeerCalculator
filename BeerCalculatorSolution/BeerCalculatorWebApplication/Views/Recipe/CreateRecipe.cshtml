@@ -1,37 +1,260 @@
 ﻿@model Common.DTOs.IngredientDTO
 
+<style>
+    .bottom-border {
+        border-bottom-style: solid;
+        border-width: 1px;
+        border-top-style: none;
+        border-left-style: none;
+        border-right-style: none;
+    }
+
+    .button-margin-top {
+        margin-top: 10px;
+    }
+
+    .bottom-margin-push {
+        margin-bottom: 10px;
+    }
+
+    .float-right {
+        float: right;
+    }
+</style>
+
+<script>
+    function addGrain() {
+
+        var grainRow = $('.grain-prototype').clone();
+        $(grainRow).removeClass('grain-prototype').addClass('recipe-grain');
+        $('.grain-table').append(grainRow);
+    }
+
+    function addHop() {
+
+        var hopRow = $('.hop-prototype').clone();
+        $(hopRow).removeClass('hop-prototype').addClass('recipe-hop');
+        $('.hop-table').append(hopRow);
+    }
+
+    function createRecipe() {
+        var recipe = getRecipeInformation();
+
+        console.log("Collected recipe is ", recipe);
+
+        sendRecipeToServer(recipe);
+    }
+
+    function sendRecipeToServer(recipe)
+    {
+        
+        $.ajax({
+            url: '/Recipe/CreateRecipe',
+            type: 'POST',
+            data: recipe ,
+            success: function(response)
+            {
+                alert("Success");
+            },
+            error: function(response)
+            {
+                alert("Error");
+            }
+        })
+    }
+
+    function getRecipeInformation() {
+
+        var recipeName = $('.recipe-name').val();
+        var grains = getGrains();
+        var hops = getHops();
+        var yeast = getYeast();
+
+        var recipe = {};
+
+        recipe.RecipeName = recipeName;
+        recipe.Grains = grains;
+        recipe.Hops = hops;
+        recipe.Yeast = yeast;
+
+        return recipe;
+    }
+
+    function getYeast() {
+
+        var yeast = {};
+
+        var yeastTypeID = $('.yeast-selection').val();
+
+        yeast.YeastTypeID = yeastTypeID;
+
+        return yeast;
+    }
+
+    function getHops() {
+
+        var hops = $('.recipe-hop');
+
+        var recipeHops = [];
+
+        console.log("Hops captured lenght is ", hops.length);
+
+        for (var i = 0; i < hops.length; i++) {
+            var hop = {};
+
+            var hopTypeID = $(hops[i]).find('.hop-selection').val();
+            var hopAmount = $(hops[i]).find('.hop-amount').val();
+            var boilTime = $(hops[i]).find('.boil-time').val();
+            var alphaAcid = $(hops[i]).find('.hop-alpha-acid').val();
+
+            hop.HopTypeID = hopTypeID;
+            hop.Amount = hopAmount;
+            hop.AlphaAcid = alphaAcid;
+            hop.BoilTime = boilTime;
+
+            recipeHops.push(hop);
+        }
+
+        return recipeHops;
+    }
+
+    function getGrains() {
+        var grains = $('.recipe-grain');
+
+        var recipeGrains = [];
+
+        for (var i = 0; i < grains.length; i++) {
+
+            var grain = {};
+
+            var grainTypeID = $(grains[i]).find('.grain-selection').val();
+            var grainAmount = $(grains[i]).find('.grain-amount').val();
+
+            grain.GrainTypeID = grainTypeID;
+            grain.Amount = grainAmount;
+
+            recipeGrains.push(grain);
+        }
+
+        return recipeGrains;
+    }
+</script>
 <h2>Create Recipe</h2>
 <div>
     <div class="row">
+
         <div class="col-lg-1"><h4>Name:</h4></div>
-        <div class="col-lg-2"><input type="text" class="form-control" /></div>
+        <div class="col-lg-2"><input type="text" class="form-control recipe-name" /></div>
     </div>
 
     <div>
         <h3>Grain Bill</h3>
-        <div>Add grain table here with dropdown for grain type, and the amount </div>
+        <div class="row">
+            <div class="col-lg-3"><h4>Grain</h4></div>
+            <div class="col-lg-3"><h4>Amount(lbs)</h4></div>
+        </div>
+        <div class="bottom-border bottom-margin-push"></div>
+
+        <div class="grain-table">
+
+        </div>
+
+        <div class="button-margin-top">
+            <input type="button" class="btn-sm btn-primary" onclick="addGrain()" value="Add grain" />
+        </div>
+
     </div>
 
     <div>
         <h3>Hop Schedule</h3>
-        <div>Add hop table here with dropdown for hop type, and text fields for alpha acid, amount, and time added to boil</div>
+        <div class="row">
+            <div class="col-lg-3"><h4>Hop</h4></div>
+            <div class="col-lg-3"><h4>Amount(ozs)</h4></div>
+            <div class="col-lg-3"><h4>Boil time(minutes)</h4></div>
+            <div class="col-lg-3"><h4>Alpha Acid(%)</h4></div>
+        </div>
+        <div class="bottom-border bottom-margin-push"></div>
+
+        <div class="hop-table">
+
+        </div>
+
+        <div class="button-margin-top">
+            <input type="button" class="btn-sm btn-primary" onclick="addHop()" value="Add hop" />
+        </div>
     </div>
 
-    <div>Yeast</div>
-    <div>Add yeast selection dropdown box here</div>
+    <div>
+        <h3>Yeast</h3>
+    </div>
 
-    @foreach(var hop in Model.HopTypes)
-    {
-        <div>@hop.HopName</div>
-    }
 
-    @foreach (var hop in Model.GrainTypes)
-    {
-        <div>@hop.GrainName</div>
-    }
 
-    @foreach (var hop in Model.YeastTypes)
-    {
-        <div>@hop.YeastName</div>
-    }
+    <div class="row">
+
+        <div class="col-lg-3">
+            <select class="yeast-selection form-control">
+                @foreach (var yeast in Model.YeastTypes)
+                {
+                    <option value="@yeast.YeastTypeID">@yeast.YeastName</option>
+                }
+            </select>
+
+
+        </div>
+
+
+    </div>
+
+    <div class="float-right">
+        <input type="button" value="Create Recipe" onclick="createRecipe()" class="btn btn-sm btn-success" />
+    </div>
+
 </div>
+
+<div class="hidden">
+    <div class="grain-prototype row bottom-margin-push">
+        <div class="col-lg-3">
+            <select class="form-control grain-selection">
+                @foreach (var grain in Model.GrainTypes)
+                {
+                    <option value="@grain.GrainTypeID">@grain.GrainName</option>
+                }
+            </select>
+        </div>
+
+        <div class="col-lg-3">
+            <input type="text" class="form-control grain-amount" />
+        </div>
+    </div>
+
+    <div class="hop-prototype row bottom-margin-push">
+        <div class="col-lg-3">
+            <select class="form-control hop-selection">
+                @foreach (var hop in Model.HopTypes)
+                {
+                    <option value="@hop.HopTypeID">@hop.HopName</option>
+                }
+            </select>
+        </div>
+
+        <div class="col-lg-3">
+            <input class="form-control hop-amount" type="text" />
+        </div>
+
+        <div class="col-lg-3">
+            <select class="boil-time form-control boil-time">
+                @for (int i = 60; i > 0; i -= 15)
+                {
+                    <option value="@i">@i</option>
+                }
+            </select>
+        </div>
+
+        <div class="col-lg-3">
+            <input class="form-control hop-alpha-acid" type="text" />
+        </div>
+    </div>
+</div>
+
+
