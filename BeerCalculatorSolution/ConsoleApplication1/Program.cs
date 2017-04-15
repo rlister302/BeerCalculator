@@ -12,12 +12,12 @@ namespace ConsoleApplication1
     {
         private static readonly log4net.ILog log =
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        static async void Main(string[] args)
+        static void Main(string[] args)
         {
             try
             {
                 var x = new RecipeRequestManager();
-                var y = await x.RetreiveAll(new Common.DTOs.RecipeDTO());
+                var y =  x.RetreiveAll(new Common.DTOs.RecipeDTO());
             }
             catch (Exception e)
             {

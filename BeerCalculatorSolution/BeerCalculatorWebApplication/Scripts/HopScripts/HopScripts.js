@@ -6,7 +6,7 @@
     console.log(newHop);
 
     $.ajax({
-        url: "/HopType/CreateHopType",
+        url: "/BeerCalculator/HopType/CreateHopType",
         type: "POST",
         data: newHop,
         success: function (response) {
