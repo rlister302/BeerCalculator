@@ -15,7 +15,36 @@ namespace DataAccessLayer.DataAccess
         {
             bool status = false;
 
+            using (var context = new BeerCalculatorEntities())
+            {
+                var recipe = ConvertRecipeDTOToEntity(create);
+                recipe = context.Recipes.Add(recipe);
+
+                int recipeId = recipe.RecipeID;
+
+                var hops = ConvertHopDTOToEntity(create.Hops, recipeId);
+                context.Hops.AddRange(hops);
+
+                var grains = ConvertGrainDTOToEntity(create.Grains, recipeId);
+                context.Grains.AddRange(grains);
+
+                var yeast = ConvertYeastDTOToEntity(create.Yeast, recipeId);
+                context.Yeasts.Add(yeast);
+
+                status = true;
+            }
+
             return status;
+        }
+
+        private Yeast ConvertYeastDTOToEntity(YeastTypeDTO yeast, int recipeId)
+        {
+            var yeastEntity = new Yeast();
+
+            yeastEntity.RecipeID = recipeId;
+            yeastEntity.YeastTypeID = yeast.YeastTypeID;
+
+            return yeastEntity; 
         }
 
         public bool Delete(int delete)
@@ -43,7 +72,7 @@ namespace DataAccessLayer.DataAccess
 
             using (var context = new BeerCalculatorEntities())
             {
-                foreach(var recipe in context.Recipes)
+                foreach (var recipe in context.Recipes)
                 {
                     var recipeDTO = new RecipeDTO();
 
@@ -64,7 +93,7 @@ namespace DataAccessLayer.DataAccess
 
             return recipes;
         }
-  
+
         public RecipeDTO Get(RecipeDTO details)
         {
             RecipeDTO recipeDTO = new RecipeDTO();
@@ -141,6 +170,59 @@ namespace DataAccessLayer.DataAccess
                         .Single();
 
             return yeast;
+        }
+
+        private Recipe ConvertRecipeDTOToEntity(RecipeDTO recipe)
+        {
+            var recipeEntity = new Recipe();
+
+            recipeEntity.RecipeName = recipe.RecipeName;
+
+                //TODO: This will eventually be calculated... for now just mock
+            //recipeEntity.ExpectedABV = (double)recipe.ExpectedABV;
+            //recipeEntity.ExpectedOG = (double)recipe.ExpectedOG;
+            //recipeEntity.ExpectedFG = (double)recipe.ExpectedFG;
+            recipeEntity.ExpectedABV = 0.0;
+            recipeEntity.ExpectedOG = 0.0;
+            recipeEntity.ExpectedFG = 0.0;
+            recipeEntity.IBU = (int)recipe.IBU;
+
+            return recipeEntity;
+        }
+
+        private IEnumerable<Hop> ConvertHopDTOToEntity(IEnumerable<HopTypeDTO> recipeHops, int recipeId)
+        {
+            List<Hop> hopEntities = new List<Hop>();
+
+            foreach (var hop in recipeHops)
+            {
+                var entity = new Hop();
+                entity.RecipeID = recipeId;
+                entity.AlphaAcid = hop.AlphaAcid;
+                entity.Amount = hop.Amount;
+                entity.TimeAdded = hop.BoilTime;
+                entity.HopTypeID = hop.HopTypeID;
+                hopEntities.Add(entity);
+            }
+
+            return hopEntities;
+        }
+
+        private IEnumerable<Grain> ConvertGrainDTOToEntity(IEnumerable<GrainTypeDTO> recipeGrains, int recipeId)
+        {
+            List<Grain> grainEntities = new List<Grain>();
+
+            foreach (var grain in recipeGrains)
+            {
+                var entity = new Grain();
+                entity.RecipeID = recipeId;
+                entity.GrainTypeID = grain.GrainTypeID;
+                entity.Amount = grain.Amount;
+
+                grainEntities.Add(entity);
+            }
+
+            return grainEntities;
         }
         #endregion Private Methods
     }

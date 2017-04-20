@@ -46,6 +46,7 @@ namespace BeerCalculatorWebApplication
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
+                "~/Content/BeerCalculatorStyles.css",
                 "~/Content/Site.css",
                 "~/Content/TodoList.css"));
 

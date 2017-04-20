@@ -1,0 +1,19 @@
+﻿    .bottom-border {
+        border-bottom-style: solid;
+        border-width: 1px;
+        border-top-style: none;
+        border-left-style: none;
+        border-right-style: none;
+    }
+
+    .button-margin-top {
+        margin-top: 10px;
+    }
+
+    .bottom-margin-push {
+        margin-bottom: 10px;
+    }
+
+    .float-right {
+        float: right;
+    }

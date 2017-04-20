@@ -27,6 +27,19 @@ function getGrainManagementPage()
     })
 }
 
+function getYeastManagementPage() {
+    $.ajax({
+        url: "YeastType/YeastManagement",
+        type: "GET",
+        success: function (response) {
+            $('#body').html(response);
+        },
+        error: function () {
+            alert("There was an error");
+        }
+    })
+}
+
 function getAddRecipePage()
 {
     $.ajax({

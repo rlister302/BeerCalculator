@@ -13,7 +13,6 @@ namespace Common.DTOs
     [CreateAction("CreateYeastType")]
     [UpdateAction("UpdateYeastType")]
     [DeleteAction("DeleteYeastType")]
-
     public class YeastTypeDTO : ModelBase
     {
         public int YeastTypeID { get; set; }
@@ -24,6 +23,7 @@ namespace Common.DTOs
         public int HighAttenuationRate { get; set; }
         public int LowTemperatureRange { get; set; }
         public int HighTemperatureRange { get; set; }
+        public string YeastDescription { get; set; }
 
     }
 }

@@ -4,16 +4,20 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Common.DTOs;
+using Common.Abstract;
+using Common.Communication;
+using System.Threading.Tasks;
 
 namespace BeerCalculatorWebApplication.Controllers
 {
     public class YeastTypeController : Controller
     {
+        private IRequestManager<YeastTypeDTO> yeastTypeRequestManager = new YeastTypeRequestManager();
         [HttpGet]
-        public ActionResult YeastManagement()
+        public async Task<ActionResult> YeastManagement()
         {
-            return null;
-            // call web api
+            var model = await yeastTypeRequestManager.RetreiveAll(new YeastTypeDTO());
+            return PartialView(model);
         }
 
         [HttpGet]
@@ -26,6 +30,8 @@ namespace BeerCalculatorWebApplication.Controllers
         [HttpPost]
         public ActionResult CreateYeastType(YeastTypeDTO create)
         {
+            var x = create;
+
             return null;
             // call web api
         }

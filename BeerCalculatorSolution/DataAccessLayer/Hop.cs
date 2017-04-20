@@ -19,6 +19,7 @@ namespace DataAccessLayer
         public double Amount { get; set; }
         public double AlphaAcid { get; set; }
         public int RecipeID { get; set; }
+        public Nullable<int> TimeAdded { get; set; }
     
         public virtual HopType HopType { get; set; }
     }

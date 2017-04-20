@@ -4,15 +4,20 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Common.DTOs;
+using DataAccessLayer.DataAccess; // Use Unity and DI to remove this dependency eventually
+using DataAccessLayer.DataAccess.Interface;
 
 
 namespace BeerCalculatorService.Controllers
 {
     public class YeastTypeController : Controller
     {
+        private IDataAccess<YeastTypeDTO> yeastTypeDataAccess = new YeastTypeDataAccess();
+            
         public ActionResult GetAllYeastTypes()
         {
-            return null;
+            var yeastTypes = yeastTypeDataAccess.Get();
+            return Json(yeastTypes, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult GetYeastTypeDetails(YeastTypeDTO details)

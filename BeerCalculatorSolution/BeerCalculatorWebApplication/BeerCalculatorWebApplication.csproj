@@ -217,6 +217,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\BeerCalculatorStyles.css" />
     <Content Include="Content\BootStrap\bootstrap-theme.css" />
     <Content Include="Content\BootStrap\bootstrap-theme.min.css" />
     <Content Include="Content\BootStrap\bootstrap.css" />
@@ -360,6 +361,7 @@
     <Content Include="Views\HopType\CreateHopTypePage.cshtml" />
     <Content Include="Views\GrainType\GrainManagement.cshtml" />
     <Content Include="Views\Recipe\CreateRecipe.cshtml" />
+    <Content Include="Views\YeastType\YeastManagement.cshtml" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
