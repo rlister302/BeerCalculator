@@ -20,5 +20,6 @@ namespace DataAccessLayer
         public Nullable<int> HighAttentuationRate { get; set; }
         public Nullable<int> LowTemperatureRange { get; set; }
         public Nullable<int> HighTemperatureRange { get; set; }
+        public string Description { get; set; }
     }
 }

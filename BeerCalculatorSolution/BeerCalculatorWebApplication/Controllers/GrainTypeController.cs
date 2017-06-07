@@ -4,43 +4,55 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Common.DTOs;
+using Common.Communication;
+using System.Threading.Tasks;
 
 namespace BeerCalculatorWebApplication.Controllers
 {
     public class GrainTypeController : Controller
     {
-        public ActionResult GrainManagement()
+        //TODO: Implement unity via controller factory
+        GrainTypeRequestManager _requestManager = new GrainTypeRequestManager();
+
+        public async Task<ActionResult> GrainManagement()
         {
-            return PartialView();
-        }
-        public ActionResult GetGrainTypes()
-        {
-            return null;
-            // call web api
+            var model = await _requestManager.RetreiveAll(new GrainTypeDTO());
+            return PartialView(model);
         }
 
-        public ActionResult GetGrainType(int id)
+        [HttpGet]
+        public async Task<ActionResult> GetGrainTypes()
         {
-            return null;
-            // call web api
+            var result = await _requestManager.RetreiveAll(new GrainTypeDTO());
+            return Json(result);
         }
 
-        public ActionResult CreateGrainType(GrainTypeDTO create)
+        [HttpGet]
+        public async Task<ActionResult> GetGrainTypeDetails(GrainTypeDTO details)
         {
-            return null;
-            // call web api
+            var result = await _requestManager.Retreive(details);
+            return Json(result);
         }
 
-        public ActionResult UpdateGrainType(GrainTypeDTO update)
+        [HttpPost]
+        public async Task<ActionResult> CreateGrainType(GrainTypeDTO create)
         {
-            return null;
-            // call web api
+            var result = await _requestManager.Create(create);
+            return Json(result);
         }
 
-        public ActionResult DeleteGrainType(int id)
+        [HttpPut]
+        public async Task<ActionResult> UpdateGrainType(GrainTypeDTO update)
         {
-            return null;
-            // call web api
+            var result = await _requestManager.Update(update);
+            return Json(result);
+        }
+
+        [HttpDelete]
+        public async Task<ActionResult> DeleteGrainType(GrainTypeDTO delete)
+        {
+            var result = await _requestManager.Delete(delete);
+            return Json(result);
         }
     }
 }

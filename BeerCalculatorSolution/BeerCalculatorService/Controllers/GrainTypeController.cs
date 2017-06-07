@@ -5,36 +5,47 @@ using System.Web;
 using System.Web.Mvc;
 using Common.DTOs;
 using Common.Communication;
+using DataAccessLayer.DataAccess;
 
 namespace BeerCalculatorService.Controllers
 {
     public class GrainTypeController : Controller
     {
+            // TODO: Use Unity
+        GrainTypeDataAccess _dataAccess = new GrainTypeDataAccess();
+
+        [HttpGet]
         public ActionResult GetAllGrainTypes()
         {
-            return null;
+            var result = _dataAccess.Get();
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
         public ActionResult GetGrainTypeDetails(GrainTypeDTO details)
         {
-            return null;
+            var result = _dataAccess.Get(details);
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
-
+        [HttpPost]
         public ActionResult CreateGrainType(GrainTypeDTO create)
         {
-            create.GrainTypeID = 1;
-            return Json(create);
+            bool result = _dataAccess.Create(create);
+            return Json(result);
         }
 
+        [HttpPut]
         public ActionResult UpdateGrainType(GrainTypeDTO update)
         {
-            return null;
+            bool result = _dataAccess.Update(update);
+            return Json(result);
         }
-
+        [HttpDelete]
         public ActionResult DeleteGrainType(GrainTypeDTO delete)
         {
-            return null;
+            bool result = _dataAccess.Delete(delete.GrainTypeID);
+            return Json(result);
         }
     }
 }

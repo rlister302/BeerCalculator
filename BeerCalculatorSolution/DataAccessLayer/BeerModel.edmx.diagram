@@ -4,15 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="bb9b560a897b45018223a1d102a093b2" Name="Diagram1">
+      <Diagram DiagramId="8fd6928cd519405aa179a050ea9e1b72" Name="Diagram1">
         <EntityTypeShape EntityType="BeerCalculatorModel.BrewProcess" Width="1.5" PointX="8" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="BeerCalculatorModel.Grain" Width="1.5" PointX="10" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="BeerCalculatorModel.GrainType" Width="1.5" PointX="7.75" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BeerCalculatorModel.Hop" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="BeerCalculatorModel.HopType" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeerCalculatorModel.Hop" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeerCalculatorModel.HopType" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
         <EntityTypeShape EntityType="BeerCalculatorModel.Recipe" Width="1.5" PointX="5.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="BeerCalculatorModel.User" Width="1.5" PointX="5.75" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="BeerCalculatorModel.Yeast" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeerCalculatorModel.Yeast" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="BeerCalculatorModel.YeastType" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
         <AssociationConnector Association="BeerCalculatorModel.FK__BrewProce__Recip__38996AB5" ManuallyRouted="false" />
         <AssociationConnector Association="BeerCalculatorModel.FK__BrewProce__UserI__398D8EEE" ManuallyRouted="false" />

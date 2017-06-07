@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="BeerCalculatorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="BeerCalculatorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BrewProcess">
           <Key>
             <PropertyRef Name="BrewProcessID" />
@@ -23,8 +23,8 @@
           </Key>
           <Property Name="GrainID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="GrainTypeID" Type="int" />
-          <Property Name="Amount" Type="int" />
           <Property Name="RecipeID" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="float" />
         </EntityType>
         <EntityType Name="GrainType">
           <Key>
@@ -93,6 +93,7 @@
           <Property Name="HighAttentuationRate" Type="int" />
           <Property Name="LowTemperatureRange" Type="int" />
           <Property Name="HighTemperatureRange" Type="int" />
+          <Property Name="Description" Type="varchar" MaxLength="100" />
         </EntityType>
         <Association Name="FK__BrewProce__Recip__38996AB5">
           <End Role="Recipe" Type="Self.Recipe" Multiplicity="0..1" />
@@ -185,7 +186,8 @@
             <End Role="Yeast" EntitySet="Yeast" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BeerCalculatorModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -209,8 +211,8 @@
           </Key>
           <Property Name="GrainID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="GrainTypeID" Type="Int32" />
-          <Property Name="Amount" Type="Int32" />
           <Property Name="RecipeID" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Double" />
           <NavigationProperty Name="GrainType" Relationship="Self.FK__Grain__GrainType__2B3F6F97" FromRole="Grain" ToRole="GrainType" />
         </EntityType>
         <EntityType Name="GrainType">
@@ -231,8 +233,8 @@
           <Property Name="Amount" Type="Double" Nullable="false" />
           <Property Name="AlphaAcid" Type="Double" Nullable="false" />
           <Property Name="RecipeID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="HopType" Relationship="Self.FK__Hop__HopTypeID__2F10007B" FromRole="Hop" ToRole="HopType" />
           <Property Name="TimeAdded" Type="Int32" />
+          <NavigationProperty Name="HopType" Relationship="Self.FK__Hop__HopTypeID__2F10007B" FromRole="Hop" ToRole="HopType" />
         </EntityType>
         <EntityType Name="HopType">
           <Key>
@@ -287,6 +289,7 @@
           <Property Name="HighAttentuationRate" Type="Int32" />
           <Property Name="LowTemperatureRange" Type="Int32" />
           <Property Name="HighTemperatureRange" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK__BrewProce__Recip__38996AB5">
           <End Role="Recipe" Type="Self.Recipe" Multiplicity="0..1" />
@@ -403,8 +406,8 @@
               <MappingFragment StoreEntitySet="Grain">
                 <ScalarProperty Name="GrainID" ColumnName="GrainID" />
                 <ScalarProperty Name="GrainTypeID" ColumnName="GrainTypeID" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="RecipeID" ColumnName="RecipeID" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -420,12 +423,12 @@
           <EntitySetMapping Name="Hops">
             <EntityTypeMapping TypeName="BeerCalculatorModel.Hop">
               <MappingFragment StoreEntitySet="Hop">
-                <ScalarProperty Name="TimeAdded" ColumnName="TimeAdded" />
                 <ScalarProperty Name="HopID" ColumnName="HopID" />
                 <ScalarProperty Name="HopTypeID" ColumnName="HopTypeID" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="AlphaAcid" ColumnName="AlphaAcid" />
                 <ScalarProperty Name="RecipeID" ColumnName="RecipeID" />
+                <ScalarProperty Name="TimeAdded" ColumnName="TimeAdded" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -480,6 +483,7 @@
                 <ScalarProperty Name="HighAttentuationRate" ColumnName="HighAttentuationRate" />
                 <ScalarProperty Name="LowTemperatureRange" ColumnName="LowTemperatureRange" />
                 <ScalarProperty Name="HighTemperatureRange" ColumnName="HighTemperatureRange" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
