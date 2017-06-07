@@ -1,6 +1,6 @@
 ﻿function getHopManagementPage() {
     $.ajax({
-        url: "HopType/HopManagement",
+        url: "/HopType/HopManagement",
         type: "GET",
         success: function (response) {
             $('#body').html(response);
@@ -14,7 +14,7 @@
 function getGrainManagementPage()
 {
     $.ajax({
-        url: "GrainType/GrainManagement",
+        url: "/GrainType/GrainManagement",
         type: "GET",
         success: function(response)
         {
@@ -29,7 +29,7 @@ function getGrainManagementPage()
 
 function getYeastManagementPage() {
     $.ajax({
-        url: "YeastType/YeastManagement",
+        url: "/YeastType/YeastManagement",
         type: "GET",
         success: function (response) {
             $('#body').html(response);
@@ -43,7 +43,7 @@ function getYeastManagementPage() {
 function getAddRecipePage()
 {
     $.ajax({
-        url: "Recipe/CreateRecipe",
+        url: "/Recipe/CreateRecipe",
         type: "GET",
         success: function (response) {
             $('#body').html(response);
