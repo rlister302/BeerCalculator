@@ -22,24 +22,28 @@ namespace BeerCalculatorService.Controllers
             return Json(response, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
         public ActionResult GetHopTypeDetails(HopTypeDTO details)
         {
             var response = _hopTypeDataAccess.Get(details);
-            return Json(response);
+            return Json(response, JsonRequestBehavior.AllowGet);
         }
         
+        [HttpPost]
         public ActionResult CreateHopType(HopTypeDTO create)
         {
             var response = _hopTypeDataAccess.Create(create);
             return Json(response);
         }
 
+        [HttpPut]
         public ActionResult UpdateHopType(HopTypeDTO update)
         {
             var response = _hopTypeDataAccess.Update(update);
             return Json(response);
         }
 
+        [HttpDelete]
         public ActionResult DeleteHopType(int delete)
         {
             var response = _hopTypeDataAccess.Delete(delete);

@@ -13,45 +13,47 @@ namespace BeerCalculatorWebApplication.Controllers
 {
     public class RecipeController : Controller
     {
-        private RecipeRequestManager _requestManager;
+        private RecipeRequestManager _requestManager = new RecipeRequestManager();
 
-        public RecipeController()
-        {
-            _requestManager = new RecipeRequestManager();
-        }
         [HttpGet]
         public async Task<ActionResult> CreateRecipe()
         {
             var ingredients = await new IngredientRequestManager().Retreive(new IngredientDTO());
             return PartialView(ingredients);
         }
+        [HttpGet]
         public async Task<ActionResult> GetRecipes()
         {
             var model = await _requestManager.RetreiveAll(new RecipeDTO());
             return Json(model);
         }
 
-        public ActionResult GetRecipe(int id)
+        [HttpGet]
+        public async Task<ActionResult> GetRecipe(RecipeDTO get)
         {
-            return null;
+            var model = await _requestManager.Retreive(get);
+            return Json(model);
         }
 
         [HttpPost]
         public async Task<ActionResult> CreateRecipe(RecipeDTO create)
         {
-            var x = create;
             var result = await _requestManager.Create(create);
             return Json(result);
         }
 
-        public ActionResult UpdateRecipe(RecipeDTO update)
+        [HttpPut]
+        public async Task<ActionResult> UpdateRecipe(RecipeDTO update)
         {
-            return null;
+            var model = await _requestManager.Update(update);
+            return Json(model);
         }
 
-        public ActionResult DeleteRecipe(int id)
+        [HttpDelete]
+        public async Task<ActionResult> DeleteRecipe(RecipeDTO delete)
         {
-            return null;
+            var model = await _requestManager.Delete(delete);
+            return Json(model);
         }
     }
 }

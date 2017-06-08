@@ -21,33 +21,31 @@ namespace BeerCalculatorWebApplication.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetYeastType(int id)
+        public async Task<ActionResult> GetYeastType(YeastTypeDTO get)
         {
-            return null;
-            // call web api
+            var result = await yeastTypeRequestManager.Retreive(get);
+            return Json(result);
         }
 
         [HttpPost]
-        public ActionResult CreateYeastType(YeastTypeDTO create)
+        public async Task<ActionResult> CreateYeastType(YeastTypeDTO create)
         {
-            var x = create;
-
-            return null;
-            // call web api
+            var result = await yeastTypeRequestManager.Create(create);
+            return Json(result);
         }
 
         [HttpPut]
-        public ActionResult UpdateYeastType(YeastTypeDTO update)
+        public async Task<ActionResult> UpdateYeastType(YeastTypeDTO update)
         {
-            return null;
-            // call web api
+            var result = await yeastTypeRequestManager.Update(update);
+            return Json(result);
         }
 
         [HttpDelete]
-        public ActionResult DeleteYeastType(int id)
+        public async Task<ActionResult> DeleteYeastType(YeastTypeDTO delete)
         {
-            return null;
-            // call web api
+            var result = await yeastTypeRequestManager.Delete(delete);
+            return Json(result);
         }
     }
 }

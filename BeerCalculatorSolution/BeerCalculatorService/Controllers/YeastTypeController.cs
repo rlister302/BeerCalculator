@@ -14,32 +14,40 @@ namespace BeerCalculatorService.Controllers
     {
         private IDataAccess<YeastTypeDTO> yeastTypeDataAccess = new YeastTypeDataAccess();
             
+        [HttpGet]
         public ActionResult GetAllYeastTypes()
         {
             var yeastTypes = yeastTypeDataAccess.Get();
             return Json(yeastTypes, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
         public ActionResult GetYeastTypeDetails(YeastTypeDTO details)
         {
-            return null;
+
+            var yeastTypes = yeastTypeDataAccess.Get(details);
+            return Json(yeastTypes, JsonRequestBehavior.AllowGet);
         }
 
-
+        [HttpPost]
         public ActionResult CreateYeastType(YeastTypeDTO create)
         {
-            create.YeastTypeID = 1;
+            var data = yeastTypeDataAccess.Create(create);
             return Json(create);
         }
 
+        [HttpPut]
         public ActionResult UpdateYeastType(YeastTypeDTO update)
         {
-            return null;
+            var data = yeastTypeDataAccess.Update(update);
+            return Json(data);
         }
 
+        [HttpDelete]
         public ActionResult DeleteYeastType(YeastTypeDTO delete)
-        { 
-            return null;
+        {
+            var data = yeastTypeDataAccess.Delete(delete.YeastTypeID);
+            return Json(data);
         }
     }
 }

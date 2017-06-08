@@ -16,15 +16,19 @@ namespace BeerCalculatorService.Controllers
         {
             _dataAccess = new RecipeDataAccess();
         }
+
+        [HttpGet]
         public ActionResult GetAllRecipes()
         {
             var data = _dataAccess.Get();
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
         public ActionResult GetRecipeDetails(RecipeDTO details)
         {
-            return null;
+            var data = _dataAccess.Get(details);
+            return Json(data);
         }
 
         [HttpPost]
@@ -34,14 +38,18 @@ namespace BeerCalculatorService.Controllers
             return Json(data);
         }
 
+        [HttpPut]
         public ActionResult UpdateRecipe(RecipeDTO update)
         {
-            return null;
+            var data = _dataAccess.Update(update);
+            return Json(data);
         }
 
-        public ActionResult DeleteRecipe(int id)
+        [HttpDelete]
+        public ActionResult DeleteRecipe(RecipeDTO delete)
         {
-            return null;
+            var data = _dataAccess.Create(delete);
+            return Json(data);
         }
     }
 }
