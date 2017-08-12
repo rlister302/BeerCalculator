@@ -20,9 +20,8 @@ namespace Common.DTOs
         public int HopID { get; set; }
         public string HopName { get; set; }
         public string FlavorNotes { get; set; }
-        public double Amount { get; set; }
-        public double AlphaAcid { get; set; }
-
+        public decimal Amount { get; set; }
+        public decimal AlphaAcid { get; set; }
         public int RecipeID { get; set; }
         public int BoilTime { get; set; }
     }

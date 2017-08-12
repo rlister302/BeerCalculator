@@ -5,82 +5,64 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="BeerCalculatorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="BrewProcess">
-          <Key>
-            <PropertyRef Name="BrewProcessID" />
-          </Key>
-          <Property Name="BrewProcessID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ActualABV" Type="float" />
-          <Property Name="ActualOG" Type="float" />
-          <Property Name="ActualFG" Type="float" />
-          <Property Name="ActualMashEfficiency" Type="int" />
-          <Property Name="RecipeID" Type="int" />
-          <Property Name="UserID" Type="bigint" />
-        </EntityType>
         <EntityType Name="Grain">
           <Key>
             <PropertyRef Name="GrainID" />
           </Key>
           <Property Name="GrainID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="GrainTypeID" Type="int" />
+          <Property Name="GrainTypeID" Type="int" Nullable="false" />
           <Property Name="RecipeID" Type="int" Nullable="false" />
-          <Property Name="Amount" Type="float" />
+          <Property Name="Amount" Type="decimal" Precision="4" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="GrainType">
           <Key>
             <PropertyRef Name="GrainTypeID" />
           </Key>
           <Property Name="GrainTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="GrainName" Type="varchar" MaxLength="255" />
-          <Property Name="MaximumSugarExtraction" Type="int" />
+          <Property Name="GrainName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="MaximumSugarExtraction" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Hop">
           <Key>
             <PropertyRef Name="HopID" />
           </Key>
           <Property Name="HopID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="HopTypeID" Type="int" />
-          <Property Name="Amount" Type="float" Nullable="false" />
-          <Property Name="AlphaAcid" Type="float" Nullable="false" />
+          <Property Name="HopTypeID" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="AlphaAcid" Type="decimal" Precision="3" Scale="1" Nullable="false" />
           <Property Name="RecipeID" Type="int" Nullable="false" />
-          <Property Name="TimeAdded" Type="int" />
+          <Property Name="TimeAdded" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="HopType">
           <Key>
             <PropertyRef Name="HopTypeID" />
           </Key>
           <Property Name="HopTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="HopName" Type="varchar" MaxLength="255" />
-          <Property Name="FlavorNotes" Type="varchar" MaxLength="255" />
+          <Property Name="HopName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="FlavorNotes" Type="varchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <EntityType Name="Recipe">
           <Key>
             <PropertyRef Name="RecipeID" />
           </Key>
           <Property Name="RecipeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RecipeName" Type="varchar" MaxLength="255" />
-          <Property Name="ExpectedABV" Type="float" />
-          <Property Name="ExpectedOG" Type="float" />
-          <Property Name="ExpectedFG" Type="float" />
-          <Property Name="IBU" Type="int" />
-          <Property Name="MaxMashEfficiency" Type="int" />
-        </EntityType>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="UserID" />
-          </Key>
-          <Property Name="UserID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FirstName" Type="varchar" MaxLength="255" />
-          <Property Name="LastName" Type="varchar" MaxLength="255" />
-          <Property Name="Username" Type="varchar" MaxLength="255" />
-          <Property Name="Password" Type="varchar" MaxLength="255" />
+          <Property Name="RecipeName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ExpectedABV" Type="decimal" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="ActualABV" Type="decimal" Precision="4" Scale="1" />
+          <Property Name="ExpectedOG" Type="decimal" Precision="4" Scale="3" Nullable="false" />
+          <Property Name="ActualOG" Type="decimal" Precision="4" Scale="3" />
+          <Property Name="ExpectedFG" Type="decimal" Precision="4" Scale="3" Nullable="false" />
+          <Property Name="ActualFG" Type="decimal" Precision="4" Scale="3" />
+          <Property Name="IBU" Type="int" Nullable="false" />
+          <Property Name="ExpectedMashEfficiency" Type="int" Nullable="false" />
+          <Property Name="ActualMashEfficiency" Type="int" />
         </EntityType>
         <EntityType Name="Yeast">
           <Key>
             <PropertyRef Name="YeastID" />
           </Key>
           <Property Name="YeastID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="YeastTypeID" Type="int" />
+          <Property Name="YeastTypeID" Type="int" Nullable="false" />
           <Property Name="RecipeID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="YeastType">
@@ -88,299 +70,107 @@
             <PropertyRef Name="YeastTypeID" />
           </Key>
           <Property Name="YeastTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="YeastName" Type="varchar" MaxLength="255" />
-          <Property Name="LowAttenuationRate" Type="int" />
-          <Property Name="HighAttentuationRate" Type="int" />
-          <Property Name="LowTemperatureRange" Type="int" />
-          <Property Name="HighTemperatureRange" Type="int" />
-          <Property Name="Description" Type="varchar" MaxLength="100" />
+          <Property Name="YeastName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="LowAttenuationRate" Type="int" Nullable="false" />
+          <Property Name="HighAttenuationRate" Type="int" Nullable="false" />
+          <Property Name="LowTemperatureRange" Type="int" Nullable="false" />
+          <Property Name="HighTemperatureRange" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="255" Nullable="false" />
         </EntityType>
-        <Association Name="FK__BrewProce__Recip__38996AB5">
-          <End Role="Recipe" Type="Self.Recipe" Multiplicity="0..1" />
-          <End Role="BrewProcess" Type="Self.BrewProcess" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Recipe">
-              <PropertyRef Name="RecipeID" />
-            </Principal>
-            <Dependent Role="BrewProcess">
-              <PropertyRef Name="RecipeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__BrewProce__UserI__398D8EEE">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="BrewProcess" Type="Self.BrewProcess" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="UserID" />
-            </Principal>
-            <Dependent Role="BrewProcess">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Grain__GrainType__2B3F6F97">
-          <End Role="GrainType" Type="Self.GrainType" Multiplicity="0..1" />
-          <End Role="Grain" Type="Self.Grain" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="GrainType">
-              <PropertyRef Name="GrainTypeID" />
-            </Principal>
-            <Dependent Role="Grain">
-              <PropertyRef Name="GrainTypeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Hop__HopTypeID__2F10007B">
-          <End Role="HopType" Type="Self.HopType" Multiplicity="0..1" />
-          <End Role="Hop" Type="Self.Hop" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HopType">
-              <PropertyRef Name="HopTypeID" />
-            </Principal>
-            <Dependent Role="Hop">
-              <PropertyRef Name="HopTypeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Yeast__YeastType__32E0915F">
-          <End Role="HopType" Type="Self.HopType" Multiplicity="0..1" />
-          <End Role="Yeast" Type="Self.Yeast" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HopType">
-              <PropertyRef Name="HopTypeID" />
-            </Principal>
-            <Dependent Role="Yeast">
-              <PropertyRef Name="YeastTypeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="BeerCalculatorModelStoreContainer">
-          <EntitySet Name="BrewProcess" EntityType="Self.BrewProcess" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Grain" EntityType="Self.Grain" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GrainType" EntityType="Self.GrainType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hop" EntityType="Self.Hop" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HopType" EntityType="Self.HopType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Recipe" EntityType="Self.Recipe" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Yeast" EntityType="Self.Yeast" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="YeastType" EntityType="Self.YeastType" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__BrewProce__Recip__38996AB5" Association="Self.FK__BrewProce__Recip__38996AB5">
-            <End Role="Recipe" EntitySet="Recipe" />
-            <End Role="BrewProcess" EntitySet="BrewProcess" />
-          </AssociationSet>
-          <AssociationSet Name="FK__BrewProce__UserI__398D8EEE" Association="Self.FK__BrewProce__UserI__398D8EEE">
-            <End Role="User" EntitySet="User" />
-            <End Role="BrewProcess" EntitySet="BrewProcess" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Grain__GrainType__2B3F6F97" Association="Self.FK__Grain__GrainType__2B3F6F97">
-            <End Role="GrainType" EntitySet="GrainType" />
-            <End Role="Grain" EntitySet="Grain" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Hop__HopTypeID__2F10007B" Association="Self.FK__Hop__HopTypeID__2F10007B">
-            <End Role="HopType" EntitySet="HopType" />
-            <End Role="Hop" EntitySet="Hop" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Yeast__YeastType__32E0915F" Association="Self.FK__Yeast__YeastType__32E0915F">
-            <End Role="HopType" EntitySet="HopType" />
-            <End Role="Yeast" EntitySet="Yeast" />
-          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BeerCalculatorModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="BrewProcess">
-          <Key>
-            <PropertyRef Name="BrewProcessID" />
-          </Key>
-          <Property Name="BrewProcessID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ActualABV" Type="Double" />
-          <Property Name="ActualOG" Type="Double" />
-          <Property Name="ActualFG" Type="Double" />
-          <Property Name="ActualMashEfficiency" Type="Int32" />
-          <Property Name="RecipeID" Type="Int32" />
-          <Property Name="UserID" Type="Int64" />
-          <NavigationProperty Name="Recipe" Relationship="Self.FK__BrewProce__Recip__38996AB5" FromRole="BrewProcess" ToRole="Recipe" />
-          <NavigationProperty Name="User" Relationship="Self.FK__BrewProce__UserI__398D8EEE" FromRole="BrewProcess" ToRole="User" />
-        </EntityType>
         <EntityType Name="Grain">
           <Key>
             <PropertyRef Name="GrainID" />
           </Key>
           <Property Name="GrainID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="GrainTypeID" Type="Int32" />
+          <Property Name="GrainTypeID" Type="Int32" Nullable="false" />
           <Property Name="RecipeID" Type="Int32" Nullable="false" />
-          <Property Name="Amount" Type="Double" />
-          <NavigationProperty Name="GrainType" Relationship="Self.FK__Grain__GrainType__2B3F6F97" FromRole="Grain" ToRole="GrainType" />
+          <Property Name="Amount" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="GrainType">
           <Key>
             <PropertyRef Name="GrainTypeID" />
           </Key>
           <Property Name="GrainTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="GrainName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="MaximumSugarExtraction" Type="Int32" />
-          <NavigationProperty Name="Grains" Relationship="Self.FK__Grain__GrainType__2B3F6F97" FromRole="GrainType" ToRole="Grain" />
+          <Property Name="GrainName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MaximumSugarExtraction" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Hop">
           <Key>
             <PropertyRef Name="HopID" />
           </Key>
           <Property Name="HopID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="HopTypeID" Type="Int32" />
-          <Property Name="Amount" Type="Double" Nullable="false" />
-          <Property Name="AlphaAcid" Type="Double" Nullable="false" />
+          <Property Name="HopTypeID" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="AlphaAcid" Type="Decimal" Precision="3" Scale="1" Nullable="false" />
           <Property Name="RecipeID" Type="Int32" Nullable="false" />
-          <Property Name="TimeAdded" Type="Int32" />
-          <NavigationProperty Name="HopType" Relationship="Self.FK__Hop__HopTypeID__2F10007B" FromRole="Hop" ToRole="HopType" />
+          <Property Name="TimeAdded" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="HopType">
           <Key>
             <PropertyRef Name="HopTypeID" />
           </Key>
           <Property Name="HopTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="HopName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="FlavorNotes" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Hops" Relationship="Self.FK__Hop__HopTypeID__2F10007B" FromRole="HopType" ToRole="Hop" />
-          <NavigationProperty Name="Yeasts" Relationship="Self.FK__Yeast__YeastType__32E0915F" FromRole="HopType" ToRole="Yeast" />
+          <Property Name="HopName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FlavorNotes" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="Recipe">
           <Key>
             <PropertyRef Name="RecipeID" />
           </Key>
           <Property Name="RecipeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RecipeName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="ExpectedABV" Type="Double" />
-          <Property Name="ExpectedOG" Type="Double" />
-          <Property Name="ExpectedFG" Type="Double" />
-          <Property Name="IBU" Type="Int32" />
-          <Property Name="MaxMashEfficiency" Type="Int32" />
-          <NavigationProperty Name="BrewProcesses" Relationship="Self.FK__BrewProce__Recip__38996AB5" FromRole="Recipe" ToRole="BrewProcess" />
-        </EntityType>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="UserID" />
-          </Key>
-          <Property Name="UserID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="LastName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Username" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="BrewProcesses" Relationship="Self.FK__BrewProce__UserI__398D8EEE" FromRole="User" ToRole="BrewProcess" />
+          <Property Name="RecipeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ExpectedABV" Type="Decimal" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="ActualABV" Type="Decimal" Precision="4" Scale="1" />
+          <Property Name="ExpectedOG" Type="Decimal" Precision="4" Scale="3" Nullable="false" />
+          <Property Name="ActualOG" Type="Decimal" Precision="4" Scale="3" />
+          <Property Name="ExpectedFG" Type="Decimal" Precision="4" Scale="3" Nullable="false" />
+          <Property Name="ActualFG" Type="Decimal" Precision="4" Scale="3" />
+          <Property Name="IBU" Type="Int32" Nullable="false" />
+          <Property Name="ExpectedMashEfficiency" Type="Int32" Nullable="false" />
+          <Property Name="ActualMashEfficiency" Type="Int32" />
         </EntityType>
         <EntityType Name="Yeast">
           <Key>
             <PropertyRef Name="YeastID" />
           </Key>
           <Property Name="YeastID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="YeastTypeID" Type="Int32" />
+          <Property Name="YeastTypeID" Type="Int32" Nullable="false" />
           <Property Name="RecipeID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="HopType" Relationship="Self.FK__Yeast__YeastType__32E0915F" FromRole="Yeast" ToRole="HopType" />
         </EntityType>
         <EntityType Name="YeastType">
           <Key>
             <PropertyRef Name="YeastTypeID" />
           </Key>
           <Property Name="YeastTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="YeastName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="LowAttenuationRate" Type="Int32" />
-          <Property Name="HighAttentuationRate" Type="Int32" />
-          <Property Name="LowTemperatureRange" Type="Int32" />
-          <Property Name="HighTemperatureRange" Type="Int32" />
-          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="YeastName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LowAttenuationRate" Type="Int32" Nullable="false" />
+          <Property Name="HighAttenuationRate" Type="Int32" Nullable="false" />
+          <Property Name="LowTemperatureRange" Type="Int32" Nullable="false" />
+          <Property Name="HighTemperatureRange" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
-        <Association Name="FK__BrewProce__Recip__38996AB5">
-          <End Role="Recipe" Type="Self.Recipe" Multiplicity="0..1" />
-          <End Role="BrewProcess" Type="Self.BrewProcess" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Recipe">
-              <PropertyRef Name="RecipeID" />
-            </Principal>
-            <Dependent Role="BrewProcess">
-              <PropertyRef Name="RecipeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__BrewProce__UserI__398D8EEE">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="BrewProcess" Type="Self.BrewProcess" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="UserID" />
-            </Principal>
-            <Dependent Role="BrewProcess">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Grain__GrainType__2B3F6F97">
-          <End Role="GrainType" Type="Self.GrainType" Multiplicity="0..1" />
-          <End Role="Grain" Type="Self.Grain" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="GrainType">
-              <PropertyRef Name="GrainTypeID" />
-            </Principal>
-            <Dependent Role="Grain">
-              <PropertyRef Name="GrainTypeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Hop__HopTypeID__2F10007B">
-          <End Role="HopType" Type="Self.HopType" Multiplicity="0..1" />
-          <End Role="Hop" Type="Self.Hop" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HopType">
-              <PropertyRef Name="HopTypeID" />
-            </Principal>
-            <Dependent Role="Hop">
-              <PropertyRef Name="HopTypeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Yeast__YeastType__32E0915F">
-          <End Role="HopType" Type="Self.HopType" Multiplicity="0..1" />
-          <End Role="Yeast" Type="Self.Yeast" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HopType">
-              <PropertyRef Name="HopTypeID" />
-            </Principal>
-            <Dependent Role="Yeast">
-              <PropertyRef Name="YeastTypeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="BeerCalculatorEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="BrewProcesses" EntityType="Self.BrewProcess" />
           <EntitySet Name="Grains" EntityType="Self.Grain" />
           <EntitySet Name="GrainTypes" EntityType="Self.GrainType" />
           <EntitySet Name="Hops" EntityType="Self.Hop" />
           <EntitySet Name="HopTypes" EntityType="Self.HopType" />
           <EntitySet Name="Recipes" EntityType="Self.Recipe" />
-          <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="Yeasts" EntityType="Self.Yeast" />
           <EntitySet Name="YeastTypes" EntityType="Self.YeastType" />
-          <AssociationSet Name="FK__BrewProce__Recip__38996AB5" Association="Self.FK__BrewProce__Recip__38996AB5">
-            <End Role="Recipe" EntitySet="Recipes" />
-            <End Role="BrewProcess" EntitySet="BrewProcesses" />
-          </AssociationSet>
-          <AssociationSet Name="FK__BrewProce__UserI__398D8EEE" Association="Self.FK__BrewProce__UserI__398D8EEE">
-            <End Role="User" EntitySet="Users" />
-            <End Role="BrewProcess" EntitySet="BrewProcesses" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Grain__GrainType__2B3F6F97" Association="Self.FK__Grain__GrainType__2B3F6F97">
-            <End Role="GrainType" EntitySet="GrainTypes" />
-            <End Role="Grain" EntitySet="Grains" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Hop__HopTypeID__2F10007B" Association="Self.FK__Hop__HopTypeID__2F10007B">
-            <End Role="HopType" EntitySet="HopTypes" />
-            <End Role="Hop" EntitySet="Hops" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Yeast__YeastType__32E0915F" Association="Self.FK__Yeast__YeastType__32E0915F">
-            <End Role="HopType" EntitySet="HopTypes" />
-            <End Role="Yeast" EntitySet="Yeasts" />
-          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -388,19 +178,6 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="BeerCalculatorModelStoreContainer" CdmEntityContainer="BeerCalculatorEntities">
-          <EntitySetMapping Name="BrewProcesses">
-            <EntityTypeMapping TypeName="BeerCalculatorModel.BrewProcess">
-              <MappingFragment StoreEntitySet="BrewProcess">
-                <ScalarProperty Name="BrewProcessID" ColumnName="BrewProcessID" />
-                <ScalarProperty Name="ActualABV" ColumnName="ActualABV" />
-                <ScalarProperty Name="ActualOG" ColumnName="ActualOG" />
-                <ScalarProperty Name="ActualFG" ColumnName="ActualFG" />
-                <ScalarProperty Name="ActualMashEfficiency" ColumnName="ActualMashEfficiency" />
-                <ScalarProperty Name="RecipeID" ColumnName="RecipeID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Grains">
             <EntityTypeMapping TypeName="BeerCalculatorModel.Grain">
               <MappingFragment StoreEntitySet="Grain">
@@ -447,21 +224,14 @@
                 <ScalarProperty Name="RecipeID" ColumnName="RecipeID" />
                 <ScalarProperty Name="RecipeName" ColumnName="RecipeName" />
                 <ScalarProperty Name="ExpectedABV" ColumnName="ExpectedABV" />
+                <ScalarProperty Name="ActualABV" ColumnName="ActualABV" />
                 <ScalarProperty Name="ExpectedOG" ColumnName="ExpectedOG" />
+                <ScalarProperty Name="ActualOG" ColumnName="ActualOG" />
                 <ScalarProperty Name="ExpectedFG" ColumnName="ExpectedFG" />
+                <ScalarProperty Name="ActualFG" ColumnName="ActualFG" />
                 <ScalarProperty Name="IBU" ColumnName="IBU" />
-                <ScalarProperty Name="MaxMashEfficiency" ColumnName="MaxMashEfficiency" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="BeerCalculatorModel.User">
-              <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="ExpectedMashEfficiency" ColumnName="ExpectedMashEfficiency" />
+                <ScalarProperty Name="ActualMashEfficiency" ColumnName="ActualMashEfficiency" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -480,7 +250,7 @@
                 <ScalarProperty Name="YeastTypeID" ColumnName="YeastTypeID" />
                 <ScalarProperty Name="YeastName" ColumnName="YeastName" />
                 <ScalarProperty Name="LowAttenuationRate" ColumnName="LowAttenuationRate" />
-                <ScalarProperty Name="HighAttentuationRate" ColumnName="HighAttentuationRate" />
+                <ScalarProperty Name="HighAttenuationRate" ColumnName="HighAttenuationRate" />
                 <ScalarProperty Name="LowTemperatureRange" ColumnName="LowTemperatureRange" />
                 <ScalarProperty Name="HighTemperatureRange" ColumnName="HighTemperatureRange" />
                 <ScalarProperty Name="Description" ColumnName="Description" />

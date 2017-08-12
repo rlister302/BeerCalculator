@@ -14,21 +14,16 @@ namespace DataAccessLayer
     
     public partial class Recipe
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Recipe()
-        {
-            this.BrewProcesses = new HashSet<BrewProcess>();
-        }
-    
         public int RecipeID { get; set; }
         public string RecipeName { get; set; }
-        public Nullable<double> ExpectedABV { get; set; }
-        public Nullable<double> ExpectedOG { get; set; }
-        public Nullable<double> ExpectedFG { get; set; }
-        public Nullable<int> IBU { get; set; }
-        public Nullable<int> MaxMashEfficiency { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BrewProcess> BrewProcesses { get; set; }
+        public decimal ExpectedABV { get; set; }
+        public Nullable<decimal> ActualABV { get; set; }
+        public decimal ExpectedOG { get; set; }
+        public Nullable<decimal> ActualOG { get; set; }
+        public decimal ExpectedFG { get; set; }
+        public Nullable<decimal> ActualFG { get; set; }
+        public int IBU { get; set; }
+        public int ExpectedMashEfficiency { get; set; }
+        public Nullable<int> ActualMashEfficiency { get; set; }
     }
 }

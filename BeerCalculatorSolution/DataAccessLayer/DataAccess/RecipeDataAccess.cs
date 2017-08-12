@@ -182,9 +182,9 @@ namespace DataAccessLayer.DataAccess
             //recipeEntity.ExpectedABV = (double)recipe.ExpectedABV;
             //recipeEntity.ExpectedOG = (double)recipe.ExpectedOG;
             //recipeEntity.ExpectedFG = (double)recipe.ExpectedFG;
-            recipeEntity.ExpectedABV = 0.0;
-            recipeEntity.ExpectedOG = 0.0;
-            recipeEntity.ExpectedFG = 0.0;
+            recipeEntity.ExpectedABV = 0.000m;
+            recipeEntity.ExpectedOG = 0.000m;
+            recipeEntity.ExpectedFG = 0.000m;
             recipeEntity.IBU = (int)recipe.IBU;
 
             return recipeEntity;

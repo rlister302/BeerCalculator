@@ -16,10 +16,10 @@ namespace DataAccessLayer
     {
         public int YeastTypeID { get; set; }
         public string YeastName { get; set; }
-        public Nullable<int> LowAttenuationRate { get; set; }
-        public Nullable<int> HighAttentuationRate { get; set; }
-        public Nullable<int> LowTemperatureRange { get; set; }
-        public Nullable<int> HighTemperatureRange { get; set; }
+        public int LowAttenuationRate { get; set; }
+        public int HighAttenuationRate { get; set; }
+        public int LowTemperatureRange { get; set; }
+        public int HighTemperatureRange { get; set; }
         public string Description { get; set; }
     }
 }

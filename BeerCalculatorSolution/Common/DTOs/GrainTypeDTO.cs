@@ -21,6 +21,6 @@ namespace Common.DTOs
         public string GrainName { get; set; }
         public int MaximumSugarExtraction { get; set; }
         public int RecipeID { get; set; }
-        public double Amount { get; set; }
+        public decimal Amount { get; set; }
     }
 }

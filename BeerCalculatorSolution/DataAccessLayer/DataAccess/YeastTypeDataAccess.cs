@@ -19,7 +19,7 @@ namespace DataAccessLayer.DataAccess
             {
                 var entity = new YeastType();
                 entity.YeastName = create.YeastName;
-                entity.HighAttentuationRate = create.HighAttenuationRate;
+                entity.HighAttenuationRate = create.HighAttenuationRate;
                 entity.LowAttenuationRate = create.LowAttenuationRate;
                 entity.LowTemperatureRange = create.LowTemperatureRange;
                 entity.HighTemperatureRange = create.HighTemperatureRange;
@@ -63,7 +63,7 @@ namespace DataAccessLayer.DataAccess
                     yeastTypeDTO.YeastTypeID = yeastEntity.YeastTypeID;
                     yeastTypeDTO.YeastName = yeastEntity.YeastName;
                     yeastTypeDTO.LowAttenuationRate = (int)yeastEntity.LowAttenuationRate;
-                    yeastTypeDTO.HighAttenuationRate = (int)yeastEntity.HighAttentuationRate;
+                    yeastTypeDTO.HighAttenuationRate = (int)yeastEntity.HighAttenuationRate;
                     yeastTypeDTO.LowTemperatureRange = (int)yeastEntity.LowTemperatureRange;
                     yeastTypeDTO.HighTemperatureRange = (int)yeastEntity.HighTemperatureRange;
 
@@ -85,7 +85,7 @@ namespace DataAccessLayer.DataAccess
                 yeastTypeDTO.YeastTypeID = yeastEntity.YeastTypeID;
                 yeastTypeDTO.YeastName = yeastEntity.YeastName;
                 yeastTypeDTO.LowAttenuationRate = (int)yeastEntity.LowAttenuationRate;
-                yeastTypeDTO.HighAttenuationRate = (int)yeastEntity.HighAttentuationRate;
+                yeastTypeDTO.HighAttenuationRate = (int)yeastEntity.HighAttenuationRate;
                 yeastTypeDTO.LowTemperatureRange = (int)yeastEntity.LowTemperatureRange;
                 yeastTypeDTO.HighTemperatureRange = (int)yeastEntity.HighTemperatureRange;
             }
@@ -106,7 +106,7 @@ namespace DataAccessLayer.DataAccess
                     yeastEntity.YeastTypeID = update.YeastTypeID;
                     yeastEntity.YeastName = yeastEntity.YeastName;
                     yeastEntity.LowAttenuationRate = update.LowAttenuationRate;
-                    yeastEntity.HighAttentuationRate = update.HighAttenuationRate;
+                    yeastEntity.HighAttenuationRate = update.HighAttenuationRate;
                     yeastEntity.LowTemperatureRange = update.LowTemperatureRange;
                     yeastEntity.HighTemperatureRange = update.HighTemperatureRange;
                 }

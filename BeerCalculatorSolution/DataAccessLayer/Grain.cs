@@ -15,10 +15,8 @@ namespace DataAccessLayer
     public partial class Grain
     {
         public int GrainID { get; set; }
-        public Nullable<int> GrainTypeID { get; set; }
+        public int GrainTypeID { get; set; }
         public int RecipeID { get; set; }
-        public Nullable<double> Amount { get; set; }
-    
-        public virtual GrainType GrainType { get; set; }
+        public decimal Amount { get; set; }
     }
 }

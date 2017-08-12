@@ -15,9 +15,7 @@ namespace DataAccessLayer
     public partial class Yeast
     {
         public int YeastID { get; set; }
-        public Nullable<int> YeastTypeID { get; set; }
+        public int YeastTypeID { get; set; }
         public int RecipeID { get; set; }
-    
-        public virtual HopType HopType { get; set; }
     }
 }

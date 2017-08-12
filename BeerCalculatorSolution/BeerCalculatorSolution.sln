@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerCalculatorService", "Be
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{4EF85CD9-95DB-4EC8-BB09-CDFA42C03CAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerCalculator.TestApp", "ConsoleApplication1\BeerCalculator.TestApp.csproj", "{1240724A-7400-422B-8224-C2F7EBF6DAF4}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{C141E34B-83AB-46AB-8522-C01022163753}"
 EndProject
 Global
@@ -38,12 +36,6 @@ Global
 		{4EF85CD9-95DB-4EC8-BB09-CDFA42C03CAE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4EF85CD9-95DB-4EC8-BB09-CDFA42C03CAE}.Test|Any CPU.ActiveCfg = Test|Any CPU
 		{4EF85CD9-95DB-4EC8-BB09-CDFA42C03CAE}.Test|Any CPU.Build.0 = Test|Any CPU
-		{1240724A-7400-422B-8224-C2F7EBF6DAF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1240724A-7400-422B-8224-C2F7EBF6DAF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1240724A-7400-422B-8224-C2F7EBF6DAF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1240724A-7400-422B-8224-C2F7EBF6DAF4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1240724A-7400-422B-8224-C2F7EBF6DAF4}.Test|Any CPU.ActiveCfg = Test|Any CPU
-		{1240724A-7400-422B-8224-C2F7EBF6DAF4}.Test|Any CPU.Build.0 = Test|Any CPU
 		{C141E34B-83AB-46AB-8522-C01022163753}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C141E34B-83AB-46AB-8522-C01022163753}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C141E34B-83AB-46AB-8522-C01022163753}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -15,12 +15,10 @@ namespace DataAccessLayer
     public partial class Hop
     {
         public int HopID { get; set; }
-        public Nullable<int> HopTypeID { get; set; }
-        public double Amount { get; set; }
-        public double AlphaAcid { get; set; }
+        public int HopTypeID { get; set; }
+        public decimal Amount { get; set; }
+        public decimal AlphaAcid { get; set; }
         public int RecipeID { get; set; }
-        public Nullable<int> TimeAdded { get; set; }
-    
-        public virtual HopType HopType { get; set; }
+        public int TimeAdded { get; set; }
     }
 }
