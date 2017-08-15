@@ -1,4 +1,4 @@
-﻿@model List<Common.DTOs.GrainTypeDTO>
+﻿@model List<Common.DTOs.GrainTypeDTO> 
 
 <h2>Grain Management</h2>
 <div>
@@ -80,6 +80,40 @@
 
         </div>
     </div>
-
-
 </div>
+
+<script>
+    function saveGrain()
+    {
+        var grain = getGrain();
+
+        $.ajax({
+            url: "/GrainType/CreateGrainType",
+            type: "POST",
+            data: grain,
+            success: function (response) {
+                console.log(response);
+                $('#grain-modal').modal('toggle');
+            },
+            error: function () {
+                alert("There was an error");
+            }
+
+        });
+        
+
+    }
+
+    function getGrain()
+    {
+        var grainName = $('#grain-name').val();
+        var extractionRate = $('#max-sugar-ppg').val();
+
+        var grain = {};
+
+        grain.GrainName = grainName;
+        grain.MaximumSugarExtraction = extractionRate;
+
+        return grain;
+    }
+</script>

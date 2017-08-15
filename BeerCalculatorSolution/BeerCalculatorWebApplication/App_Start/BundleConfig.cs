@@ -31,8 +31,8 @@ namespace BeerCalculatorWebApplication
                 "~/Scripts/app/todo.viewmodel.js"));
 
             bundles.Add(new ScriptBundle("~/Scripts/bootstrap-scripts").Include(
-                "~/Scripts/bootstrap.js",
-                "~/Scripts/bootstrap.min.js"
+                "~/Scripts/bootstrap.js"
+                //"~/Scripts/bootstrap.min.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/Scripts/customScripts").Include(

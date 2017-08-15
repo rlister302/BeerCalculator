@@ -23,6 +23,7 @@ namespace DataAccessLayer.DataAccess
                 entity.LowAttenuationRate = create.LowAttenuationRate;
                 entity.LowTemperatureRange = create.LowTemperatureRange;
                 entity.HighTemperatureRange = create.HighTemperatureRange;
+                entity.Description = create.YeastDescription;
                 context.YeastTypes.Add(entity);
                 context.SaveChanges();
                 status = true;

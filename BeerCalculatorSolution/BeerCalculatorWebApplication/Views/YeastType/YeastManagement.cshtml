@@ -28,7 +28,7 @@
             data: yeast,
             success: function (response) {
                 console.log(response);
-                alert("Success");
+                $('#yeast-modal').modal('toggle');
             },
             error: function () {
                 alert("There was an error");

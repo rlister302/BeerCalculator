@@ -33,7 +33,7 @@ namespace BeerCalculatorService.Controllers
         public ActionResult CreateYeastType(YeastTypeDTO create)
         {
             var data = yeastTypeDataAccess.Create(create);
-            return Json(create);
+            return Json(data);
         }
 
         [HttpPut]

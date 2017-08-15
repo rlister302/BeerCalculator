@@ -11,7 +11,7 @@
         data: newHop,
         success: function (response) {
             console.log(response);
-            alert("Success");
+            $('#hop-modal').modal('toggle');
         },
         error: function () {
             alert("There was an error");
