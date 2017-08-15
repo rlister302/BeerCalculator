@@ -17,12 +17,12 @@ namespace Common.DTOs
     {
         public int RecipeID { get; set; }
         public string RecipeName { get; set; }
-        public double ExpectedABV { get; set; }
-        public double ActualABV { get; set; }
-        public double ExpectedOG { get; set; }
-        public double ActualOG { get; set; }
-        public double ExpectedFG { get; set; }
-        public double ActualFG { get; set; }
+        public decimal ExpectedABV { get; set; }
+        public decimal ActualABV { get; set; }
+        public decimal ExpectedOG { get; set; }
+        public decimal ActualOG { get; set; }
+        public decimal ExpectedFG { get; set; }
+        public decimal ActualFG { get; set; }
         public int IBU { get; set; }
         public int MashEfficiency { get; set; }
         public DateTime BrewDate { get; set; }

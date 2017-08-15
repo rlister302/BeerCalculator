@@ -332,6 +332,7 @@
     <Content Include="Views\GrainType\GrainManagement.cshtml" />
     <Content Include="Views\Recipe\CreateRecipe.cshtml" />
     <Content Include="Views\YeastType\YeastManagement.cshtml" />
+    <Content Include="Views\Recipe\RecipeManagement.cshtml" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

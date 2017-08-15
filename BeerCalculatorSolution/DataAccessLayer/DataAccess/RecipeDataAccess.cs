@@ -20,6 +20,8 @@ namespace DataAccessLayer.DataAccess
                 var recipe = ConvertRecipeDTOToEntity(create);
                 recipe = context.Recipes.Add(recipe);
 
+                context.SaveChanges();
+
                 int recipeId = recipe.RecipeID;
 
                 var hops = ConvertHopDTOToEntity(create.Hops, recipeId);
@@ -31,6 +33,7 @@ namespace DataAccessLayer.DataAccess
                 var yeast = ConvertYeastDTOToEntity(create.Yeast, recipeId);
                 context.Yeasts.Add(yeast);
 
+                context.SaveChanges();
                 status = true;
             }
 
@@ -78,9 +81,9 @@ namespace DataAccessLayer.DataAccess
 
                     recipeDTO.RecipeID = recipe.RecipeID;
                     recipeDTO.RecipeName = recipe.RecipeName;
-                    recipeDTO.ExpectedABV = (double)recipe.ExpectedABV;
-                    recipeDTO.ExpectedOG = (double)recipe.ExpectedOG;
-                    recipeDTO.ExpectedFG = (double)recipe.ExpectedFG;
+                    recipeDTO.ExpectedABV = recipe.ExpectedABV;
+                    recipeDTO.ExpectedOG = recipe.ExpectedOG;
+                    recipeDTO.ExpectedFG = recipe.ExpectedFG;
                     recipeDTO.IBU = (int)recipe.IBU;
 
                     recipeDTO.Grains = GetGrainsForRecipe(context, recipeDTO.RecipeID);
@@ -104,9 +107,9 @@ namespace DataAccessLayer.DataAccess
 
                 recipeDTO.RecipeID = recipe.RecipeID;
                 recipeDTO.RecipeName = recipe.RecipeName;
-                recipeDTO.ExpectedABV = (double)recipe.ExpectedABV;
-                recipeDTO.ExpectedOG = (double)recipe.ExpectedOG;
-                recipeDTO.ExpectedFG = (double)recipe.ExpectedFG;
+                recipeDTO.ExpectedABV = recipe.ExpectedABV;
+                recipeDTO.ExpectedOG = recipe.ExpectedOG;
+                recipeDTO.ExpectedFG = recipe.ExpectedFG;
                 recipeDTO.IBU = (int)recipe.IBU;
 
                 recipeDTO.Grains = GetGrainsForRecipe(context, recipe.RecipeID);
@@ -182,9 +185,10 @@ namespace DataAccessLayer.DataAccess
             //recipeEntity.ExpectedABV = (double)recipe.ExpectedABV;
             //recipeEntity.ExpectedOG = (double)recipe.ExpectedOG;
             //recipeEntity.ExpectedFG = (double)recipe.ExpectedFG;
-            recipeEntity.ExpectedABV = 0.000m;
+            recipeEntity.ExpectedABV = 4.2m;
             recipeEntity.ExpectedOG = 0.000m;
             recipeEntity.ExpectedFG = 0.000m;
+            recipeEntity.ExpectedMashEfficiency = 70;
             recipeEntity.IBU = (int)recipe.IBU;
 
             return recipeEntity;

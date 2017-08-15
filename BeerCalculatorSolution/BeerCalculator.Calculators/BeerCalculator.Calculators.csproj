@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C141E34B-83AB-46AB-8522-C01022163753}</ProjectGuid>
+    <ProjectGuid>{FA7D552C-38C1-4EDE-9B87-052189F7C469}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Common</RootNamespace>
-    <AssemblyName>Common</AssemblyName>
+    <RootNamespace>BeerCalculator.Calculators</RootNamespace>
+    <AssemblyName>BeerCalculator.Calculators</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,24 +29,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Test\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -56,28 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\AbstractRequestManager.cs" />
-    <Compile Include="Abstract\IRecipeMetrics.cs" />
-    <Compile Include="Abstract\IRequestManager.cs" />
-    <Compile Include="Abstract\ModelBase.cs" />
-    <Compile Include="Communication\GrainTypeRequestManager.cs" />
-    <Compile Include="Communication\HopTypeRequestManager.cs" />
-    <Compile Include="Communication\IngredientRequestManager.cs" />
-    <Compile Include="Communication\RecipeRequestManager.cs" />
-    <Compile Include="Communication\YeastTypeRequestManager.cs" />
-    <Compile Include="DTOs\GrainTypeDTO.cs" />
-    <Compile Include="DTOs\HopDTO.cs" />
-    <Compile Include="DTOs\HopTypeDTO.cs" />
-    <Compile Include="DTOs\IngredientDTO.cs" />
-    <Compile Include="DTOs\RecipeDTO.cs" />
-    <Compile Include="DTOs\RecipeMetrics.cs" />
-    <Compile Include="DTOs\YeastDTO.cs" />
-    <Compile Include="DTOs\YeastTypeDTO.cs" />
+    <Compile Include="GravityCalculator.cs" />
+    <Compile Include="IBeerMetricsCalculator.cs" />
+    <Compile Include="IGravityCalculator.cs" />
+    <Compile Include="IIBUCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{c141e34b-83ab-46ab-8522-c01022163753}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

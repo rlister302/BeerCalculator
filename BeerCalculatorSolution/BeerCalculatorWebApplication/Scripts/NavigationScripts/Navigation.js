@@ -52,5 +52,17 @@ function getAddRecipePage()
             alert("There was an error");
         }
     })
+}
 
+function getRecipeManagementPage() {
+    $.ajax({
+        url: "/Recipe/RecipeManagement",
+        type: "GET",
+        success: function (response) {
+            $('#body').html(response);
+        },
+        error: function () {
+            alert("There was an error");
+        }
+    })
 }

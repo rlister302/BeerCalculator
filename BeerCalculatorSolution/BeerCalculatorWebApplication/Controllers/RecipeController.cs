@@ -29,6 +29,13 @@ namespace BeerCalculatorWebApplication.Controllers
         }
 
         [HttpGet]
+        public async Task<ActionResult> RecipeManagement()
+        {
+            var model = await _requestManager.RetreiveAll(new RecipeDTO());
+            return PartialView(model);
+        }
+
+        [HttpGet]
         public async Task<ActionResult> GetRecipe(RecipeDTO get)
         {
             var model = await _requestManager.Retreive(get);
