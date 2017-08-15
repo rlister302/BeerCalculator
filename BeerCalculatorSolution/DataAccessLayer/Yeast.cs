@@ -17,5 +17,8 @@ namespace DataAccessLayer
         public int YeastID { get; set; }
         public int YeastTypeID { get; set; }
         public int RecipeID { get; set; }
+    
+        public virtual Recipe Recipe { get; set; }
+        public virtual YeastType YeastType { get; set; }
     }
 }

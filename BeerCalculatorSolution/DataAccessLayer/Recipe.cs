@@ -14,6 +14,14 @@ namespace DataAccessLayer
     
     public partial class Recipe
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Recipe()
+        {
+            this.Grains = new HashSet<Grain>();
+            this.Hops = new HashSet<Hop>();
+            this.Yeasts = new HashSet<Yeast>();
+        }
+    
         public int RecipeID { get; set; }
         public string RecipeName { get; set; }
         public decimal ExpectedABV { get; set; }
@@ -25,5 +33,12 @@ namespace DataAccessLayer
         public int IBU { get; set; }
         public int ExpectedMashEfficiency { get; set; }
         public Nullable<int> ActualMashEfficiency { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Grain> Grains { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Hop> Hops { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Yeast> Yeasts { get; set; }
     }
 }

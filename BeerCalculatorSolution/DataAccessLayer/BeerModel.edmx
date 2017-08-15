@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="BeerCalculatorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="BeerCalculatorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Grain">
           <Key>
             <PropertyRef Name="GrainID" />
@@ -77,6 +77,78 @@
           <Property Name="HighTemperatureRange" Type="int" Nullable="false" />
           <Property Name="Description" Type="varchar" MaxLength="255" Nullable="false" />
         </EntityType>
+        <Association Name="FK__Grain__GrainType__3E52440B">
+          <End Role="GrainType" Type="Self.GrainType" Multiplicity="1" />
+          <End Role="Grain" Type="Self.Grain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GrainType">
+              <PropertyRef Name="GrainTypeID" />
+            </Principal>
+            <Dependent Role="Grain">
+              <PropertyRef Name="GrainTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Grain__RecipeID__3F466844">
+          <End Role="Recipe" Type="Self.Recipe" Multiplicity="1" />
+          <End Role="Grain" Type="Self.Grain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipe">
+              <PropertyRef Name="RecipeID" />
+            </Principal>
+            <Dependent Role="Grain">
+              <PropertyRef Name="RecipeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Hop__HopTypeID__4222D4EF">
+          <End Role="HopType" Type="Self.HopType" Multiplicity="1" />
+          <End Role="Hop" Type="Self.Hop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HopType">
+              <PropertyRef Name="HopTypeID" />
+            </Principal>
+            <Dependent Role="Hop">
+              <PropertyRef Name="HopTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Hop__RecipeID__4316F928">
+          <End Role="Recipe" Type="Self.Recipe" Multiplicity="1" />
+          <End Role="Hop" Type="Self.Hop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipe">
+              <PropertyRef Name="RecipeID" />
+            </Principal>
+            <Dependent Role="Hop">
+              <PropertyRef Name="RecipeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Yeast__RecipeID__46E78A0C">
+          <End Role="Recipe" Type="Self.Recipe" Multiplicity="1" />
+          <End Role="Yeast" Type="Self.Yeast" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipe">
+              <PropertyRef Name="RecipeID" />
+            </Principal>
+            <Dependent Role="Yeast">
+              <PropertyRef Name="RecipeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Yeast__YeastType__45F365D3">
+          <End Role="YeastType" Type="Self.YeastType" Multiplicity="1" />
+          <End Role="Yeast" Type="Self.Yeast" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="YeastType">
+              <PropertyRef Name="YeastTypeID" />
+            </Principal>
+            <Dependent Role="Yeast">
+              <PropertyRef Name="YeastTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="BeerCalculatorModelStoreContainer">
           <EntitySet Name="Grain" EntityType="Self.Grain" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GrainType" EntityType="Self.GrainType" Schema="dbo" store:Type="Tables" />
@@ -85,8 +157,33 @@
           <EntitySet Name="Recipe" EntityType="Self.Recipe" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Yeast" EntityType="Self.Yeast" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="YeastType" EntityType="Self.YeastType" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Grain__GrainType__3E52440B" Association="Self.FK__Grain__GrainType__3E52440B">
+            <End Role="GrainType" EntitySet="GrainType" />
+            <End Role="Grain" EntitySet="Grain" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Grain__RecipeID__3F466844" Association="Self.FK__Grain__RecipeID__3F466844">
+            <End Role="Recipe" EntitySet="Recipe" />
+            <End Role="Grain" EntitySet="Grain" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Hop__HopTypeID__4222D4EF" Association="Self.FK__Hop__HopTypeID__4222D4EF">
+            <End Role="HopType" EntitySet="HopType" />
+            <End Role="Hop" EntitySet="Hop" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Hop__RecipeID__4316F928" Association="Self.FK__Hop__RecipeID__4316F928">
+            <End Role="Recipe" EntitySet="Recipe" />
+            <End Role="Hop" EntitySet="Hop" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Yeast__RecipeID__46E78A0C" Association="Self.FK__Yeast__RecipeID__46E78A0C">
+            <End Role="Recipe" EntitySet="Recipe" />
+            <End Role="Yeast" EntitySet="Yeast" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Yeast__YeastType__45F365D3" Association="Self.FK__Yeast__YeastType__45F365D3">
+            <End Role="YeastType" EntitySet="YeastType" />
+            <End Role="Yeast" EntitySet="Yeast" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BeerCalculatorModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -98,6 +195,8 @@
           <Property Name="GrainTypeID" Type="Int32" Nullable="false" />
           <Property Name="RecipeID" Type="Int32" Nullable="false" />
           <Property Name="Amount" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
+          <NavigationProperty Name="GrainType" Relationship="Self.FK__Grain__GrainType__3E52440B" FromRole="Grain" ToRole="GrainType" />
+          <NavigationProperty Name="Recipe" Relationship="Self.FK__Grain__RecipeID__3F466844" FromRole="Grain" ToRole="Recipe" />
         </EntityType>
         <EntityType Name="GrainType">
           <Key>
@@ -106,6 +205,7 @@
           <Property Name="GrainTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="GrainName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MaximumSugarExtraction" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Grains" Relationship="Self.FK__Grain__GrainType__3E52440B" FromRole="GrainType" ToRole="Grain" />
         </EntityType>
         <EntityType Name="Hop">
           <Key>
@@ -117,6 +217,8 @@
           <Property Name="AlphaAcid" Type="Decimal" Precision="3" Scale="1" Nullable="false" />
           <Property Name="RecipeID" Type="Int32" Nullable="false" />
           <Property Name="TimeAdded" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HopType" Relationship="Self.FK__Hop__HopTypeID__4222D4EF" FromRole="Hop" ToRole="HopType" />
+          <NavigationProperty Name="Recipe" Relationship="Self.FK__Hop__RecipeID__4316F928" FromRole="Hop" ToRole="Recipe" />
         </EntityType>
         <EntityType Name="HopType">
           <Key>
@@ -125,6 +227,7 @@
           <Property Name="HopTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="HopName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="FlavorNotes" Type="String" MaxLength="510" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Hops" Relationship="Self.FK__Hop__HopTypeID__4222D4EF" FromRole="HopType" ToRole="Hop" />
         </EntityType>
         <EntityType Name="Recipe">
           <Key>
@@ -141,6 +244,9 @@
           <Property Name="IBU" Type="Int32" Nullable="false" />
           <Property Name="ExpectedMashEfficiency" Type="Int32" Nullable="false" />
           <Property Name="ActualMashEfficiency" Type="Int32" />
+          <NavigationProperty Name="Grains" Relationship="Self.FK__Grain__RecipeID__3F466844" FromRole="Recipe" ToRole="Grain" />
+          <NavigationProperty Name="Hops" Relationship="Self.FK__Hop__RecipeID__4316F928" FromRole="Recipe" ToRole="Hop" />
+          <NavigationProperty Name="Yeasts" Relationship="Self.FK__Yeast__RecipeID__46E78A0C" FromRole="Recipe" ToRole="Yeast" />
         </EntityType>
         <EntityType Name="Yeast">
           <Key>
@@ -149,6 +255,8 @@
           <Property Name="YeastID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="YeastTypeID" Type="Int32" Nullable="false" />
           <Property Name="RecipeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Recipe" Relationship="Self.FK__Yeast__RecipeID__46E78A0C" FromRole="Yeast" ToRole="Recipe" />
+          <NavigationProperty Name="YeastType" Relationship="Self.FK__Yeast__YeastType__45F365D3" FromRole="Yeast" ToRole="YeastType" />
         </EntityType>
         <EntityType Name="YeastType">
           <Key>
@@ -161,7 +269,80 @@
           <Property Name="LowTemperatureRange" Type="Int32" Nullable="false" />
           <Property Name="HighTemperatureRange" Type="Int32" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Yeasts" Relationship="Self.FK__Yeast__YeastType__45F365D3" FromRole="YeastType" ToRole="Yeast" />
         </EntityType>
+        <Association Name="FK__Grain__GrainType__3E52440B">
+          <End Role="GrainType" Type="Self.GrainType" Multiplicity="1" />
+          <End Role="Grain" Type="Self.Grain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GrainType">
+              <PropertyRef Name="GrainTypeID" />
+            </Principal>
+            <Dependent Role="Grain">
+              <PropertyRef Name="GrainTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Grain__RecipeID__3F466844">
+          <End Role="Recipe" Type="Self.Recipe" Multiplicity="1" />
+          <End Role="Grain" Type="Self.Grain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipe">
+              <PropertyRef Name="RecipeID" />
+            </Principal>
+            <Dependent Role="Grain">
+              <PropertyRef Name="RecipeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Hop__HopTypeID__4222D4EF">
+          <End Role="HopType" Type="Self.HopType" Multiplicity="1" />
+          <End Role="Hop" Type="Self.Hop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HopType">
+              <PropertyRef Name="HopTypeID" />
+            </Principal>
+            <Dependent Role="Hop">
+              <PropertyRef Name="HopTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Hop__RecipeID__4316F928">
+          <End Role="Recipe" Type="Self.Recipe" Multiplicity="1" />
+          <End Role="Hop" Type="Self.Hop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipe">
+              <PropertyRef Name="RecipeID" />
+            </Principal>
+            <Dependent Role="Hop">
+              <PropertyRef Name="RecipeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Yeast__RecipeID__46E78A0C">
+          <End Role="Recipe" Type="Self.Recipe" Multiplicity="1" />
+          <End Role="Yeast" Type="Self.Yeast" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipe">
+              <PropertyRef Name="RecipeID" />
+            </Principal>
+            <Dependent Role="Yeast">
+              <PropertyRef Name="RecipeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Yeast__YeastType__45F365D3">
+          <End Role="YeastType" Type="Self.YeastType" Multiplicity="1" />
+          <End Role="Yeast" Type="Self.Yeast" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="YeastType">
+              <PropertyRef Name="YeastTypeID" />
+            </Principal>
+            <Dependent Role="Yeast">
+              <PropertyRef Name="YeastTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="BeerCalculatorEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Grains" EntityType="Self.Grain" />
           <EntitySet Name="GrainTypes" EntityType="Self.GrainType" />
@@ -170,6 +351,30 @@
           <EntitySet Name="Recipes" EntityType="Self.Recipe" />
           <EntitySet Name="Yeasts" EntityType="Self.Yeast" />
           <EntitySet Name="YeastTypes" EntityType="Self.YeastType" />
+          <AssociationSet Name="FK__Grain__GrainType__3E52440B" Association="Self.FK__Grain__GrainType__3E52440B">
+            <End Role="GrainType" EntitySet="GrainTypes" />
+            <End Role="Grain" EntitySet="Grains" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Grain__RecipeID__3F466844" Association="Self.FK__Grain__RecipeID__3F466844">
+            <End Role="Recipe" EntitySet="Recipes" />
+            <End Role="Grain" EntitySet="Grains" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Hop__HopTypeID__4222D4EF" Association="Self.FK__Hop__HopTypeID__4222D4EF">
+            <End Role="HopType" EntitySet="HopTypes" />
+            <End Role="Hop" EntitySet="Hops" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Hop__RecipeID__4316F928" Association="Self.FK__Hop__RecipeID__4316F928">
+            <End Role="Recipe" EntitySet="Recipes" />
+            <End Role="Hop" EntitySet="Hops" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Yeast__RecipeID__46E78A0C" Association="Self.FK__Yeast__RecipeID__46E78A0C">
+            <End Role="Recipe" EntitySet="Recipes" />
+            <End Role="Yeast" EntitySet="Yeasts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Yeast__YeastType__45F365D3" Association="Self.FK__Yeast__YeastType__45F365D3">
+            <End Role="YeastType" EntitySet="YeastTypes" />
+            <End Role="Yeast" EntitySet="Yeasts" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>

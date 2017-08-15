@@ -20,5 +20,8 @@ namespace DataAccessLayer
         public decimal AlphaAcid { get; set; }
         public int RecipeID { get; set; }
         public int TimeAdded { get; set; }
+    
+        public virtual HopType HopType { get; set; }
+        public virtual Recipe Recipe { get; set; }
     }
 }

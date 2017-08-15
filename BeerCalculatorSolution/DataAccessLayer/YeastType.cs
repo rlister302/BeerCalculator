@@ -14,6 +14,12 @@ namespace DataAccessLayer
     
     public partial class YeastType
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public YeastType()
+        {
+            this.Yeasts = new HashSet<Yeast>();
+        }
+    
         public int YeastTypeID { get; set; }
         public string YeastName { get; set; }
         public int LowAttenuationRate { get; set; }
@@ -21,5 +27,8 @@ namespace DataAccessLayer
         public int LowTemperatureRange { get; set; }
         public int HighTemperatureRange { get; set; }
         public string Description { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Yeast> Yeasts { get; set; }
     }
 }

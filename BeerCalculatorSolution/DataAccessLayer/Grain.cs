@@ -18,5 +18,8 @@ namespace DataAccessLayer
         public int GrainTypeID { get; set; }
         public int RecipeID { get; set; }
         public decimal Amount { get; set; }
+    
+        public virtual GrainType GrainType { get; set; }
+        public virtual Recipe Recipe { get; set; }
     }
 }
