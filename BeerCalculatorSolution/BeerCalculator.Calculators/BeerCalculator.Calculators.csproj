@@ -56,11 +56,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AttenuationCalculator.cs" />
     <Compile Include="CalculatorBootStrapper.cs" />
     <Compile Include="GravityCalculator.cs" />
+    <Compile Include="HopUtilizationTable.cs" />
+    <Compile Include="IAbvCalculator.cs" />
+    <Compile Include="IAttenuationCalculator.cs" />
     <Compile Include="IBeerMetricsCalculator.cs" />
     <Compile Include="IbuCalculator.cs" />
     <Compile Include="IGravityCalculator.cs" />
+    <Compile Include="IHopUtilizationTable.cs" />
     <Compile Include="IIbuCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

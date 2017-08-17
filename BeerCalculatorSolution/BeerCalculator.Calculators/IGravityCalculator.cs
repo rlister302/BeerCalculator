@@ -10,6 +10,10 @@ namespace BeerCalculator.Calculators
 {
     public interface IGravityCalculator
     {
-        decimal Calculate(List<GrainTypeDTO> grains, int expectedEfficiency);
+        decimal TotalGravityPoints { get; set; }
+
+        decimal OriginalGravity { get; set; }
+
+        void Calculate(List<GrainTypeDTO> grains, int expectedEfficiency);
     }
 }

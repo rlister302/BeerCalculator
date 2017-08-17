@@ -9,7 +9,7 @@ namespace BeerCalculator.Calculators
 {
     public class IbuCalculator : IIbuCalculator
     {
-        private Dictionary<int, Dictionary<string, decimal>> utilizationTable;
+        public IHopUtilizationTable HopUtilizationTable { get; set; }
 
         public decimal TotalAlphaAcidUnits { get; set; }
 
@@ -19,9 +19,9 @@ namespace BeerCalculator.Calculators
 
         private const decimal litersToGallons = 75.0m;
 
-        public IbuCalculator()
+        public IbuCalculator(IHopUtilizationTable table)
         {
-            InitializeHopUtilizationTable();
+            HopUtilizationTable = table;
         }
 
         public int Calculate(List<HopTypeDTO> hops, decimal originalGravity)
@@ -51,13 +51,15 @@ namespace BeerCalculator.Calculators
         {
             decimal utilization = 0.0m;
 
-            Dictionary<string, decimal> table = utilizationTable[timeInBoil];
+            if (timeInBoil > 0)
+            {
+                Dictionary<string, decimal> table = HopUtilizationTable.UtilizationTable[timeInBoil];
 
-            string gravityKey = GetGravityKey();
+                string gravityKey = GetGravityKey();
 
-            utilization = table[gravityKey];
+                utilization = table[gravityKey];
+            }
 
-         
             return utilization;
         }
 
@@ -81,72 +83,6 @@ namespace BeerCalculator.Calculators
             double gravityKey = (double)wholeNumberGravity / 1000; 
 
             return gravityKey.ToString("N3");
-        }
-
-        private void InitializeHopUtilizationTable()
-        {
-            utilizationTable = new Dictionary<int, Dictionary<string, decimal>>();
-
-            // 60 minute utilization table
-            Dictionary<string, decimal> xMinuteUtilizationTable = new Dictionary<string, decimal>();
-            xMinuteUtilizationTable.Add("1.030", 0.276m);
-            xMinuteUtilizationTable.Add("1.040", 0.252m);
-            xMinuteUtilizationTable.Add("1.050", 0.231m);
-            xMinuteUtilizationTable.Add("1.060", 0.211m);
-            xMinuteUtilizationTable.Add("1.070", 0.193m);
-            xMinuteUtilizationTable.Add("1.080", 0.176m);
-            xMinuteUtilizationTable.Add("1.090", 0.161m);
-            xMinuteUtilizationTable.Add("1.100", 0.147m);
-            xMinuteUtilizationTable.Add("1.110", 0.135m);
-            xMinuteUtilizationTable.Add("1.120", 0.123m);
-            
-            utilizationTable.Add(60, xMinuteUtilizationTable);
-
-            // 45 minute utilization table
-            xMinuteUtilizationTable = new Dictionary<string, decimal>();
-            xMinuteUtilizationTable.Add("1.030", 0.253m);
-            xMinuteUtilizationTable.Add("1.040", 0.232m);
-            xMinuteUtilizationTable.Add("1.050", 0.212m);
-            xMinuteUtilizationTable.Add("1.060", 0.194m);
-            xMinuteUtilizationTable.Add("1.070", 0.177m);
-            xMinuteUtilizationTable.Add("1.080", 0.162m);
-            xMinuteUtilizationTable.Add("1.090", 0.148m);
-            xMinuteUtilizationTable.Add("1.100", 0.135m);
-            xMinuteUtilizationTable.Add("1.110", 0.123m);
-            xMinuteUtilizationTable.Add("1.120", 0.113m);
-
-            utilizationTable.Add(45, xMinuteUtilizationTable);
-
-            // 30 minute utilization table
-            xMinuteUtilizationTable = new Dictionary<string, decimal>();
-            xMinuteUtilizationTable.Add("1.030", 0.212m);
-            xMinuteUtilizationTable.Add("1.040", 0.194m);
-            xMinuteUtilizationTable.Add("1.050", 0.177m);
-            xMinuteUtilizationTable.Add("1.060", 0.162m);
-            xMinuteUtilizationTable.Add("1.070", 0.148m);
-            xMinuteUtilizationTable.Add("1.080", 0.135m);
-            xMinuteUtilizationTable.Add("1.090", 0.124m);
-            xMinuteUtilizationTable.Add("1.100", 0.113m);
-            xMinuteUtilizationTable.Add("1.110", 0.103m);
-            xMinuteUtilizationTable.Add("1.120", 0.094m);
-
-            utilizationTable.Add(30, xMinuteUtilizationTable);
-
-            // 15 minute utilization table
-            xMinuteUtilizationTable = new Dictionary<string, decimal>();
-            xMinuteUtilizationTable.Add("1.030", 0.137m);
-            xMinuteUtilizationTable.Add("1.040", 0.125m);
-            xMinuteUtilizationTable.Add("1.050", 0.114m);
-            xMinuteUtilizationTable.Add("1.060", 0.105m);
-            xMinuteUtilizationTable.Add("1.070", 0.096m);
-            xMinuteUtilizationTable.Add("1.080", 0.087m);
-            xMinuteUtilizationTable.Add("1.090", 0.080m);
-            xMinuteUtilizationTable.Add("1.100", 0.073m);
-            xMinuteUtilizationTable.Add("1.110", 0.067m);
-            xMinuteUtilizationTable.Add("1.120", 0.061m);
-
-            utilizationTable.Add(15, xMinuteUtilizationTable);
-
         }
     }
 }

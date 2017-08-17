@@ -13,6 +13,8 @@ namespace BeerCalculator.Calculators
 
         decimal OriginalGravity { get; set; }
 
+        IHopUtilizationTable HopUtilizationTable { get; set; }
+
         int Calculate(List<HopTypeDTO> hops, decimal originalGravity);
     }
 }

@@ -66,6 +66,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="AttenuationCalculationTests.cs" />
     <Compile Include="GravityCalculationTests.cs" />
     <Compile Include="IBUCalculationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
