@@ -10,11 +10,14 @@ namespace BeerCalculator.Calculators
 {
     public class GravityCalculator : IGravityCalculator
     {
+        //TODO: Make this come from the recipe...
         private double numberOfGallons = 5.5;
-        public IRecipeMetrics Calculate(List<GrainTypeDTO> grains, int expectedEfficiency)
-        {
-            IRecipeMetrics metrics = new RecipeMetrics();
 
+        private const int thousandthDivider = 1000;
+
+
+        public decimal Calculate(List<GrainTypeDTO> grains, int expectedEfficiency)
+        {
             decimal expectedOG = 1.000m;
 
             double totalGravity = 0.0;
@@ -28,10 +31,9 @@ namespace BeerCalculator.Calculators
 
             totalGravity /= numberOfGallons;
 
-            expectedOG += (decimal)totalGravity / 1000;
+            expectedOG += (decimal)totalGravity / thousandthDivider;
 
-            metrics.ExpectedOG = decimal.Round(expectedOG, 3);
-            return metrics;
+            return decimal.Round(expectedOG, 3);
         }
     }
 }

@@ -4,16 +4,32 @@ using BeerCalculator.Calculators;
 using Common.DTOs;
 using System.Collections.Generic;
 using Common.Abstract;
+using Microsoft.Practices.Unity;
+using Microsoft.Practices.ServiceLocation;
+using BeerCalculators.Calculators;
 
 namespace BeerCalculatorTests
 {
     [TestClass]
     public class GravityCalculationTests
     {
+        static IGravityCalculator gravityCalculator;
+
+        [ClassInitialize()]
+        public static void Init(TestContext context)
+        {
+            IUnityContainer container = new UnityContainer();
+            IServiceLocator locator = new UnityServiceLocator(container);
+
+            new CalculatorBootStrapper(container, locator);
+
+            gravityCalculator = container.Resolve<IGravityCalculator>();
+
+        }
+
         [TestMethod]
         public void GravityCalculation()
         {
-            IGravityCalculator calculator = new GravityCalculator();
 
             GrainTypeDTO grain = new GrainTypeDTO();
 
@@ -25,9 +41,9 @@ namespace BeerCalculatorTests
             List<GrainTypeDTO> grains = new List<GrainTypeDTO>();
             grains.Add(grain);
 
-            IRecipeMetrics metrics = calculator.Calculate(grains, expectedEfficiency);
+            decimal expectedOG = gravityCalculator.Calculate(grains, expectedEfficiency);
 
-            Assert.AreEqual<decimal>(1.047m, metrics.ExpectedOG);
+            Assert.AreEqual<decimal>(1.047m, expectedOG);
         }
     }
 }

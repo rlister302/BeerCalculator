@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace BeerCalculator.Calculators
 {
-    public interface IIBUCalculator
+    public interface IIbuCalculator
     {
-        int Calculate(List<HopDTO> hops);
+        decimal TotalAlphaAcidUnits { get; set; }
+
+        decimal OriginalGravity { get; set; }
+
+        int Calculate(List<HopTypeDTO> hops, decimal originalGravity);
     }
 }

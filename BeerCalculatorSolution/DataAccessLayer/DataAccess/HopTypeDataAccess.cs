@@ -5,6 +5,7 @@ using System.Web;
 using Common.DTOs;
 using DataAccessLayer.DataAccess.Interface;
 using DataAccessLayer;
+using BeerCalculator.DataAccessLayer;
 
 namespace DataAccessLayer.DataAccess
 {

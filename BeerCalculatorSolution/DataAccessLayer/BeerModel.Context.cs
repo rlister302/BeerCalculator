@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DataAccessLayer
+namespace BeerCalculator.DataAccessLayer
 {
     using System;
     using System.Data.Entity;

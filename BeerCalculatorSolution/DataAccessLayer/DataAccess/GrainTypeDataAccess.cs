@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Common.DTOs;
 using Common.Abstract;
 using DataAccessLayer.DataAccess.Interface;
+using BeerCalculator.DataAccessLayer;
+
 namespace DataAccessLayer.DataAccess
 {
     public class GrainTypeDataAccess : IDataAccess<GrainTypeDTO>
