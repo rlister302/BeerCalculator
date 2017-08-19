@@ -10,20 +10,20 @@ namespace BeerCalculator.Calculators
 {
     public class GravityCalculator : IGravityCalculator
     {
-        //TODO: Make this come from the recipe...
-        private double numberOfGallons = 5.5;
-
-        //private double boilVolume = 6.5;
-
         private const int thousandthDivider = 1000;
 
-        public decimal TotalGravityPoints { get; set; }
+        public decimal BoilGravityPoints { get; set; }
 
         public decimal OriginalGravity { get; set; }
 
+        public double BoilVolume { get; set; }
 
-        public void Calculate(List<GrainTypeDTO> grains, int expectedEfficiency)
+        public double FinalVolume { get; set; }
+
+        public void Calculate(List<GrainTypeDTO> grains, int expectedEfficiency, double boilVolume = 6.5, double finalVolume = 5.5)
         {
+            BoilVolume = boilVolume;
+            FinalVolume = finalVolume;
             CalculateOriginalGravity(grains, expectedEfficiency);
             CalculateBoilGravityPoints(grains, expectedEfficiency);
         }
@@ -36,12 +36,12 @@ namespace BeerCalculator.Calculators
 
             foreach (GrainTypeDTO grain in grains)
             {
-                totalGravity += (grain.MaximumSugarExtraction * ((double)expectedEfficiency / 100));
+                double expectedExtraction = (grain.MaximumSugarExtraction * (expectedEfficiency / 100.0));
 
-                totalGravity *= ((double)grain.Amount);
+                totalGravity += (expectedExtraction * (double)grain.Amount); 
             }
 
-            totalGravity /= numberOfGallons;
+            totalGravity /= FinalVolume;
 
             expectedOG += (decimal)totalGravity / thousandthDivider;
 
@@ -57,13 +57,17 @@ namespace BeerCalculator.Calculators
 
             foreach (GrainTypeDTO grain in grains)
             {
-                points += ((grain.MaximumSugarExtraction * ((double)expectedEfficiency / 100)) * (double)grain.Amount);
+                double expectedExtraction = (grain.MaximumSugarExtraction * (expectedEfficiency / 100.0));
+
+                double totalGravity = (expectedExtraction * (double)grain.Amount);
+
+                points += totalGravity;
             }
 
 
-            boilPoints = (decimal)(points / 6.5);
+            boilPoints = (decimal)(points / BoilVolume);
 
-            TotalGravityPoints = decimal.Round(boilPoints, 2);
+            BoilGravityPoints = decimal.Round(boilPoints, 2);
         }
     }
 }

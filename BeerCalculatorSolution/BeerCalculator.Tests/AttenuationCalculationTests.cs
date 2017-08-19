@@ -25,30 +25,9 @@ namespace BeerCalculator.Tests
 
             attenuationCalculator = container.Resolve<IAttenuationCalculator>();
         }
-        [TestMethod()]
-        public void TestAttenuationMethod()
-        {
-            int expectedAttenuation = 75;
-            decimal originalGravity = 1.047m;
-            double attenuationRatio = (double)expectedAttenuation / 100;
-
-            int wholeNumberGravity = (int)(originalGravity * 1000);
-
-            int ratio = (int)(wholeNumberGravity * attenuationRatio);
-
-            //1047 - 785
-            // 35
-            // 12
-        }
 
         [TestMethod()]
-        public void TestAttenuationCalculation()
-        {
- 
-        }
-
-        [TestMethod()]
-        public void TestAttenuationCalculation2()
+        public void TestAttenuationCalculationKolsch()
         {
             int expectedAttenuation = 75;
             decimal originalGravity = 47.45m;
@@ -56,70 +35,48 @@ namespace BeerCalculator.Tests
             decimal finalGravity = attenuationCalculator.Calculate(originalGravity, expectedAttenuation);
 
             Assert.AreEqual<decimal>(1.012m, finalGravity);
+
+        }
+
+        [TestMethod()]
+        public void TestAttenuationCalculationRoggenbier()
+        {
+            int expectedAttenuation = 75;
+            decimal originalGravity = 42.56m;
+
+            decimal finalGravity = attenuationCalculator.Calculate(originalGravity, expectedAttenuation);
+
+            Assert.AreEqual<decimal>(1.011m, finalGravity);
+
+        }
+
+        [TestMethod()]
+        public void TestAttenuationCalculationHefeweizen()
+        {
+            int expectedAttenuation = 76;
+            decimal originalGravity = 32.07m;
+
+            decimal finalGravity = attenuationCalculator.Calculate(originalGravity, expectedAttenuation);
+
+            Assert.AreEqual<decimal>(1.008m, finalGravity);
         }
 
         [TestMethod()]
         public void TestAttenuationCalculation3()
         {
+            int expectedAttenuation = 75;
+            decimal originalGravity = 34.26m;
+
+            decimal finalGravity = attenuationCalculator.Calculate(originalGravity, expectedAttenuation);
+
+            Assert.AreEqual<decimal>(1.009m, finalGravity);
+        }
+
+
+        [TestMethod()]
+        public void TestAttenuationCalculation4()
+        {
         
-        }
-
-
-
-        [TestMethod()]
-        public void TestAttenuationModuloMethodBelow1100()
-        {
-            decimal og = 1.047m;
-            double expectedAttenuationRate = .75;
-
-             
-
-            int wholeNumberGravity = (int)(og * 1000);
-
-            int remainder = wholeNumberGravity % 1000;
-
-            int expectedAttenuation = (int)(remainder * expectedAttenuationRate);
-
-            Console.WriteLine("Expected Attenuation {0}", expectedAttenuation);
-
-            int finalGravity = remainder - expectedAttenuation;
-
-            Console.WriteLine("Final gravity {0}", finalGravity);
-
-            int attenuation = wholeNumberGravity - remainder;
-
-            string x = string.Format("1.0{0}", finalGravity);
-
-            decimal converted = 1.000m + (decimal)(finalGravity / 1000.0);
-
-            Console.WriteLine("Converted is {0}", converted);
-
-            Console.WriteLine("String gravity {0}", x);
-
-            decimal y = decimal.Parse(x);
-
-            Console.WriteLine("Converted to decimal {0}", y);
-
-
-            Console.WriteLine("Remainder is {0}", remainder);
-
-            Console.WriteLine("Expected attenuation is {0}", attenuation);
-
-            double decimalFinalGravity = (wholeNumberGravity - attenuation) / 1000.0;
-
-            Console.WriteLine("Final gravity {0}", decimalFinalGravity);
-        }
-
-        [TestMethod()]
-        public void TestAttenuationModuloMethodAbove1100()
-        {
-            decimal og = 1.120m;
-
-            int wholeNumberGravity = (int)(og * 1000);
-
-            int remainder = wholeNumberGravity % 1000;
-
-            Console.WriteLine("Remainder is {0}", remainder);
         }
     }
 }

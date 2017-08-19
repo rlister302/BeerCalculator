@@ -22,6 +22,7 @@ namespace BeerCalculators.Calculators
             Container.RegisterType<IGravityCalculator, GravityCalculator>();
             Container.RegisterType<IHopUtilizationTable, HopUtilizationTable>();
             Container.RegisterType<IAttenuationCalculator, AttenuationCalculator>();
+            Container.RegisterType<IAbvCalculator, AbvCalculator>();
         }
     }
 }
