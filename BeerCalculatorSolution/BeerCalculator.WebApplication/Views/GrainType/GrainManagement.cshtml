@@ -69,6 +69,18 @@
                             <input id="max-sugar-ppg" class="form-control"/>
                         </div>
                     </div>
+
+                    <div class="row" style="margin-top:5px">
+                        <div class="col-lg-5">
+                            <label>Maximum Extraction Rate:</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <input id="max-extraction-rate" class="form-control" />
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
 
@@ -108,11 +120,13 @@
     {
         var grainName = $('#grain-name').val();
         var extractionRate = $('#max-sugar-ppg').val();
+        var maxExtractionRate = $('#max-extraction-rate').val();
 
         var grain = {};
 
         grain.GrainName = grainName;
         grain.MaximumSugarExtraction = extractionRate;
+        grain.MaximumExtractionRate = maxExtractionRate;
 
         return grain;
     }

@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerCalculator.WebApplication", "BeerCalculatorWebApplication\BeerCalculator.WebApplication.csproj", "{D956834D-9012-47DF-A371-F279EBA904CF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerCalculator.WebApplication", "BeerCalculator.WebApplication\BeerCalculator.WebApplication.csproj", "{D956834D-9012-47DF-A371-F279EBA904CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerCalculator.Service", "BeerCalculatorService\BeerCalculator.Service.csproj", "{23662DE4-816E-442D-901F-3C9F5671DE15}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerCalculator.Service", "BeerCalculator.Service\BeerCalculator.Service.csproj", "{23662DE4-816E-442D-901F-3C9F5671DE15}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerCalculator.DataAccessLayer", "DataAccessLayer\BeerCalculator.DataAccessLayer.csproj", "{4EF85CD9-95DB-4EC8-BB09-CDFA42C03CAE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerCalculator.DataAccessLayer", "BeerCalculator.DataAccessLayer\BeerCalculator.DataAccessLayer.csproj", "{4EF85CD9-95DB-4EC8-BB09-CDFA42C03CAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerCalculator.Common", "Common\BeerCalculator.Common.csproj", "{C141E34B-83AB-46AB-8522-C01022163753}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerCalculator.Common", "BeerCalculator.Common\BeerCalculator.Common.csproj", "{C141E34B-83AB-46AB-8522-C01022163753}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerCalculator.Tests", "BeerCalculatorTests\BeerCalculator.Tests.csproj", "{4B6D8805-C557-4486-8545-DCFCD5493191}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerCalculator.Tests", "BeerCalculator.Tests\BeerCalculator.Tests.csproj", "{4B6D8805-C557-4486-8545-DCFCD5493191}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerCalculator.Calculators", "BeerCalculator.Calculators\BeerCalculator.Calculators.csproj", "{FA7D552C-38C1-4EDE-9B87-052189F7C469}"
 EndProject

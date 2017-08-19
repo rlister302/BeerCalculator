@@ -13,7 +13,7 @@ namespace BeerCalculator.Calculators
         //TODO: Make this come from the recipe...
         private double numberOfGallons = 5.5;
 
-        private double boilVolume = 6.5;
+        //private double boilVolume = 6.5;
 
         private const int thousandthDivider = 1000;
 

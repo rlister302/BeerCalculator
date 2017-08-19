@@ -23,6 +23,7 @@ namespace BeerCalculator.DataAccessLayer
         public int GrainTypeID { get; set; }
         public string GrainName { get; set; }
         public int MaximumSugarExtraction { get; set; }
+        public int MaximumExtractionRate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Grain> Grains { get; set; }

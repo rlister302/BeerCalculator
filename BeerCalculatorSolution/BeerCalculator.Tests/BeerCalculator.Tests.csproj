@@ -76,7 +76,7 @@
       <Project>{FA7D552C-38C1-4EDE-9B87-052189F7C469}</Project>
       <Name>BeerCalculator.Calculators</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Common\BeerCalculator.Common.csproj">
+    <ProjectReference Include="..\BeerCalculator.Common\BeerCalculator.Common.csproj">
       <Project>{C141E34B-83AB-46AB-8522-C01022163753}</Project>
       <Name>BeerCalculator.Common</Name>
     </ProjectReference>

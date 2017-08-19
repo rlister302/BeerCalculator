@@ -4,20 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="41228666dfcf4ff9a7fbdbea80490f64" Name="Diagram1">
+      <Diagram DiagramId="f35a2d584c724296b6a94442e465529d" Name="Diagram1">
         <EntityTypeShape EntityType="BeerCalculatorModel.Grain" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BeerCalculatorModel.GrainType" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BeerCalculatorModel.GrainType" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
         <EntityTypeShape EntityType="BeerCalculatorModel.Hop" Width="1.5" PointX="6" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BeerCalculatorModel.HopType" Width="1.5" PointX="3.75" PointY="8.125" IsExpanded="true" />
         <EntityTypeShape EntityType="BeerCalculatorModel.Recipe" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="BeerCalculatorModel.Yeast" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
         <EntityTypeShape EntityType="BeerCalculatorModel.YeastType" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="BeerCalculatorModel.FK__Grain__GrainType__3E52440B" ManuallyRouted="false" />
-        <AssociationConnector Association="BeerCalculatorModel.FK__Grain__RecipeID__3F466844" ManuallyRouted="false" />
-        <AssociationConnector Association="BeerCalculatorModel.FK__Hop__HopTypeID__4222D4EF" ManuallyRouted="false" />
-        <AssociationConnector Association="BeerCalculatorModel.FK__Hop__RecipeID__4316F928" ManuallyRouted="false" />
-        <AssociationConnector Association="BeerCalculatorModel.FK__Yeast__RecipeID__46E78A0C" ManuallyRouted="false" />
-        <AssociationConnector Association="BeerCalculatorModel.FK__Yeast__YeastType__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="BeerCalculatorModel.FK__Grain__GrainType__2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="BeerCalculatorModel.FK__Grain__RecipeID__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="BeerCalculatorModel.FK__Hop__HopTypeID__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="BeerCalculatorModel.FK__Hop__RecipeID__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="BeerCalculatorModel.FK__Yeast__RecipeID__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="BeerCalculatorModel.FK__Yeast__YeastType__32E0915F" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

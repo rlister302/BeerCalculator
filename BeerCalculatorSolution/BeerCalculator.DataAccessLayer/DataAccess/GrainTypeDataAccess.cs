@@ -21,6 +21,7 @@ namespace DataAccessLayer.DataAccess
                 var entity = new GrainType();
                 entity.GrainName = create.GrainName;
                 entity.MaximumSugarExtraction = create.MaximumSugarExtraction;
+                entity.MaximumExtractionRate = create.MaximumExtractionRate;
                 context.GrainTypes.Add(entity);
                 context.SaveChanges();
                 status = true;

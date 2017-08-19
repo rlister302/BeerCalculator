@@ -70,7 +70,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common\BeerCalculator.Common.csproj">
+    <ProjectReference Include="..\BeerCalculator.Common\BeerCalculator.Common.csproj">
       <Project>{c141e34b-83ab-46ab-8522-c01022163753}</Project>
       <Name>BeerCalculator.Common</Name>
     </ProjectReference>
