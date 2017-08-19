@@ -25,11 +25,14 @@ namespace Common.DTOs
         public decimal ActualFG { get; set; }
         public int IBU { get; set; }
         public int MashEfficiency { get; set; }
+        public decimal BoilVolume { get; set; }
+        public decimal FinalVolume { get; set; }
+        public int ExpectedAttenuation { get; set; }
         public DateTime BrewDate { get; set; }
 
-        public IEnumerable<HopTypeDTO> Hops { get; set; }
+        public List<HopTypeDTO> Hops { get; set; }
 
-        public IEnumerable<GrainTypeDTO> Grains { get; set; }
+        public List<GrainTypeDTO> Grains { get; set; }
 
         public YeastTypeDTO Yeast { get; set; }
     }

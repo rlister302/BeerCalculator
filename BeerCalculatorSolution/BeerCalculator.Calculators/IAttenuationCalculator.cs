@@ -8,6 +8,7 @@ namespace BeerCalculator.Calculators
 {
     public interface IAttenuationCalculator
     {
+        decimal FinalGravity { get; set; }
         decimal Calculate(decimal originalGravity, int expectedAttenuation);
     }
 }

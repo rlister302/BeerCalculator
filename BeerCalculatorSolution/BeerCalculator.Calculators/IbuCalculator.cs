@@ -15,6 +15,8 @@ namespace BeerCalculator.Calculators
 
         public decimal OriginalGravity { get; set; }
 
+        public int ExpectedIbu { get; set; }
+
         private const decimal volume = 5.0m;
 
         private const decimal litersToGallons = 75.0m;
@@ -43,6 +45,7 @@ namespace BeerCalculator.Calculators
                 ibu += (int)decimal.Round(rawValue,0);
             }
 
+            ExpectedIbu = ibu;
       
             return ibu;
         }

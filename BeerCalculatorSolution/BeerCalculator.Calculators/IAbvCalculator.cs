@@ -8,6 +8,7 @@ namespace BeerCalculator.Calculators
 {
     public interface IAbvCalculator
     {
+        decimal ExpectedAbv { get; set; }
         decimal Calculate(decimal originalGravity, decimal finalGravity);
     }
 }

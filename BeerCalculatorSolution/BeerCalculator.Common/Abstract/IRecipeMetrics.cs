@@ -13,5 +13,7 @@ namespace Common.Abstract
         decimal ExpectedABV { get; set; }
 
         int ExpectedIBU { get; set; }
+
+        decimal ExpectedFinalGravity { get; set; }
     }
 }

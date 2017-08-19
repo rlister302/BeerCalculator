@@ -8,26 +8,7 @@ namespace BeerCalculator.Calculators
 {
     public class AttenuationCalculator : IAttenuationCalculator
     {
-        //public decimal Calculate(decimal originalGravity, int expectedAttenuationRate)
-        //{
-        //    double attenuationRatio = GetAttenuationRate(expectedAttenuationRate);
-
-        //    int wholeNumberGravity = GetWholeNumberGravity(originalGravity);
-
-        //    int convertedSugar = GetWholeNumberSugarLevel(wholeNumberGravity);
-
-        //    int attenuation = (int)(convertedSugar * attenuationRatio);
-
-        //    int expectedConversion = (int)(convertedSugar - attenuation);
-
-        //    decimal finalGravity = 1.000m;
-
-        //    double conversion = expectedConversion / 1000.0;
-
-        //    finalGravity += (decimal)conversion;
-
-        //    return finalGravity;
-        //}
+        public decimal FinalGravity { get; set; }
 
         public decimal Calculate(decimal originalGravity, int expectedAttenuationRate)
         {
