@@ -58,7 +58,7 @@ namespace BeerCalculator.Calculators
             {
                 Dictionary<string, decimal> table = HopUtilizationTable.UtilizationTable[timeInBoil];
 
-                string gravityKey = GetGravityKey();
+                string gravityKey = OriginalGravity.ToString();
 
                 utilization = table[gravityKey];
             }
@@ -66,26 +66,6 @@ namespace BeerCalculator.Calculators
             return utilization;
         }
 
-        private string GetGravityKey()
-        {
-            int wholeNumberGravity = (int)(OriginalGravity * 1000);
-            int remainder = wholeNumberGravity % 10;
-
-            if (remainder > 4)
-            {
-                int temp = 10 - remainder;
-                wholeNumberGravity += temp;
-            }
-            else
-            {
-                int temp = remainder - 10;
-                temp *= -1;
-                wholeNumberGravity -= temp;
-            }
-
-            double gravityKey = (double)wholeNumberGravity / 1000; 
-
-            return gravityKey.ToString("N3");
-        }
+ 
     }
 }

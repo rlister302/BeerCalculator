@@ -8,11 +8,13 @@ namespace Common.Abstract
 {
     public interface IRecipeMetrics
     {
-        decimal ExpectedOG { get; set; }
+        decimal ExpectedOriginalGravity { get; set; }
 
-        decimal ExpectedABV { get; set; }
+        decimal ExpectedBoilGravityPoints { get; set; }
 
-        int ExpectedIBU { get; set; }
+        decimal ExpectedAbv { get; set; }
+
+        int ExpectedIbu { get; set; }
 
         decimal ExpectedFinalGravity { get; set; }
     }

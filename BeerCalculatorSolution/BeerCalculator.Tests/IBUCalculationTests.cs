@@ -140,5 +140,25 @@ namespace BeerCalculatorTests
             //Assert.AreEqual<decimal>(1.050m, gravity);
         }
 
+        [TestMethod()]
+        public void TestDecimalToStringConversion()
+        {
+            decimal x = 1.045m;
+
+            string y = x.ToString();
+
+            Assert.AreEqual<string>("1.045", y);
+        }
+
+        [TestMethod()]
+        public void TestDecimalToStringConversionWithEvenGravity()
+        {
+            decimal x = 1.040m;
+
+            string y = x.ToString();
+
+            Assert.AreEqual<string>("1.040", y);
+        }
+
     }
 }

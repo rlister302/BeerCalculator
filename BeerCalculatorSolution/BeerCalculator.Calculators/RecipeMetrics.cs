@@ -9,12 +9,14 @@ namespace BeerCalculator.Calculators
 {
     public class RecipeMetrics : IRecipeMetrics
     {
-        public decimal ExpectedABV { get; set; }
+        public decimal ExpectedAbv { get; set; }
 
         public decimal ExpectedFinalGravity { get; set; }
 
-        public int ExpectedIBU { get; set; }
+        public int ExpectedIbu { get; set; }
 
-        public decimal ExpectedOG { get; set; }
+        public decimal ExpectedOriginalGravity { get; set; }
+
+        public decimal ExpectedBoilGravityPoints { get; set; }
     }
 }

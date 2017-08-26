@@ -1,5 +1,6 @@
 ﻿using BeerCalculator.Calculators;
 using BeerCalculators.Calculators;
+using Common.Abstract;
 using Common.DTOs;
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Unity;
@@ -30,6 +31,12 @@ namespace BeerCalculator.Tests
         [TestMethod()]
         public void TestRoggenbierMetrics()
         {
+            RecipeDTO recipe = new RecipeDTO();
+
+            List<GrainTypeDTO> grains;
+            List<HopTypeDTO> hops;
+            YeastTypeDTO yeast;
+
             #region Grain init
 
             GrainTypeDTO grain;
@@ -38,7 +45,7 @@ namespace BeerCalculator.Tests
             grain.MaximumSugarExtraction = 35;
             grain.MaximumExtractionRate = 76;
 
-            List<GrainTypeDTO> grains = new List<GrainTypeDTO>();
+            grains = new List<GrainTypeDTO>();
             grains.Add(grain);
 
             grain = new GrainTypeDTO();
@@ -77,6 +84,100 @@ namespace BeerCalculator.Tests
             grain.MaximumExtractionRate = 75;
             grains.Add(grain);
             #endregion
+
+            #region Hop init
+            hops = new List<HopTypeDTO>();
+            HopTypeDTO hop = new HopTypeDTO();
+
+            hop.AlphaAcid = 3.5m;
+            hop.Amount = 1;
+            hop.BoilTime = 60;
+
+            hops.Add(hop);
+            #endregion
+
+            #region Yeast init
+            yeast = new YeastTypeDTO();
+            #endregion 
+
+            recipe.Grains = grains;
+            recipe.Hops = hops;
+            recipe.Yeast = yeast;
+            recipe.ExpectedAttenuation = 75;
+            recipe.MashEfficiency = 73;
+            recipe.BoilVolume = 6.75m;
+            recipe.FinalVolume = 5.25m;
+
+            IRecipeMetrics metrics = calculator.Calculate(recipe);
+
+            Assert.AreEqual<decimal>(1.055m, metrics.ExpectedOriginalGravity);
+            Assert.AreEqual<decimal>(1.011m, metrics.ExpectedFinalGravity);
+            Assert.AreEqual<decimal>(5.78m, metrics.ExpectedAbv);
+            Assert.AreEqual<decimal>(42.56m, metrics.ExpectedBoilGravityPoints);
+            Assert.AreEqual<int>(12, metrics.ExpectedIbu);
+            
+        }
+
+        [TestMethod()]
+        public void TestHefeweizenMetrics()
+        {
+            RecipeDTO recipe = new RecipeDTO();
+
+            List<GrainTypeDTO> grains;
+            List<HopTypeDTO> hops;
+            YeastTypeDTO yeast;
+
+            #region Grain init
+
+            GrainTypeDTO grain;
+            grain = new GrainTypeDTO();
+            grain.Amount = 4;
+            grain.MaximumSugarExtraction = 37;
+            grain.MaximumExtractionRate = 80;
+
+            grains = new List<GrainTypeDTO>();
+            grains.Add(grain);
+
+            grain = new GrainTypeDTO();
+            grain.Amount = 6;
+            grain.MaximumSugarExtraction = 37;
+            grain.MaximumExtractionRate = 79;
+            grains.Add(grain);
+
+            
+            #endregion
+
+            #region Hop init
+            hops = new List<HopTypeDTO>();
+            HopTypeDTO hop = new HopTypeDTO();
+
+            hop.AlphaAcid = 3.7m;
+            hop.Amount = 1;
+            hop.BoilTime = 60;
+
+            hops.Add(hop);
+            #endregion
+
+            #region Yeast init
+            yeast = new YeastTypeDTO();
+            #endregion 
+
+            recipe.Grains = grains;
+            recipe.Hops = hops;
+            recipe.Yeast = yeast;
+            recipe.ExpectedAttenuation = 76;
+            recipe.MashEfficiency = 65;
+            recipe.BoilVolume = 7.5m;
+            recipe.FinalVolume = 5.5m;
+
+            IRecipeMetrics metrics = calculator.Calculate(recipe);
+
+            Assert.AreEqual<decimal>(1.044m, metrics.ExpectedOriginalGravity);
+            Assert.AreEqual<decimal>(1.008m, metrics.ExpectedFinalGravity);
+            Assert.AreEqual<decimal>(4.72m, metrics.ExpectedAbv);
+            Assert.AreEqual<decimal>(32.07m, metrics.ExpectedBoilGravityPoints);
+            Assert.AreEqual<int>(14, metrics.ExpectedIbu);
+
         }
     }
 }

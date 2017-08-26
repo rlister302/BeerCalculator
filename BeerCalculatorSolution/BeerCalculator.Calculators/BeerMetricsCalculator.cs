@@ -32,13 +32,14 @@ namespace BeerCalculator.Calculators
 
             GravityCalculator.Calculate(recipe.Grains, recipe.MashEfficiency, (double)recipe.BoilVolume, (double)recipe.FinalVolume);
             IbuCalculator.Calculate(recipe.Hops, GravityCalculator.OriginalGravity);
-            AttenuationCalculator.Calculate(GravityCalculator.OriginalGravity, recipe.ExpectedAttenuation);
+            AttenuationCalculator.Calculate(GravityCalculator.BoilGravityPoints, recipe.ExpectedAttenuation);
             AbvCalculator.Calculate(GravityCalculator.OriginalGravity, AttenuationCalculator.FinalGravity);
 
-            metrics.ExpectedOG = GravityCalculator.OriginalGravity;
-            metrics.ExpectedIBU = IbuCalculator.ExpectedIbu;
+            metrics.ExpectedOriginalGravity = GravityCalculator.OriginalGravity;
+            metrics.ExpectedIbu = IbuCalculator.ExpectedIbu;
             metrics.ExpectedFinalGravity = AttenuationCalculator.FinalGravity;
-            metrics.ExpectedABV = AbvCalculator.ExpectedAbv;
+            metrics.ExpectedAbv = AbvCalculator.ExpectedAbv;
+            metrics.ExpectedBoilGravityPoints = GravityCalculator.BoilGravityPoints;
 
             return metrics;
         }

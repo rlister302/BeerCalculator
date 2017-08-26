@@ -14,6 +14,7 @@ namespace BeerCalculator.Calculators
         {
             double ratio = 1.0 - (expectedAttenuationRate / 100.0);
             decimal calculatedGravity = 1.000m + ((originalGravity * (decimal)(ratio)) / 1000);
+            FinalGravity = decimal.Round(calculatedGravity, 3);
             return decimal.Round(calculatedGravity, 3); 
         }
 
