@@ -7,6 +7,7 @@ using Common.DTOs;
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Unity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -214,6 +215,80 @@ namespace BeerCalculator.Tests
             Assert.AreEqual<decimal>(32.07m, metrics.ExpectedBoilGravityPoints);
             Assert.AreEqual<int>(14, metrics.ExpectedIbu);
 
+        }
+
+        [TestMethod()]
+        public void JsonSerializationTest()
+        {
+            #region Init
+
+            RecipeDTO recipe = new RecipeDTO();
+
+            List<GrainTypeDTO> grains;
+            List<HopTypeDTO> hops;
+            YeastTypeDTO yeast;
+
+            #region Grain init
+
+            GrainTypeDTO grain;
+            grain = new GrainTypeDTO();
+            grain.Amount = 4;
+            grain.MaximumSugarExtraction = 37;
+            grain.MaximumExtractionRate = 80;
+
+            grains = new List<GrainTypeDTO>();
+            grains.Add(grain);
+
+            grain = new GrainTypeDTO();
+            grain.Amount = 6;
+            grain.MaximumSugarExtraction = 37;
+            grain.MaximumExtractionRate = 79;
+            grains.Add(grain);
+
+
+            #endregion
+
+            #region Hop init
+            hops = new List<HopTypeDTO>();
+            HopTypeDTO hop = new HopTypeDTO();
+
+            hop.AlphaAcid = 3.7m;
+            hop.Amount = 1;
+            hop.BoilTime = 60;
+
+            hops.Add(hop);
+            #endregion
+
+            #region Yeast init
+            yeast = new YeastTypeDTO();
+            #endregion
+
+            #region WaterMetrics init
+
+            IWaterMetrics waterMetrics = new WaterMetrics();
+            waterMetrics.BoilRate = 1.5m;
+            waterMetrics.GrainAbsorbtion = .15m;
+            waterMetrics.EquipmentDeadSpace = .19m;
+            waterMetrics.TrubLoss = .5m;
+            waterMetrics.MashThickness = 2m;
+            waterMetrics.MashTemperature = 152;
+            waterMetrics.InitialGrainTemperature = 75;
+
+
+            #endregion
+
+
+            recipe.Grains = grains;
+            recipe.Hops = hops;
+            recipe.Yeast = yeast;
+            recipe.ExpectedAttenuation = 76;
+            recipe.MashEfficiency = 65;
+            recipe.BoilVolume = 7.5m;
+            recipe.FinalVolume = 5.5m;
+            recipe.WaterMetrics = waterMetrics;
+            #endregion
+
+            Console.WriteLine(JsonConvert.SerializeObject(recipe));
         }
     }
 }
