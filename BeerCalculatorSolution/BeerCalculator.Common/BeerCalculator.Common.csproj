@@ -77,6 +77,7 @@
     <Compile Include="Abstract\IBootStrapper.cs" />
     <Compile Include="Abstract\IRecipeMetrics.cs" />
     <Compile Include="Abstract\IRequestManager.cs" />
+    <Compile Include="Abstract\IWaterMetrics.cs" />
     <Compile Include="Abstract\ModelBase.cs" />
     <Compile Include="Communication\GrainTypeRequestManager.cs" />
     <Compile Include="Communication\HopTypeRequestManager.cs" />

@@ -23,5 +23,7 @@ namespace Common.DTOs
         public int MaximumExtractionRate { get; set; }
         public int RecipeID { get; set; }
         public decimal Amount { get; set; }
+
+        public decimal Lovibond { get; set; }
     }
 }

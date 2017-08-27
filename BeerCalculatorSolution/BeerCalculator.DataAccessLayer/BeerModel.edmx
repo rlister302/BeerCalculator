@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BeerCalculatorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BeerCalculatorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Grain">
           <Key>
             <PropertyRef Name="GrainID" />
@@ -22,6 +22,7 @@
           <Property Name="GrainName" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="MaximumSugarExtraction" Type="int" Nullable="false" />
           <Property Name="MaximumExtractionRate" Type="int" Nullable="false" />
+          <Property Name="Lovibond" Type="decimal" Precision="5" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="Hop">
           <Key>
@@ -32,7 +33,7 @@
           <Property Name="Amount" Type="decimal" Precision="4" Scale="2" Nullable="false" />
           <Property Name="AlphaAcid" Type="decimal" Precision="3" Scale="1" Nullable="false" />
           <Property Name="RecipeID" Type="int" Nullable="false" />
-          <Property Name="TimeAdded" Type="int" Nullable="false" />
+          <Property Name="BoilTime" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="HopType">
           <Key>
@@ -55,6 +56,8 @@
           <Property Name="ExpectedFG" Type="decimal" Precision="4" Scale="3" Nullable="false" />
           <Property Name="ActualFG" Type="decimal" Precision="4" Scale="3" />
           <Property Name="IBU" Type="int" Nullable="false" />
+          <Property Name="BoilVolume" Type="decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="FinalVolume" Type="decimal" Precision="4" Scale="2" Nullable="false" />
           <Property Name="ExpectedMashEfficiency" Type="int" Nullable="false" />
           <Property Name="ActualMashEfficiency" Type="int" />
         </EntityType>
@@ -183,8 +186,7 @@
             <End Role="Yeast" EntitySet="Yeast" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BeerCalculatorModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -208,6 +210,7 @@
           <Property Name="MaximumSugarExtraction" Type="Int32" Nullable="false" />
           <Property Name="MaximumExtractionRate" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Grains" Relationship="Self.FK__Grain__GrainType__2B3F6F97" FromRole="GrainType" ToRole="Grain" />
+          <Property Name="Lovibond" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
         </EntityType>
         <EntityType Name="Hop">
           <Key>
@@ -218,9 +221,9 @@
           <Property Name="Amount" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
           <Property Name="AlphaAcid" Type="Decimal" Precision="3" Scale="1" Nullable="false" />
           <Property Name="RecipeID" Type="Int32" Nullable="false" />
-          <Property Name="TimeAdded" Type="Int32" Nullable="false" />
           <NavigationProperty Name="HopType" Relationship="Self.FK__Hop__HopTypeID__2F10007B" FromRole="Hop" ToRole="HopType" />
           <NavigationProperty Name="Recipe" Relationship="Self.FK__Hop__RecipeID__300424B4" FromRole="Hop" ToRole="Recipe" />
+          <Property Name="BoilTime" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="HopType">
           <Key>
@@ -249,6 +252,8 @@
           <NavigationProperty Name="Grains" Relationship="Self.FK__Grain__RecipeID__2C3393D0" FromRole="Recipe" ToRole="Grain" />
           <NavigationProperty Name="Hops" Relationship="Self.FK__Hop__RecipeID__300424B4" FromRole="Recipe" ToRole="Hop" />
           <NavigationProperty Name="Yeasts" Relationship="Self.FK__Yeast__RecipeID__33D4B598" FromRole="Recipe" ToRole="Yeast" />
+          <Property Name="BoilVolume" Type="Decimal" Nullable="false" Precision="4" Scale="2" />
+          <Property Name="FinalVolume" Type="Decimal" Nullable="false" Precision="4" Scale="2" />
         </EntityType>
         <EntityType Name="Yeast">
           <Key>
@@ -397,6 +402,7 @@
           <EntitySetMapping Name="GrainTypes">
             <EntityTypeMapping TypeName="BeerCalculatorModel.GrainType">
               <MappingFragment StoreEntitySet="GrainType">
+                <ScalarProperty Name="Lovibond" ColumnName="Lovibond" />
                 <ScalarProperty Name="GrainTypeID" ColumnName="GrainTypeID" />
                 <ScalarProperty Name="GrainName" ColumnName="GrainName" />
                 <ScalarProperty Name="MaximumSugarExtraction" ColumnName="MaximumSugarExtraction" />
@@ -407,12 +413,12 @@
           <EntitySetMapping Name="Hops">
             <EntityTypeMapping TypeName="BeerCalculatorModel.Hop">
               <MappingFragment StoreEntitySet="Hop">
+                <ScalarProperty Name="BoilTime" ColumnName="BoilTime" />
                 <ScalarProperty Name="HopID" ColumnName="HopID" />
                 <ScalarProperty Name="HopTypeID" ColumnName="HopTypeID" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="AlphaAcid" ColumnName="AlphaAcid" />
                 <ScalarProperty Name="RecipeID" ColumnName="RecipeID" />
-                <ScalarProperty Name="TimeAdded" ColumnName="TimeAdded" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -428,6 +434,8 @@
           <EntitySetMapping Name="Recipes">
             <EntityTypeMapping TypeName="BeerCalculatorModel.Recipe">
               <MappingFragment StoreEntitySet="Recipe">
+                <ScalarProperty Name="FinalVolume" ColumnName="FinalVolume" />
+                <ScalarProperty Name="BoilVolume" ColumnName="BoilVolume" />
                 <ScalarProperty Name="RecipeID" ColumnName="RecipeID" />
                 <ScalarProperty Name="RecipeName" ColumnName="RecipeName" />
                 <ScalarProperty Name="ExpectedABV" ColumnName="ExpectedABV" />

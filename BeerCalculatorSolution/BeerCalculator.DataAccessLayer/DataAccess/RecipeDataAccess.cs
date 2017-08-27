@@ -204,7 +204,7 @@ namespace DataAccessLayer.DataAccess
                 entity.RecipeID = recipeId;
                 entity.AlphaAcid = hop.AlphaAcid;
                 entity.Amount = hop.Amount;
-                entity.TimeAdded = hop.BoilTime;
+                entity.BoilTime = hop.BoilTime;
                 entity.HopTypeID = hop.HopTypeID;
                 hopEntities.Add(entity);
             }

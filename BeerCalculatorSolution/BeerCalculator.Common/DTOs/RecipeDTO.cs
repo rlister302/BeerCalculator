@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Common.Abstract;
+using BeerCalculator.Common.Abstract;
 
 namespace Common.DTOs
 {
@@ -16,18 +17,33 @@ namespace Common.DTOs
     public class RecipeDTO : ModelBase
     {
         public int RecipeID { get; set; }
+
         public string RecipeName { get; set; }
+
         public decimal ExpectedABV { get; set; }
+
         public decimal ActualABV { get; set; }
+
         public decimal ExpectedOG { get; set; }
+
         public decimal ActualOG { get; set; }
+
         public decimal ExpectedFG { get; set; }
+
         public decimal ActualFG { get; set; }
+
         public int IBU { get; set; }
+
         public int MashEfficiency { get; set; }
+
         public decimal BoilVolume { get; set; }
+
         public decimal FinalVolume { get; set; }
+
         public int ExpectedAttenuation { get; set; }
+
+        public IWaterMetrics WaterMetrics { get; set; }
+
         public DateTime BrewDate { get; set; }
 
         public List<HopTypeDTO> Hops { get; set; }

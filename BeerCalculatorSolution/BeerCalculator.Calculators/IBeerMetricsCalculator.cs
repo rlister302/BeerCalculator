@@ -17,6 +17,10 @@ namespace BeerCalculator.Calculators
 
         IIbuCalculator IbuCalculator { get; set; }
 
+        ISrmCalculator SrmCalculator { get; set; }
+
+        IWaterCalculator WaterCalculator { get; set; }
+
         IRecipeMetrics Calculate(RecipeDTO recipe);
 
    

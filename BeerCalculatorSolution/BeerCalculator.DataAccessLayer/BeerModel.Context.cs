@@ -12,14 +12,12 @@ namespace BeerCalculator.DataAccessLayer
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    using System.Diagnostics;
-
+    
     public partial class BeerCalculatorEntities : DbContext
     {
         public BeerCalculatorEntities()
             : base("name=BeerCalculatorEntities")
         {
-            Debug.Write(Database.Connection.ConnectionString);
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

@@ -74,7 +74,7 @@ namespace BeerCalculatorTests
             grain.MaximumExtractionRate = 79;
             grains.Add(grain);
 
-            gravityCalculator.Calculate(grains, expectedEfficiency, 7.5);
+            gravityCalculator.Calculate(grains, expectedEfficiency, 7.5m);
 
             Assert.AreEqual<decimal>(32.07m, gravityCalculator.BoilGravityPoints);
         }
@@ -164,7 +164,7 @@ namespace BeerCalculatorTests
 
            
 
-            gravityCalculator.Calculate(grains, expectedEfficiency, 6.75, 5.25);
+            gravityCalculator.Calculate(grains, expectedEfficiency, 6.75m, 5.25m);
 
             Assert.AreEqual<decimal>(1.055m, gravityCalculator.OriginalGravity);
         }

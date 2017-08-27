@@ -69,8 +69,13 @@
     <Compile Include="IGravityCalculator.cs" />
     <Compile Include="IHopUtilizationTable.cs" />
     <Compile Include="IIbuCalculator.cs" />
+    <Compile Include="Implementation\WaterMetrics.cs" />
+    <Compile Include="ISrmCalculator.cs" />
+    <Compile Include="IWaterCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecipeMetrics.cs" />
+    <Compile Include="SrmCalculator.cs" />
+    <Compile Include="WaterCalculator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BeerCalculator.Common\BeerCalculator.Common.csproj">

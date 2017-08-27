@@ -14,10 +14,10 @@ namespace BeerCalculator.Calculators
 
         decimal OriginalGravity { get; set; }
 
-        double BoilVolume { get; set; }
+        decimal BoilVolume { get; set; }
 
-        double FinalVolume { get; set; }
+        decimal FinalVolume { get; set; }
 
-        void Calculate(List<GrainTypeDTO> grains, int expectedEfficiency, double boilVolume = 6.5, double finalVolume = 5.5);
+        void Calculate(List<GrainTypeDTO> grains, int expectedEfficiency, decimal boilVolume = 6.5m, decimal finalVolume = 5.5m);
     }
 }

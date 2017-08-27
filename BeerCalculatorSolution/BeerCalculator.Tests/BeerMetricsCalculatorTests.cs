@@ -1,4 +1,6 @@
 ﻿using BeerCalculator.Calculators;
+using BeerCalculator.Calculators.Implementation;
+using BeerCalculator.Common.Abstract;
 using BeerCalculators.Calculators;
 using Common.Abstract;
 using Common.DTOs;
@@ -36,6 +38,7 @@ namespace BeerCalculator.Tests
             List<GrainTypeDTO> grains;
             List<HopTypeDTO> hops;
             YeastTypeDTO yeast;
+           
 
             #region Grain init
 
@@ -98,7 +101,22 @@ namespace BeerCalculator.Tests
 
             #region Yeast init
             yeast = new YeastTypeDTO();
-            #endregion 
+            #endregion
+
+            #region WaterMetrics init
+
+            IWaterMetrics waterMetrics = new WaterMetrics();
+            waterMetrics.BoilRate = 1.0m;
+            waterMetrics.GrainAbsorbtion = .15m;
+            waterMetrics.EquipmentDeadSpace = .19m;
+            waterMetrics.TrubLoss = .5m;
+            waterMetrics.MashThickness = 2m;
+            waterMetrics.MashTemperature = 154;
+            waterMetrics.InitialGrainTemperature = 75;
+
+
+            #endregion
+
 
             recipe.Grains = grains;
             recipe.Hops = hops;
@@ -107,6 +125,8 @@ namespace BeerCalculator.Tests
             recipe.MashEfficiency = 73;
             recipe.BoilVolume = 6.75m;
             recipe.FinalVolume = 5.25m;
+            recipe.WaterMetrics = waterMetrics;
+
 
             IRecipeMetrics metrics = calculator.Calculate(recipe);
 
@@ -160,7 +180,22 @@ namespace BeerCalculator.Tests
 
             #region Yeast init
             yeast = new YeastTypeDTO();
-            #endregion 
+            #endregion
+
+            #region WaterMetrics init
+
+            IWaterMetrics waterMetrics = new WaterMetrics();
+            waterMetrics.BoilRate = 1.5m;
+            waterMetrics.GrainAbsorbtion = .15m;
+            waterMetrics.EquipmentDeadSpace = .19m;
+            waterMetrics.TrubLoss = .5m;
+            waterMetrics.MashThickness = 2m;
+            waterMetrics.MashTemperature = 152;
+            waterMetrics.InitialGrainTemperature = 75;
+
+
+            #endregion
+
 
             recipe.Grains = grains;
             recipe.Hops = hops;
@@ -169,6 +204,7 @@ namespace BeerCalculator.Tests
             recipe.MashEfficiency = 65;
             recipe.BoilVolume = 7.5m;
             recipe.FinalVolume = 5.5m;
+            recipe.WaterMetrics = waterMetrics;
 
             IRecipeMetrics metrics = calculator.Calculate(recipe);
 

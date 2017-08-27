@@ -16,11 +16,11 @@ namespace BeerCalculator.Calculators
 
         public decimal OriginalGravity { get; set; }
 
-        public double BoilVolume { get; set; }
+        public decimal BoilVolume { get; set; }
 
-        public double FinalVolume { get; set; }
+        public decimal FinalVolume { get; set; }
 
-        public void Calculate(List<GrainTypeDTO> grains, int expectedEfficiency, double boilVolume = 6.5, double finalVolume = 5.5)
+        public void Calculate(List<GrainTypeDTO> grains, int expectedEfficiency, decimal boilVolume = 6.5m, decimal finalVolume = 5.5m)
         {
             BoilVolume = boilVolume;
             FinalVolume = finalVolume;
@@ -32,13 +32,13 @@ namespace BeerCalculator.Calculators
         {
             decimal expectedOG = 1.000m;
 
-            double totalGravity = 0.0;
+            decimal totalGravity = 0.0m;
 
             foreach (GrainTypeDTO grain in grains)
             {
-                double expectedExtraction = (grain.MaximumSugarExtraction * (expectedEfficiency / 100.0));
+                decimal expectedExtraction = (grain.MaximumSugarExtraction * (expectedEfficiency / 100.0m));
 
-                totalGravity += (expectedExtraction * (double)grain.Amount); 
+                totalGravity += (expectedExtraction * grain.Amount); 
             }
 
             totalGravity /= FinalVolume;
@@ -53,13 +53,13 @@ namespace BeerCalculator.Calculators
         {
             decimal boilPoints = decimal.Zero;
 
-            double points = 0.0;
+            decimal points = 0.0m;
 
             foreach (GrainTypeDTO grain in grains)
             {
-                double expectedExtraction = (grain.MaximumSugarExtraction * (expectedEfficiency / 100.0));
+                decimal expectedExtraction = (grain.MaximumSugarExtraction * (expectedEfficiency / 100.0m));
 
-                double totalGravity = (expectedExtraction * (double)grain.Amount);
+                decimal totalGravity = (expectedExtraction * grain.Amount);
 
                 points += totalGravity;
             }

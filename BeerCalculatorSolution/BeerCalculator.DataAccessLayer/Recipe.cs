@@ -33,6 +33,8 @@ namespace BeerCalculator.DataAccessLayer
         public int IBU { get; set; }
         public int ExpectedMashEfficiency { get; set; }
         public Nullable<int> ActualMashEfficiency { get; set; }
+        public decimal BoilVolume { get; set; }
+        public decimal FinalVolume { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Grain> Grains { get; set; }
