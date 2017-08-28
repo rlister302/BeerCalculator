@@ -1,12 +1,11 @@
-﻿using Common.Abstract;
-using Common.DTOs;
+﻿using BeerCalculator.Common.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BeerCalculator.Calculators
+namespace BeerCalculator.Common.Interface
 {
     public interface IBeerMetricsCalculator
     {
@@ -22,9 +21,5 @@ namespace BeerCalculator.Calculators
         IWaterCalculator WaterCalculator { get; set; }
 
         IRecipeMetrics Calculate(RecipeDTO recipe);
-
-   
-
-
     }
 }

@@ -1,12 +1,13 @@
-﻿using System;
+﻿using BeerCalculator.Common.Abstract;
+using BeerCalculator.Common.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Common.Abstract;
-using Common.DTOs;
 
-namespace Common.Communication
+
+namespace BeerCalculator.Common.Communication
 {
     public class HopTypeRequestManager : AbstractRequestManager<HopTypeDTO>
     {

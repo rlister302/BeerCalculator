@@ -1,9 +1,10 @@
-﻿using Common.Abstract;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BeerCalculator.Common.Abstract;
+using BeerCalculator.Common.Interface;
 
 namespace BeerCalculator.Calculators
 {
@@ -18,5 +19,9 @@ namespace BeerCalculator.Calculators
         public decimal ExpectedOriginalGravity { get; set; }
 
         public decimal ExpectedBoilGravityPoints { get; set; }
+
+        public decimal ExpectedSrm { get; set; }
+
+        public IWaterInput WaterMetrics { get; set; }
     }
 }

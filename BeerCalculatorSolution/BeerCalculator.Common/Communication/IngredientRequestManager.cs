@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Common.DTOs;
-using Common.Abstract;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Configuration;
+using BeerCalculator.Common.DTOs;
+using BeerCalculator.Common.Abstract;
 
-namespace Common.Communication
+namespace BeerCalculator.Common.Communication
 {
     
     public class IngredientRequestManager : AbstractRequestManager<IngredientDTO>

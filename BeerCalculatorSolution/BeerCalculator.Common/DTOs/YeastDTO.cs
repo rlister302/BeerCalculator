@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Common.Abstract;
 
-namespace Common.DTOs
+namespace BeerCalculator.Common.DTOs
 {
     public class YeastDTO
     {

@@ -4,8 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using Common.DTOs;
-using Common.Communication;
+using BeerCalculator.Common.Communication;
+using BeerCalculator.Common.DTOs;
 
 namespace BeerCalculatorWebApplication.Controllers
 {

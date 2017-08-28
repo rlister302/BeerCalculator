@@ -1,8 +1,9 @@
 ﻿using BeerCalculator.Calculators;
 using BeerCalculator.Calculators.Implementation;
 using BeerCalculator.Common.Abstract;
+using BeerCalculator.Common.DTOs;
+using BeerCalculator.Common.Interface;
 using BeerCalculators.Calculators;
-using Common.DTOs;
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Unity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -33,7 +34,7 @@ namespace BeerCalculator.Tests
         [TestMethod()]
         public void HefeweizenWaterMetricsTest()
         {
-            IWaterMetrics metrics = new WaterMetrics();
+            IWaterInput metrics = new WaterInput();
 
             decimal boilVolume = 7.5m;
 

@@ -1,4 +1,5 @@
 ﻿using BeerCalculator.Common.Abstract;
+using BeerCalculator.Common.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BeerCalculator.Calculators.Implementation
 {
-    public class WaterMetrics : IWaterMetrics
+    public class WaterInput : IWaterInput
     {
         public decimal BoilRate { get; set; }
 

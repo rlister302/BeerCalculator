@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common.Abstract
+namespace Common.Common.Interface
 {
     public interface IBootStrapper
     { 

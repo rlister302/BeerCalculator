@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
 using Newtonsoft.Json;
+using BeerCalculator.Common.Interface;
 
-
-namespace Common.Abstract
+namespace BeerCalculator.Common.Abstract
 {
     public class AbstractRequestManager<T> : IRequestManager<T> where T : ModelBase
     {

@@ -1,5 +1,6 @@
 ﻿using BeerCalculator.Common.Abstract;
-using Common.DTOs;
+using BeerCalculator.Common.DTOs;
+using BeerCalculator.Common.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,34 +21,34 @@ namespace BeerCalculator.Calculators
 
         private decimal totalGrain;
 
-        public void Calculate(IWaterMetrics waterMetrics, List<GrainTypeDTO> grains, decimal boilVolume)
+        public void Calculate(IWaterInput waterInput, List<GrainTypeDTO> grains, decimal boilVolume)
         {
             totalGrain = grains.Sum(x => x.Amount);
-            CalculateStrikeVolume(waterMetrics, grains);
-            CalculateStrikeTemperature(waterMetrics, grains);
-            CalculateSpargeVolume(waterMetrics, boilVolume);
+            CalculateStrikeVolume(waterInput, grains);
+            CalculateStrikeTemperature(waterInput, grains);
+            CalculateSpargeVolume(waterInput, boilVolume);
             CalculateWaterRequired();
         }
 
-        private void CalculateStrikeVolume(IWaterMetrics waterMetrics, List<GrainTypeDTO> grains)
+        private void CalculateStrikeVolume(IWaterInput waterInput, List<GrainTypeDTO> grains)
         {
             
-            decimal conversion = waterMetrics.MashThickness / 4;
+            decimal conversion = waterInput.MashThickness / 4;
             StrikeVolume = totalGrain * conversion;
         }
 
-        private void CalculateStrikeTemperature(IWaterMetrics waterMetrics, List<GrainTypeDTO> grains)
+        private void CalculateStrikeTemperature(IWaterInput waterInput, List<GrainTypeDTO> grains)
         {
-            decimal thicknessConversion = .2m / waterMetrics.MashThickness;
-            decimal grainTemperatureCompensation = waterMetrics.MashTemperature - waterMetrics.InitialGrainTemperature;
+            decimal thicknessConversion = .2m / waterInput.MashThickness;
+            decimal grainTemperatureCompensation = waterInput.MashTemperature - waterInput.InitialGrainTemperature;
             decimal magicNumber = thicknessConversion * grainTemperatureCompensation;
-            StrikeTemperature = (int)(decimal.Round(magicNumber + waterMetrics.MashTemperature));
+            StrikeTemperature = (int)(decimal.Round(magicNumber + waterInput.MashTemperature));
         }
 
-        private void CalculateSpargeVolume(IWaterMetrics waterMetrics, decimal boilVolume)
+        private void CalculateSpargeVolume(IWaterInput waterInput, decimal boilVolume)
         {
-            decimal grainAbsorbtion = waterMetrics.GrainAbsorbtion * totalGrain;
-            decimal equipmentAndGrainLoss = waterMetrics.EquipmentDeadSpace + grainAbsorbtion;
+            decimal grainAbsorbtion = waterInput.GrainAbsorbtion * totalGrain;
+            decimal equipmentAndGrainLoss = waterInput.EquipmentDeadSpace + grainAbsorbtion;
             decimal strikeDifference = StrikeVolume - equipmentAndGrainLoss;
             SpargeVolume = boilVolume - strikeDifference;
         }

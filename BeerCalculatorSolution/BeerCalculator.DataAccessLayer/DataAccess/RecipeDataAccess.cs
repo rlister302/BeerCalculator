@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataAccessLayer.DataAccess.Interface;
-using Common.DTOs;
 using BeerCalculator.DataAccessLayer;
+using BeerCalculator.Common.DTOs;
 
-namespace DataAccessLayer.DataAccess
+namespace BeerCalculator.DataAccessLayer.DataAccess
 {
     public class RecipeDataAccess : IDataAccess<RecipeDTO>
     {

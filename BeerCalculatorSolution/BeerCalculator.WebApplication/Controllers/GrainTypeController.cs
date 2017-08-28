@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Common.DTOs;
-using Common.Communication;
 using System.Threading.Tasks;
+using BeerCalculator.Common.DTOs;
+using BeerCalculator.Common.Communication;
 
 namespace BeerCalculatorWebApplication.Controllers
 {

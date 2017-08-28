@@ -1,4 +1,5 @@
 ﻿using BeerCalculator.Calculators;
+using BeerCalculator.Common.Interface;
 using BeerCalculators.Calculators;
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Unity;

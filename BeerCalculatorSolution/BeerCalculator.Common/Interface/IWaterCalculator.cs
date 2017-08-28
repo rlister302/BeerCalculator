@@ -1,12 +1,11 @@
-﻿using BeerCalculator.Common.Abstract;
-using Common.DTOs;
+﻿using BeerCalculator.Common.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BeerCalculator.Calculators
+namespace BeerCalculator.Common.Interface
 {
     public interface IWaterCalculator
     {
@@ -18,6 +17,6 @@ namespace BeerCalculator.Calculators
 
         decimal SpargeVolume { get; set; }
 
-        void Calculate(IWaterMetrics waterMetrics, List<GrainTypeDTO> grains, decimal boilVolume);
+        void Calculate(IWaterInput waterMetrics, List<GrainTypeDTO> grains, decimal boilVolume);
     }
 }

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Common.DTOs;
 using DataAccessLayer.DataAccess; // Use Unity and DI to remove this dependency eventually
 using DataAccessLayer.DataAccess.Interface;
-
+using BeerCalculator.Common.DTOs;
+using BeerCalculator.DataAccessLayer.DataAccess;
 
 namespace BeerCalculatorService.Controllers
 {

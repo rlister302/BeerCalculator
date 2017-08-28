@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Common.DTOs;
 using DataAccessLayer.DataAccess.Interface;
 using DataAccessLayer;
 using BeerCalculator.DataAccessLayer;
+using BeerCalculator.Common.DTOs;
 
-namespace DataAccessLayer.DataAccess
+namespace BeerCalculator.DataAccessLayer.DataAccess
 {
     public class HopTypeDataAccess : IDataAccess<HopTypeDTO>
     {

@@ -4,7 +4,8 @@ using System.Linq;
 using System.Web;
 using DataAccessLayer.DataAccess;
 using System.Web.Mvc;
-using Common.DTOs;
+using BeerCalculator.DataAccessLayer.DataAccess;
+using BeerCalculator.Common.DTOs;
 
 namespace BeerCalculatorService.Controllers
 {

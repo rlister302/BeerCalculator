@@ -1,12 +1,12 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BeerCalculator.Calculators;
-using Common.DTOs;
 using System.Collections.Generic;
-using Common.Abstract;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.ServiceLocation;
 using BeerCalculators.Calculators;
+using BeerCalculator.Common.DTOs;
+using BeerCalculator.Common.Interface;
 
 namespace BeerCalculatorTests
 {

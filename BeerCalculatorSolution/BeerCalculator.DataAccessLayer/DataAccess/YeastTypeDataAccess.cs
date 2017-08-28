@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Common.DTOs;
-using Common.Abstract;
 using DataAccessLayer.DataAccess.Interface;
 using BeerCalculator.DataAccessLayer;
+using BeerCalculator.Common.DTOs;
 
-namespace DataAccessLayer.DataAccess
+namespace BeerCalculator.DataAccessLayer.DataAccess
 {
     public class YeastTypeDataAccess : IDataAccess<YeastTypeDTO>
     {

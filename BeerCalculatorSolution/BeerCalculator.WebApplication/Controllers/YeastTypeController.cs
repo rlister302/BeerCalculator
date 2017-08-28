@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Common.DTOs;
-using Common.Abstract;
-using Common.Communication;
 using System.Threading.Tasks;
+using BeerCalculator.Common.Interface;
+using BeerCalculator.Common.Communication;
+using BeerCalculator.Common.DTOs;
 
 namespace BeerCalculatorWebApplication.Controllers
 {

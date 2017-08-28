@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Common.DTOs;
+using BeerCalculator.Common.DTOs;
+using BeerCalculator.Common.Interface;
 
 namespace BeerCalculator.Calculators
 {
-    public class IbuCalculator : IIbuCalculator
+    public class LaymanIbuCalculator : IIbuCalculator
     {
         public IHopUtilizationTable HopUtilizationTable { get; set; }
 
@@ -21,7 +22,7 @@ namespace BeerCalculator.Calculators
 
         private const decimal litersToGallons = 75.0m;
 
-        public IbuCalculator(IHopUtilizationTable table)
+        public LaymanIbuCalculator(IHopUtilizationTable table)
         {
             HopUtilizationTable = table;
         }

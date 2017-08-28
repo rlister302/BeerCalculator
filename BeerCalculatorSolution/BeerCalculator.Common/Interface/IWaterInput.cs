@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BeerCalculator.Common.Abstract
+namespace BeerCalculator.Common.Interface
 {
-    public interface IWaterMetrics
+    public interface IWaterInput
     {
         decimal BoilRate { get; set; }
 

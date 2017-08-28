@@ -1,11 +1,11 @@
-﻿using Common.Abstract;
+﻿using BeerCalculator.Common.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common.DTOs
+namespace BeerCalculator.Common.DTOs
 {
     public class RecipeMetrics : IRecipeMetrics
     {
@@ -19,5 +19,9 @@ namespace Common.DTOs
         public decimal ExpectedFinalGravity { get; set; }
 
         public decimal ExpectedBoilGravityPoints { get; set; }
+
+        public decimal ExpectedSrm { get; set; }
+
+        public IWaterInput WaterMetrics { get; set; }
     }
 }

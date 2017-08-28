@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common.Abstract
+namespace BeerCalculator.Common.Abstract
 {
     public abstract class ModelBase
     {

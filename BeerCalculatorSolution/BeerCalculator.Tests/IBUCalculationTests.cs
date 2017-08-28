@@ -1,6 +1,7 @@
 ﻿using BeerCalculator.Calculators;
+using BeerCalculator.Common.DTOs;
+using BeerCalculator.Common.Interface;
 using BeerCalculators.Calculators;
-using Common.DTOs;
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Unity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

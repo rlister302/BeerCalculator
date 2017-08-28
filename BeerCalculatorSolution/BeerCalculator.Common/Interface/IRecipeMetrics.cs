@@ -1,10 +1,11 @@
-﻿using System;
+﻿using BeerCalculator.Common.Abstract;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common.Abstract
+namespace BeerCalculator.Common.Interface
 {
     public interface IRecipeMetrics
     {
@@ -17,5 +18,9 @@ namespace Common.Abstract
         int ExpectedIbu { get; set; }
 
         decimal ExpectedFinalGravity { get; set; }
+
+        decimal ExpectedSrm { get; set; }
+
+        IWaterInput WaterMetrics { get; set; }
     }
 }

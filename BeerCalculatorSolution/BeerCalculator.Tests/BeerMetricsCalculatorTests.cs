@@ -1,9 +1,9 @@
 ﻿using BeerCalculator.Calculators;
 using BeerCalculator.Calculators.Implementation;
 using BeerCalculator.Common.Abstract;
+using BeerCalculator.Common.DTOs;
+using BeerCalculator.Common.Interface;
 using BeerCalculators.Calculators;
-using Common.Abstract;
-using Common.DTOs;
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Unity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -106,7 +106,7 @@ namespace BeerCalculator.Tests
 
             #region WaterMetrics init
 
-            IWaterMetrics waterMetrics = new WaterMetrics();
+            IWaterInput waterMetrics = new WaterInput();
             waterMetrics.BoilRate = 1.0m;
             waterMetrics.GrainAbsorbtion = .15m;
             waterMetrics.EquipmentDeadSpace = .19m;
@@ -185,7 +185,7 @@ namespace BeerCalculator.Tests
 
             #region WaterMetrics init
 
-            IWaterMetrics waterMetrics = new WaterMetrics();
+            IWaterInput waterMetrics = new WaterInput();
             waterMetrics.BoilRate = 1.5m;
             waterMetrics.GrainAbsorbtion = .15m;
             waterMetrics.EquipmentDeadSpace = .19m;
@@ -265,7 +265,7 @@ namespace BeerCalculator.Tests
 
             #region WaterMetrics init
 
-            IWaterMetrics waterMetrics = new WaterMetrics();
+            IWaterInput waterMetrics = new WaterInput();
             waterMetrics.BoilRate = 1.5m;
             waterMetrics.GrainAbsorbtion = .15m;
             waterMetrics.EquipmentDeadSpace = .19m;

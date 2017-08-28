@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Common.Abstract;
 using BeerCalculator.Common.Abstract;
+using BeerCalculator.Common.Interface;
 
-namespace Common.DTOs
+namespace BeerCalculator.Common.DTOs
 {
     [Controller("Recipe")]
     [GetAllAction("GetAllRecipes")]
@@ -42,7 +42,7 @@ namespace Common.DTOs
 
         public int ExpectedAttenuation { get; set; }
 
-        public IWaterMetrics WaterMetrics { get; set; }
+        public IWaterInput WaterMetrics { get; set; }
 
         public DateTime BrewDate { get; set; }
 

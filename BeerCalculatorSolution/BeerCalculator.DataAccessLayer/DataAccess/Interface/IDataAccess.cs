@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Common.Abstract;
-using Common.DTOs;
+using BeerCalculator.Common.Abstract;
 
 namespace DataAccessLayer.DataAccess.Interface
 {
