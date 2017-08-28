@@ -21,6 +21,7 @@ namespace BeerCalculator.DataAccessLayer.DataAccess
                 entity.GrainName = create.GrainName;
                 entity.MaximumSugarExtraction = create.MaximumSugarExtraction;
                 entity.MaximumExtractionRate = create.MaximumExtractionRate;
+                entity.Lovibond = create.Lovibond;
                 context.GrainTypes.Add(entity);
                 context.SaveChanges();
                 status = true;
@@ -55,6 +56,7 @@ namespace BeerCalculator.DataAccessLayer.DataAccess
                     var grainType = new GrainTypeDTO();
                     grainType.GrainTypeID = grainEntity.GrainTypeID;
                     grainType.GrainName = grainEntity.GrainName;
+                    grainType.Lovibond = grainEntity.Lovibond;
                     grainType.MaximumSugarExtraction = (int)grainEntity.MaximumSugarExtraction;
                     grainTypes.Add(grainType);
                 }
@@ -76,6 +78,7 @@ namespace BeerCalculator.DataAccessLayer.DataAccess
                     grainDTO.GrainTypeID = grainEntity.GrainTypeID;
                     grainDTO.MaximumSugarExtraction = (int)grainEntity.MaximumSugarExtraction;
                     grainDTO.GrainName = grainEntity.GrainName;
+                    grainDTO.Lovibond = grainEntity.Lovibond;
                 }
             }
 
@@ -94,6 +97,8 @@ namespace BeerCalculator.DataAccessLayer.DataAccess
                 {
                     entity.GrainName = update.GrainName;
                     entity.MaximumSugarExtraction = update.MaximumSugarExtraction;
+                    entity.MaximumExtractionRate = update.MaximumExtractionRate;
+                    entity.Lovibond = update.Lovibond;
                     context.SaveChanges();
                     status = true;
                 }

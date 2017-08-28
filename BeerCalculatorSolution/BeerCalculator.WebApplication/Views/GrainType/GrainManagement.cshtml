@@ -81,6 +81,20 @@
                             <input id="max-extraction-rate" class="form-control" />
                         </div>
                     </div>
+
+                    <div class="row" style="margin-top:5px">
+                        <div class="col-lg-5">
+                            <label>Lovibond:</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <input id="lovibond" class="form-control" />
+                        </div>
+                    </div>
+
+
                 </div>
                 <div class="modal-footer">
 
@@ -121,12 +135,14 @@
         var grainName = $('#grain-name').val();
         var extractionRate = $('#max-sugar-ppg').val();
         var maxExtractionRate = $('#max-extraction-rate').val();
+        var lovibond = $('#lovibond').val();
 
         var grain = {};
 
         grain.GrainName = grainName;
         grain.MaximumSugarExtraction = extractionRate;
         grain.MaximumExtractionRate = maxExtractionRate;
+        grain.Lovibond = lovibond;
 
         return grain;
     }

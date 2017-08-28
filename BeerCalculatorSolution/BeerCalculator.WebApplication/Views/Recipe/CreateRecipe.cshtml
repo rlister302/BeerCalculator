@@ -23,19 +23,16 @@
         sendRecipeToServer(recipe);
     }
 
-    function sendRecipeToServer(recipe)
-    {
-        
+    function sendRecipeToServer(recipe) {
+
         $.ajax({
             url: '/Recipe/CreateRecipe',
             type: 'POST',
-            data: recipe ,
-            success: function(response)
-            {
+            data: recipe,
+            success: function (response) {
                 alert("Success");
             },
-            error: function(response)
-            {
+            error: function (response) {
                 alert("Error");
             }
         })
@@ -116,6 +113,43 @@
 
         return recipeGrains;
     }
+
+    function getRecipeInput()
+    {
+        var recipeInput = {};
+
+        recipeInput.Grains = getGrains();
+        recipeInput.Hops = getHops();
+        recipeInput.Yeast = getYeast();
+        recipeInput.ExpectedAttenuation = $('#expected-attenuation').val();
+
+        recipeInput.WaterInput = getWaterInput();
+
+        return recipeInput;
+        
+    }
+
+    function getWaterInput()
+    {
+        var waterInput = {};
+        waterInput.DesiredBatchSize = $('#batch-size').val();
+        waterInput.MashEfficiency = $('#mash-efficiency').val();
+        waterInput.MashTemperature = $('#mash-temperature').val();
+        waterInput.BoilRate = $('#boil-off-rate').val();
+        waterInput.GrainAbsorbtion = $('#grain-absorbtion').val();
+        waterInput.EquipmentDeadSpace = $('#equipment-dead-space').val();
+        waterInput.TrubLoss = $('#trub-loss').val();
+        waterInput.MashThickness = $('#mash-thickness').val();
+
+        return waterInput
+    }
+
+    function calculateMetrics()
+    {
+        var recipeInput = getRecipeInput();
+
+        console.log(recipeInput);
+    }
 </script>
 <h2>Create Recipe</h2>
 <div>
@@ -126,6 +160,65 @@
     </div>
 
     <div>
+
+        <h3>Water</h3>
+        <div class="row">
+            <div class="col-lg-2"><h4>Desired Batch Size</h4></div>
+            <div class="col-lg-2"><input id="batch-size" /></div>
+
+            <div class="col-lg-2"><h4>Mash Efficiency</h4></div>
+            <div class="col-lg-2"><input id="mash-efficiency" /></div>
+
+
+
+        </div>
+
+        <div class="bottom-margin-push"></div>
+
+        <div class="row">
+
+            <div class="col-lg-2"><h4>Mash Temperature</h4></div>
+            <div class="col-lg-2"><input id="mash-temperature" /></div>
+
+            <div class="col-lg-2"><h4>Boil Off Rate</h4></div>
+            <div class="col-lg-2"><input id="boil-off-rate" /></div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-2"><h4>Grain Absorbtion</h4></div>
+            <div class="col-lg-2"><input id="grain-absorbtion" /></div>
+
+            <div class="col-lg-2"><h4>Equipment Dead Space</h4></div>
+            <div class="col-lg-2"><input id="equipment-dead-space" /></div>
+
+        </div>
+
+        <div class="bottom-margin-push"></div>
+
+        <div class="row">
+
+            <div class="col-lg-2"><h4>Trub Loss</h4></div>
+            <div class="col-lg-2"><input id="trub-loss" /></div>
+
+            <div class="col-lg-2"><h4>Mash Thickness(qt/lb)</h4></div>
+            <div class="col-lg-2"><input id="mash-thickness" /></div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-2"><h4>Mash Efficiency</h4></div>
+            <div class="col-lg-2"><input id="mash-efficiency" /></div>
+
+
+        </div>
+
+        <div class="bottom-margin-push"></div>
+
+        <div class="bottom-border bottom-margin-push"></div>
+
         <h3>Grain Bill</h3>
         <div class="row">
             <div class="col-lg-3"><h4>Grain</h4></div>
@@ -181,11 +274,20 @@
 
         </div>
 
+        <div class="col-lg-3">Expected Attenuation</div>
+        <div class="col-lg-3"><input id="expected-attenuation" /></div>
+
 
     </div>
 
+    <div class="bottom-margin-push"></div>
+
     <div class="float-right">
         <input type="button" value="Create Recipe" onclick="createRecipe()" class="btn btn-sm btn-success" />
+    </div>
+
+    <div class="float-right">
+        <input type="button" value="Calculate Metrics" onclick="calculateMetrics()" class="btn btn-sm btn-info" />
     </div>
 
 </div>

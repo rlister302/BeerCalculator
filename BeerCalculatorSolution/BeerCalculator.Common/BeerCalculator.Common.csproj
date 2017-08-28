@@ -74,6 +74,9 @@
   <ItemGroup>
     <Compile Include="Abstract\AbstractRequestManager.cs" />
     <Compile Include="Abstract\BootStrapper.cs" />
+    <Compile Include="Implementation\RecipeInput.cs" />
+    <Compile Include="Interface\IRecipeInput.cs" />
+    <Compile Include="Implementation\RecipeMetrics.cs" />
     <Compile Include="Implementation\WaterInput.cs" />
     <Compile Include="Interface\IBootStrapper.cs" />
     <Compile Include="Interface\IRecipeMetrics.cs" />
@@ -91,7 +94,6 @@
     <Compile Include="DTOs\HopTypeDTO.cs" />
     <Compile Include="DTOs\IngredientDTO.cs" />
     <Compile Include="DTOs\RecipeDTO.cs" />
-    <Compile Include="DTOs\RecipeMetrics.cs" />
     <Compile Include="DTOs\YeastDTO.cs" />
     <Compile Include="DTOs\YeastTypeDTO.cs" />
     <Compile Include="Interface\IAbvCalculator.cs" />

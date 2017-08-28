@@ -42,8 +42,6 @@ namespace BeerCalculator.Common.DTOs
 
         public int ExpectedAttenuation { get; set; }
 
-        public IWaterInput WaterMetrics { get; set; }
-
         public DateTime BrewDate { get; set; }
 
         public List<HopTypeDTO> Hops { get; set; }

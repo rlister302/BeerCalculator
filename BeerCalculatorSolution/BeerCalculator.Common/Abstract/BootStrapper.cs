@@ -22,9 +22,7 @@ namespace BeerCalculator.Common.Abstract
             RegisterServices();
         }
 
-        public virtual void RegisterServices()
-        {
-            
-        }
+        public abstract void RegisterServices();
+        
     }
 }

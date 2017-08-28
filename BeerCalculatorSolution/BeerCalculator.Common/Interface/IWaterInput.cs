@@ -21,5 +21,7 @@ namespace BeerCalculator.Common.Interface
         decimal MashTemperature { get; set; }
 
         decimal InitialGrainTemperature { get; set; }
+
+        decimal DesiredBatchSize { get; set; }
     }
 }

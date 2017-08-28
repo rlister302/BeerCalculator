@@ -23,5 +23,7 @@ namespace BeerCalculator.Calculators.Implementation
         public decimal TrubLoss { get; set; }
 
         public decimal InitialGrainTemperature { get; set; }
+
+        public decimal DesiredBatchSize { get; set; }
     }
 }
