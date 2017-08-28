@@ -106,14 +106,14 @@ namespace BeerCalculator.Tests
 
             #region WaterMetrics init
 
-            IWaterInput waterMetrics = new WaterInput();
-            waterMetrics.BoilRate = 1.0m;
-            waterMetrics.GrainAbsorbtion = .15m;
-            waterMetrics.EquipmentDeadSpace = .19m;
-            waterMetrics.TrubLoss = .5m;
-            waterMetrics.MashThickness = 2m;
-            waterMetrics.MashTemperature = 154;
-            waterMetrics.InitialGrainTemperature = 75;
+            IWaterInput waterInput = new WaterInput();
+            waterInput.BoilRate = 1.0m;
+            waterInput.GrainAbsorbtion = .15m;
+            waterInput.EquipmentDeadSpace = .19m;
+            waterInput.TrubLoss = .5m;
+            waterInput.MashThickness = 2m;
+            waterInput.MashTemperature = 154;
+            waterInput.InitialGrainTemperature = 75;
 
 
             #endregion
@@ -126,7 +126,7 @@ namespace BeerCalculator.Tests
             recipe.MashEfficiency = 73;
             recipe.BoilVolume = 6.75m;
             recipe.FinalVolume = 5.25m;
-            recipe.WaterMetrics = waterMetrics;
+            recipe.WaterInput = waterInput;
 
 
             IRecipeMetrics metrics = calculator.Calculate(recipe);
@@ -185,14 +185,14 @@ namespace BeerCalculator.Tests
 
             #region WaterMetrics init
 
-            IWaterInput waterMetrics = new WaterInput();
-            waterMetrics.BoilRate = 1.5m;
-            waterMetrics.GrainAbsorbtion = .15m;
-            waterMetrics.EquipmentDeadSpace = .19m;
-            waterMetrics.TrubLoss = .5m;
-            waterMetrics.MashThickness = 2m;
-            waterMetrics.MashTemperature = 152;
-            waterMetrics.InitialGrainTemperature = 75;
+            IWaterInput waterInput = new WaterInput();
+            waterInput.BoilRate = 1.5m;
+            waterInput.GrainAbsorbtion = .15m;
+            waterInput.EquipmentDeadSpace = .19m;
+            waterInput.TrubLoss = .5m;
+            waterInput.MashThickness = 2m;
+            waterInput.MashTemperature = 152;
+            waterInput.InitialGrainTemperature = 75;
 
 
             #endregion
@@ -205,7 +205,7 @@ namespace BeerCalculator.Tests
             recipe.MashEfficiency = 65;
             recipe.BoilVolume = 7.5m;
             recipe.FinalVolume = 5.5m;
-            recipe.WaterMetrics = waterMetrics;
+            recipe.WaterInput = waterInput;
 
             IRecipeMetrics metrics = calculator.Calculate(recipe);
 
@@ -265,14 +265,14 @@ namespace BeerCalculator.Tests
 
             #region WaterMetrics init
 
-            IWaterInput waterMetrics = new WaterInput();
-            waterMetrics.BoilRate = 1.5m;
-            waterMetrics.GrainAbsorbtion = .15m;
-            waterMetrics.EquipmentDeadSpace = .19m;
-            waterMetrics.TrubLoss = .5m;
-            waterMetrics.MashThickness = 2m;
-            waterMetrics.MashTemperature = 152;
-            waterMetrics.InitialGrainTemperature = 75;
+            IWaterInput waterInput = new WaterInput();
+            waterInput.BoilRate = 1.5m;
+            waterInput.GrainAbsorbtion = .15m;
+            waterInput.EquipmentDeadSpace = .19m;
+            waterInput.TrubLoss = .5m;
+            waterInput.MashThickness = 2m;
+            waterInput.MashTemperature = 152;
+            waterInput.InitialGrainTemperature = 75;
 
 
             #endregion
@@ -285,7 +285,7 @@ namespace BeerCalculator.Tests
             recipe.MashEfficiency = 65;
             recipe.BoilVolume = 7.5m;
             recipe.FinalVolume = 5.5m;
-            recipe.WaterMetrics = waterMetrics;
+            recipe.WaterInput = waterInput;
             #endregion
 
             Console.WriteLine(JsonConvert.SerializeObject(recipe));

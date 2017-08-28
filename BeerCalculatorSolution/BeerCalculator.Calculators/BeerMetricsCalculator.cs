@@ -42,7 +42,7 @@ namespace BeerCalculator.Calculators
             AttenuationCalculator.Calculate(GravityCalculator.BoilGravityPoints, recipe.ExpectedAttenuation);
             AbvCalculator.Calculate(GravityCalculator.OriginalGravity, AttenuationCalculator.FinalGravity);
             SrmCalculator.Calculate(recipe.Grains, recipe.FinalVolume);
-            WaterCalculator.Calculate(recipe.WaterMetrics, recipe.Grains, GravityCalculator.BoilVolume);
+            WaterCalculator.Calculate(recipe.WaterInput, recipe.Grains, GravityCalculator.BoilVolume);
 
             metrics.ExpectedOriginalGravity = GravityCalculator.OriginalGravity;
             metrics.ExpectedIbu = IbuCalculator.ExpectedIbu;
