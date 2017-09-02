@@ -74,6 +74,8 @@
   <ItemGroup>
     <Compile Include="Abstract\AbstractRequestManager.cs" />
     <Compile Include="Abstract\BootStrapper.cs" />
+    <Compile Include="Communication\CalculatorRequestManager.cs" />
+    <Compile Include="DTOs\RecipeInputDTO.cs" />
     <Compile Include="Implementation\RecipeInput.cs" />
     <Compile Include="Interface\IRecipeInput.cs" />
     <Compile Include="Implementation\RecipeMetrics.cs" />

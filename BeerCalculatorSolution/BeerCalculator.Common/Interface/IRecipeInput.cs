@@ -18,6 +18,10 @@ namespace BeerCalculator.Common.Interface
 
         YeastTypeDTO Yeast { get; set; }
 
-        decimal MashEfficiency { get; set; }
+        int MashEfficiency { get; set; }
+
+        int ExpectedAttenuation { get; set; }
+
+
     }
 }

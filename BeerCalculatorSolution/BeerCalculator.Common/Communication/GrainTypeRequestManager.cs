@@ -10,5 +10,6 @@ namespace BeerCalculator.Common.Communication
 {
     public class GrainTypeRequestManager : AbstractRequestManager<GrainTypeDTO>
     {
+
     }
 }

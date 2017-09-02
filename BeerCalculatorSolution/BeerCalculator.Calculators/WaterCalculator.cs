@@ -19,14 +19,19 @@ namespace BeerCalculator.Calculators
 
         public decimal WaterRequired { get; set; }
 
+        public decimal BoilVolume { get; set; }
+
         private decimal totalGrain;
 
-        public void Calculate(IWaterInput waterInput, List<GrainTypeDTO> grains, decimal boilVolume)
+        private const decimal boilTime = 60m;
+
+        public void Calculate(IWaterInput waterInput, List<GrainTypeDTO> grains)
         {
             totalGrain = grains.Sum(x => x.Amount);
+            CalculateBoilVolume(waterInput);
             CalculateStrikeVolume(waterInput, grains);
             CalculateStrikeTemperature(waterInput, grains);
-            CalculateSpargeVolume(waterInput, boilVolume);
+            CalculateSpargeVolume(waterInput, BoilVolume);
             CalculateWaterRequired();
         }
 
@@ -58,6 +63,13 @@ namespace BeerCalculator.Calculators
             decimal rawValue = StrikeVolume + SpargeVolume;
             
             WaterRequired = Math.Ceiling(rawValue);
+        }
+
+        private void CalculateBoilVolume(IWaterInput waterInput)
+        {
+            // batch size + (boilRate * (boilTime / 60)) + TrubLoss
+            decimal boilMetrics = waterInput.BoilRate * (boilTime / 60m);
+            BoilVolume = waterInput.DesiredBatchSize + boilMetrics + waterInput.TrubLoss;
         }
     }
 }

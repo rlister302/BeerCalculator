@@ -2,6 +2,7 @@
 using BeerCalculator.Calculators.Implementation;
 using BeerCalculator.Common.Abstract;
 using BeerCalculator.Common.DTOs;
+using BeerCalculator.Common.Implementation;
 using BeerCalculator.Common.Interface;
 using BeerCalculators.Calculators;
 using Microsoft.Practices.ServiceLocation;
@@ -34,7 +35,8 @@ namespace BeerCalculator.Tests
         [TestMethod()]
         public void TestRoggenbierMetrics()
         {
-            RecipeDTO recipe = new RecipeDTO();
+            IRecipeInput recipe = new RecipeInput();
+            recipe.WaterInput = new WaterInput();
 
             List<GrainTypeDTO> grains;
             List<HopTypeDTO> hops;
@@ -124,8 +126,7 @@ namespace BeerCalculator.Tests
             recipe.Yeast = yeast;
             recipe.ExpectedAttenuation = 75;
             recipe.MashEfficiency = 73;
-            recipe.BoilVolume = 6.75m;
-            recipe.FinalVolume = 5.25m;
+            waterInput.DesiredBatchSize = 5.25m;
             recipe.WaterInput = waterInput;
 
 
@@ -142,7 +143,8 @@ namespace BeerCalculator.Tests
         [TestMethod()]
         public void TestHefeweizenMetrics()
         {
-            RecipeDTO recipe = new RecipeDTO();
+            IRecipeInput recipe = new RecipeInput();
+            recipe.ExpectedAttenuation = 76;
 
             List<GrainTypeDTO> grains;
             List<HopTypeDTO> hops;
@@ -155,6 +157,7 @@ namespace BeerCalculator.Tests
             grain.Amount = 4;
             grain.MaximumSugarExtraction = 37;
             grain.MaximumExtractionRate = 80;
+            grain.Lovibond = 1.62m;
 
             grains = new List<GrainTypeDTO>();
             grains.Add(grain);
@@ -163,9 +166,17 @@ namespace BeerCalculator.Tests
             grain.Amount = 6;
             grain.MaximumSugarExtraction = 37;
             grain.MaximumExtractionRate = 79;
+            grain.Lovibond = 2.0m;
             grains.Add(grain);
 
-            
+            grain = new GrainTypeDTO();
+            grain.Amount = 1;
+            grain.MaximumSugarExtraction = 0;
+            grain.MaximumExtractionRate = 0;
+            grain.Lovibond = 0m;
+            grains.Add(grain);
+
+
             #endregion
 
             #region Hop init
@@ -193,6 +204,7 @@ namespace BeerCalculator.Tests
             waterInput.MashThickness = 2m;
             waterInput.MashTemperature = 152;
             waterInput.InitialGrainTemperature = 75;
+            waterInput.DesiredBatchSize = 5.5m;
 
 
             #endregion
@@ -201,10 +213,7 @@ namespace BeerCalculator.Tests
             recipe.Grains = grains;
             recipe.Hops = hops;
             recipe.Yeast = yeast;
-            recipe.ExpectedAttenuation = 76;
             recipe.MashEfficiency = 65;
-            recipe.BoilVolume = 7.5m;
-            recipe.FinalVolume = 5.5m;
             recipe.WaterInput = waterInput;
 
             IRecipeMetrics metrics = calculator.Calculate(recipe);

@@ -17,6 +17,8 @@ namespace BeerCalculator.Common.Interface
 
         decimal SpargeVolume { get; set; }
 
-        void Calculate(IWaterInput waterMetrics, List<GrainTypeDTO> grains, decimal boilVolume);
+        decimal BoilVolume { get; set; }
+
+        void Calculate(IWaterInput waterMetrics, List<GrainTypeDTO> grains);
     }
 }

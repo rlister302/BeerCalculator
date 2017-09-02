@@ -150,6 +150,21 @@
 
         console.log(recipeInput);
     }
+
+    function sendMetricsToServer(recipeInput)
+    {
+        $.ajax({
+            url: "/Calculator/Calculate",
+            type: "POST",
+            data: recipeInput,
+            success: function (response) {
+                console.log(response);
+            },
+            error: function () {
+                alert("There was an error");
+            }
+        })
+    }
 </script>
 <h2>Create Recipe</h2>
 <div>
@@ -324,10 +339,14 @@
 
         <div class="col-lg-3">
             <select class="boil-time form-control boil-time">
-                @for (int i = 60; i > 0; i -= 15)
-                {
-                    <option value="@i">@i</option>
-                }
+                <option value="60">60</option>
+                <option value="45">45</option>
+                <option value="30">30</option>
+                <option value="20">20</option>
+                <option value="15">15</option>
+                <option value="10">10</option>
+                <option value="5">5</option>
+                <option value="0">0</option>
             </select>
         </div>
 

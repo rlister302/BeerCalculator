@@ -275,8 +275,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Calculator\Implementation\" />
-    <Folder Include="Calculator\Interface\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -285,6 +283,10 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BeerCalculator.Calculators\BeerCalculator.Calculators.csproj">
+      <Project>{FA7D552C-38C1-4EDE-9B87-052189F7C469}</Project>
+      <Name>BeerCalculator.Calculators</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BeerCalculator.Common\BeerCalculator.Common.csproj">
       <Project>{c141e34b-83ab-46ab-8522-c01022163753}</Project>
       <Name>BeerCalculator.Common</Name>

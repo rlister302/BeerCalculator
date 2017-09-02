@@ -33,16 +33,17 @@ namespace BeerCalculator.Calculators
             WaterCalculator = waterCalculator;
         }
 
-        public IRecipeMetrics Calculate(RecipeDTO recipe)
+        public IRecipeMetrics Calculate(IRecipeInput recipeInput)
         {
             IRecipeMetrics metrics = new RecipeMetrics();
 
-            GravityCalculator.Calculate(recipe.Grains, recipe.MashEfficiency, recipe.BoilVolume, recipe.FinalVolume);
-            IbuCalculator.Calculate(recipe.Hops, GravityCalculator.OriginalGravity);
-            AttenuationCalculator.Calculate(GravityCalculator.BoilGravityPoints, recipe.ExpectedAttenuation);
+            WaterCalculator.Calculate(recipeInput.WaterInput, recipeInput.Grains);
+            GravityCalculator.Calculate(recipeInput.Grains, recipeInput.MashEfficiency, WaterCalculator.BoilVolume, recipeInput.WaterInput.DesiredBatchSize);
+            IbuCalculator.Calculate(recipeInput.Hops, GravityCalculator.OriginalGravity);
+            AttenuationCalculator.Calculate(GravityCalculator.BoilGravityPoints, recipeInput.ExpectedAttenuation);
             AbvCalculator.Calculate(GravityCalculator.OriginalGravity, AttenuationCalculator.FinalGravity);
-            SrmCalculator.Calculate(recipe.Grains, recipe.FinalVolume);
-            WaterCalculator.Calculate(recipe.WaterInput, recipe.Grains, GravityCalculator.BoilVolume);
+            SrmCalculator.Calculate(recipeInput.Grains, recipeInput.WaterInput.DesiredBatchSize);
+
 
             metrics.ExpectedOriginalGravity = GravityCalculator.OriginalGravity;
             metrics.ExpectedIbu = IbuCalculator.ExpectedIbu;

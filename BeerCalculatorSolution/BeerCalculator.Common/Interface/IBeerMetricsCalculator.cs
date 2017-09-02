@@ -20,6 +20,6 @@ namespace BeerCalculator.Common.Interface
 
         IWaterCalculator WaterCalculator { get; set; }
 
-        IRecipeMetrics Calculate(RecipeDTO recipe);
+        IRecipeMetrics Calculate(IRecipeInput recipeInput);
     }
 }

@@ -36,8 +36,7 @@ namespace BeerCalculator.Tests
         {
             IWaterInput metrics = new WaterInput();
 
-            decimal boilVolume = 7.5m;
-
+            metrics.DesiredBatchSize = 5.5m;
             metrics.BoilRate = 1.5m;
             metrics.GrainAbsorbtion = .15m;
             metrics.EquipmentDeadSpace = .19m;
@@ -76,12 +75,13 @@ namespace BeerCalculator.Tests
 
             #endregion
 
-            calculator.Calculate(metrics, grains, boilVolume);
+            calculator.Calculate(metrics, grains);
 
             Assert.AreEqual<decimal>(5.5m, calculator.StrikeVolume);
             Assert.AreEqual<int>(160, calculator.StrikeTemperature);
             Assert.AreEqual<decimal>(3.84m, calculator.SpargeVolume);
             Assert.AreEqual<decimal>(10, calculator.WaterRequired);
+            Assert.AreEqual<decimal>(7.5m, calculator.BoilVolume);
 
 
         }

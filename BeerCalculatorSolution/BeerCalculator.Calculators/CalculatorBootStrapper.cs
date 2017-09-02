@@ -8,6 +8,7 @@ using Microsoft.Practices.Unity;
 using BeerCalculator.Calculators;
 using BeerCalculator.Common.Abstract;
 using BeerCalculator.Common.Interface;
+using BeerCalculator.Calculators.Implementation;
 
 namespace BeerCalculators.Calculators
 {
