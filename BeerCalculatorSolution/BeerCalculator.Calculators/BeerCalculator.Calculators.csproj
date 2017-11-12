@@ -73,6 +73,10 @@
       <Project>{c141e34b-83ab-46ab-8522-c01022163753}</Project>
       <Name>BeerCalculator.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BeerCalculator.DataAccessLayer\BeerCalculator.DataAccessLayer.csproj">
+      <Project>{4EF85CD9-95DB-4EC8-BB09-CDFA42C03CAE}</Project>
+      <Name>BeerCalculator.DataAccessLayer</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

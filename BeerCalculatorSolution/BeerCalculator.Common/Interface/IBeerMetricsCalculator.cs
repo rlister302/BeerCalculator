@@ -1,4 +1,5 @@
 ﻿using BeerCalculator.Common.DTOs;
+using BeerCalculator.Common.Implementation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,6 @@ namespace BeerCalculator.Common.Interface
 
         IWaterCalculator WaterCalculator { get; set; }
 
-        IRecipeMetrics Calculate(IRecipeInput recipeInput);
+        IRecipeMetrics Calculate(RecipeInput recipeInput);
     }
 }

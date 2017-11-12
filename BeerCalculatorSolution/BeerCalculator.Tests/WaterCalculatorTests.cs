@@ -1,7 +1,7 @@
 ﻿using BeerCalculator.Calculators;
-using BeerCalculator.Calculators.Implementation;
 using BeerCalculator.Common.Abstract;
 using BeerCalculator.Common.DTOs;
+using BeerCalculator.Common.Implementation;
 using BeerCalculator.Common.Interface;
 using BeerCalculators.Calculators;
 using Microsoft.Practices.ServiceLocation;

@@ -64,6 +64,8 @@
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -81,6 +83,7 @@
     <Compile Include="Implementation\RecipeMetrics.cs" />
     <Compile Include="Implementation\WaterInput.cs" />
     <Compile Include="Interface\IBootStrapper.cs" />
+    <Compile Include="Interface\IRecipeMetaDataResolver.cs" />
     <Compile Include="Interface\IRecipeMetrics.cs" />
     <Compile Include="Interface\IRequestManager.cs" />
     <Compile Include="Interface\IWaterInput.cs" />

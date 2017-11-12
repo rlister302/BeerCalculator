@@ -8,7 +8,7 @@ using Microsoft.Practices.Unity;
 using BeerCalculator.Calculators;
 using BeerCalculator.Common.Abstract;
 using BeerCalculator.Common.Interface;
-using BeerCalculator.Calculators.Implementation;
+using BeerCalculator.DataAccessLayer.DataAccess;
 
 namespace BeerCalculators.Calculators
 {
@@ -27,7 +27,7 @@ namespace BeerCalculators.Calculators
             Container.RegisterType<IAbvCalculator, AbvCalculator>();
             Container.RegisterType<ISrmCalculator, SrmCalculator>();
             Container.RegisterType<IWaterCalculator, WaterCalculator>();
-
+            Container.RegisterType<IRecipeMetaDataResolver, RecipeMetaDataResolver>();
             Container.RegisterType<IBeerMetricsCalculator, BeerMetricsCalculator>();
         }
     }

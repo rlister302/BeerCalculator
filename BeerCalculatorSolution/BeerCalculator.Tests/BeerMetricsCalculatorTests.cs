@@ -1,5 +1,4 @@
 ﻿using BeerCalculator.Calculators;
-using BeerCalculator.Calculators.Implementation;
 using BeerCalculator.Common.Abstract;
 using BeerCalculator.Common.DTOs;
 using BeerCalculator.Common.Implementation;
@@ -35,7 +34,7 @@ namespace BeerCalculator.Tests
         [TestMethod()]
         public void TestRoggenbierMetrics()
         {
-            IRecipeInput recipe = new RecipeInput();
+            RecipeInput recipe = new RecipeInput();
             recipe.WaterInput = new WaterInput();
 
             List<GrainTypeDTO> grains;
@@ -108,7 +107,7 @@ namespace BeerCalculator.Tests
 
             #region WaterMetrics init
 
-            IWaterInput waterInput = new WaterInput();
+            WaterInput waterInput = new WaterInput();
             waterInput.BoilRate = 1.0m;
             waterInput.GrainAbsorbtion = .15m;
             waterInput.EquipmentDeadSpace = .19m;
@@ -143,7 +142,7 @@ namespace BeerCalculator.Tests
         [TestMethod()]
         public void TestHefeweizenMetrics()
         {
-            IRecipeInput recipe = new RecipeInput();
+            RecipeInput recipe = new RecipeInput();
             recipe.ExpectedAttenuation = 76;
 
             List<GrainTypeDTO> grains;
@@ -196,7 +195,7 @@ namespace BeerCalculator.Tests
 
             #region WaterMetrics init
 
-            IWaterInput waterInput = new WaterInput();
+            WaterInput waterInput = new WaterInput();
             waterInput.BoilRate = 1.5m;
             waterInput.GrainAbsorbtion = .15m;
             waterInput.EquipmentDeadSpace = .19m;

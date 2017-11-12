@@ -1,6 +1,8 @@
 ﻿@model BeerCalculator.Common.DTOs.IngredientDTO
 
 <script>
+
+   
     function addGrain() {
 
         var grainRow = $('.grain-prototype').clone();
@@ -140,6 +142,7 @@
         waterInput.EquipmentDeadSpace = $('#equipment-dead-space').val();
         waterInput.TrubLoss = $('#trub-loss').val();
         waterInput.MashThickness = $('#mash-thickness').val();
+        waterInput.InitialGrainTemperature = $('#initial-grain-temperature').val();
 
         return waterInput
     }
@@ -148,11 +151,14 @@
     {
         var recipeInput = getRecipeInput();
 
-        console.log(recipeInput);
+        sendMetricsToServer(recipeInput);
     }
 
     function sendMetricsToServer(recipeInput)
     {
+        var data = JSON.stringify(recipeInput);
+        console.log(data);
+
         $.ajax({
             url: "/Calculator/Calculate",
             type: "POST",
@@ -224,11 +230,12 @@
 
         <div class="row">
 
-            <div class="col-lg-2"><h4>Mash Efficiency</h4></div>
-            <div class="col-lg-2"><input id="mash-efficiency" /></div>
+            <div class="col-lg-2"><h4>Initial Grain Temperature</h4></div>
+            <div class="col-lg-2"><input id="initial-grain-temperature" /></div>
 
 
         </div>
+
 
         <div class="bottom-margin-push"></div>
 
@@ -356,4 +363,19 @@
     </div>
 </div>
 
+
+<script>
+    
+    function init() {
+        $('#batch-size').val('5.5');
+        $('#mash-efficiency').val('65');
+        $('#mash-temperature').val('152');
+        $('#boil-off-rate').val('1.5');
+        $('#grain-absorbtion').val('.2');
+        $('#equipment-dead-space').val('.2');
+        $('#trub-loss').val('.2');
+        $('#mash-thickness').val(2);
+        $('#initial-grain-temperature').val('75');
+    }
+</script>
 

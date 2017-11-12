@@ -15,7 +15,7 @@ namespace BeerCalculator.Common.Communication
 {
     public class CalculatorRequestManager
     {
-        public async Task<IRecipeMetrics> GetMetrics(IRecipeInput recipeInput)
+        public async Task<RecipeMetrics> GetMetrics(RecipeInput recipeInput)
         { 
 
             if (recipeInput is ModelBase)
@@ -30,11 +30,11 @@ namespace BeerCalculator.Common.Communication
                     string createAction = modelBase.GetCreateAction();
                     string targetUrl = String.Format("{0}/{1}/{2}", client.BaseAddress, controllerName, createAction);
 
-                    var response = await client.PostAsJsonAsync<IRecipeInput>(targetUrl, recipeInput);
+                    var response = await client.PostAsJsonAsync(targetUrl, recipeInput);
 
                     var content = await response.Content.ReadAsStringAsync();
 
-                    return await Task.Run(() => JsonConvert.DeserializeObject<IRecipeMetrics>(content));
+                    return await Task.Run(() => JsonConvert.DeserializeObject<RecipeMetrics>(content));
                 }
 
             }

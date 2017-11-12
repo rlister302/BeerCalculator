@@ -1,4 +1,5 @@
 ﻿using BeerCalculator.Common.DTOs;
+using BeerCalculator.Common.Implementation;
 using BeerCalculator.Common.Interface;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,8 @@ namespace BeerCalculator.Calculators
 
         public IWaterCalculator WaterCalculator { get; set; }
 
+        public IRecipeMetaDataResolver MetaDataResolver { get; set; }
+
         public BeerMetricsCalculator(IAbvCalculator abvCalculator, IAttenuationCalculator attenuationCalculator, IGravityCalculator gravityCalculator, IIbuCalculator ibuCalculator, ISrmCalculator srmCalculator, IWaterCalculator waterCalculator)
         {
             AbvCalculator = abvCalculator;
@@ -33,7 +36,7 @@ namespace BeerCalculator.Calculators
             WaterCalculator = waterCalculator;
         }
 
-        public IRecipeMetrics Calculate(IRecipeInput recipeInput)
+        public IRecipeMetrics Calculate(RecipeInput recipeInput)
         {
             IRecipeMetrics metrics = new RecipeMetrics();
 
@@ -50,6 +53,7 @@ namespace BeerCalculator.Calculators
             metrics.ExpectedFinalGravity = AttenuationCalculator.FinalGravity;
             metrics.ExpectedAbv = AbvCalculator.ExpectedAbv;
             metrics.ExpectedBoilGravityPoints = GravityCalculator.BoilGravityPoints;
+            metrics.ExpectedSrm = SrmCalculator.ExpectedSrm;
 
             return metrics;
         }

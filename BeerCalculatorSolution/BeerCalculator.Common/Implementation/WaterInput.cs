@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BeerCalculator.Calculators.Implementation
+namespace BeerCalculator.Common.Implementation
 {
     public class WaterInput : IWaterInput
     {

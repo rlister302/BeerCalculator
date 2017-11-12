@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Web.ModelBinding;
 namespace BeerCalculator.Common.Interface
 {
     public interface IRecipeInput
@@ -21,6 +21,7 @@ namespace BeerCalculator.Common.Interface
         int MashEfficiency { get; set; }
 
         int ExpectedAttenuation { get; set; }
+
 
 
     }

@@ -7,7 +7,7 @@ using BeerCalculator.Common.Interface;
 
 namespace BeerCalculator.Common.Implementation
 {
-    public class RecipeMetrics : IRecipeMetrics
+    public class RecipeMetrics 
     {
         public decimal ExpectedAbv { get; set; }
 
@@ -21,6 +21,6 @@ namespace BeerCalculator.Common.Implementation
 
         public decimal ExpectedSrm { get; set; }
 
-        public IWaterInput WaterMetrics { get; set; }
+        public WaterInput WaterMetrics { get; set; }
     }
 }
