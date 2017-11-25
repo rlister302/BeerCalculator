@@ -1,17 +1,13 @@
 ﻿@model BeerCalculator.Common.DTOs.IngredientDTO
 
 <script>
-
-   
     function addGrain() {
-
         var grainRow = $('.grain-prototype').clone();
         $(grainRow).removeClass('grain-prototype').addClass('recipe-grain');
         $('.grain-table').append(grainRow);
     }
 
     function addHop() {
-
         var hopRow = $('.hop-prototype').clone();
         $(hopRow).removeClass('hop-prototype').addClass('recipe-hop');
         $('.hop-table').append(hopRow);
@@ -19,9 +15,6 @@
 
     function createRecipe() {
         var recipe = getRecipeInformation();
-
-        console.log("Collected recipe is ", recipe);
-
         sendRecipeToServer(recipe);
     }
 
@@ -41,58 +34,41 @@
     }
 
     function getRecipeInformation() {
-
-        var recipeName = $('.recipe-name').val();
-        var grains = getGrains();
-        var hops = getHops();
-        var yeast = getYeast();
-
         var recipe = {};
-
-        recipe.RecipeName = recipeName;
-        recipe.Grains = grains;
-        recipe.Hops = hops;
-        recipe.Yeast = yeast;
+        recipe.RecipeName = $('.recipe-name').val();
+        recipe.Grains = getGrains();
+        recipe.Hops = getHops();
+        recipe.Yeast = getYeast();
 
         return recipe;
     }
 
     function getYeast() {
-
         var yeast = {};
-
-        var yeastTypeID = $('.yeast-selection').val();
-
-        yeast.YeastTypeID = yeastTypeID;
-
+        yeast.YeastTypeID = $('.yeast-selection').val();
         return yeast;
     }
 
     function getHops() {
-
         var hops = $('.recipe-hop');
-
         var recipeHops = [];
 
-        console.log("Hops captured lenght is ", hops.length);
-
         for (var i = 0; i < hops.length; i++) {
-            var hop = {};
-
-            var hopTypeID = $(hops[i]).find('.hop-selection').val();
-            var hopAmount = $(hops[i]).find('.hop-amount').val();
-            var boilTime = $(hops[i]).find('.boil-time').val();
-            var alphaAcid = $(hops[i]).find('.hop-alpha-acid').val();
-
-            hop.HopTypeID = hopTypeID;
-            hop.Amount = hopAmount;
-            hop.AlphaAcid = alphaAcid;
-            hop.BoilTime = boilTime;
-
-            recipeHops.push(hop);
+            recipeHops.push(parseHop(hops[i]));
         }
 
         return recipeHops;
+    }
+
+    function parseHop(hopToParse) {
+        var hop = {};
+
+        hop.HopTypeID = $(hopToParse).find('.hop-selection').val();
+        hop.Amount = $(hopToParse).find('.hop-amount').val();
+        hop.BoilTime = $(hopToParse).find('.boil-time').val();
+        hop.AlphaAcid = $(hopToParse).find('.hop-alpha-acid').val();
+
+        return hop;
     }
 
     function getGrains() {
@@ -101,23 +77,22 @@
         var recipeGrains = [];
 
         for (var i = 0; i < grains.length; i++) {
-
-            var grain = {};
-
-            var grainTypeID = $(grains[i]).find('.grain-selection').val();
-            var grainAmount = $(grains[i]).find('.grain-amount').val();
-
-            grain.GrainTypeID = grainTypeID;
-            grain.Amount = grainAmount;
-
-            recipeGrains.push(grain);
+            recipeGrains.push(parseGrain(grains[i]));
         }
 
         return recipeGrains;
     }
 
-    function getRecipeInput()
-    {
+    function parseGrain(grainToParse) {
+        var grain = {};
+
+        grain.GrainTypeID = $(grainToParse).find('.grain-selection').val();
+        grain.Amount = $(grainToParse).find('.grain-amount').val();
+
+        return grain;
+    }
+
+    function getRecipeInput() {
         var recipeInput = {};
 
         recipeInput.Grains = getGrains();
@@ -129,11 +104,9 @@
         recipeInput.WaterInput = getWaterInput();
 
         return recipeInput;
-        
     }
 
-    function getWaterInput()
-    {
+    function getWaterInput() {
         var waterInput = {};
         waterInput.DesiredBatchSize = $('#batch-size').val();
         waterInput.MashEfficiency = $('#mash-efficiency').val();
@@ -148,15 +121,12 @@
         return waterInput
     }
 
-    function calculateMetrics()
-    {
+    function calculateMetrics() {
         var recipeInput = getRecipeInput();
-
         sendMetricsToServer(recipeInput);
     }
 
-    function sendMetricsToServer(recipeInput)
-    {
+    function sendMetricsToServer(recipeInput) {
         var data = JSON.stringify(recipeInput);
         console.log(data);
 
@@ -167,7 +137,6 @@
             success: function (response) {
                 initializeRecipeMetricsModal(response);
                 $('#recipe-metrics').modal();
-                console.log(response);
             },
             error: function () {
                 alert("There was an error");
@@ -175,8 +144,7 @@
         })
     }
 
-    function clearRecipeMetricsModal()
-    {
+    function clearRecipeMetricsModal() {
         $('#expected-abv').val('');
         $('#expected-original-gravity').val('');
         $('#expected-final-gravity').val('');
@@ -185,8 +153,7 @@
         $('#expected-srm').val('');
     }
 
-    function setRecipeMetrics(recipeMetrics)
-    {
+    function setRecipeMetrics(recipeMetrics) {
         $('#expected-abv').val(parseFloat(recipeMetrics.ExpectedAbv).toFixed(2));
         $('#expected-original-gravity').val(parseFloat(recipeMetrics.ExpectedOriginalGravity).toFixed(3));
         $('#expected-final-gravity').val(parseFloat(recipeMetrics.ExpectedFinalGravity).toFixed(3));
@@ -195,8 +162,7 @@
         $('#expected-srm').val(recipeMetrics.ExpectedSrm);
     }
 
-    function initializeRecipeMetricsModal(recipeMetrics)
-    {
+    function initializeRecipeMetricsModal(recipeMetrics) {
         clearRecipeMetricsModal();
         setRecipeMetrics(recipeMetrics);
     }
@@ -218,9 +184,6 @@
 
             <div class="col-lg-2"><h4>Mash Efficiency</h4></div>
             <div class="col-lg-2"><input id="mash-efficiency" /></div>
-
-
-
         </div>
 
         <div class="bottom-margin-push"></div>
@@ -264,7 +227,6 @@
 
             <div class="col-lg-2"><h4>Expected Effciency</h4></div>
             <div class="col-lg-2"><input id="expected-efficiency" /></div>
-
 
         </div>
 
@@ -422,7 +384,7 @@
                         <input id="expected-original-gravity" class="form-control" />
                     </div>
                 </div>
-            
+
                 <div class="row">
                     <div class="col-lg-2">
                         <label>Expected Final Gravity</label>
@@ -459,13 +421,12 @@
                     </div>
                 </div>
             </div> <!-- End of modal -->
-            <div>Footer content</div>
-            @*<div class="modal-footer">
+            <div class="modal-footer">
 
-                <input type="button" class="btn btn-success" onclick="saveHop()" value="Save Hop" />
+                <input type="button" class="btn btn-success" onclick="createRecipe()" value="Save Recipe" />
 
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-            </div>*@
+            </div>
         </div>
 
     </div>
@@ -473,7 +434,7 @@
 
 
 <script>
-    
+
     function init() {
         $('#batch-size').val('5.5');
         $('#mash-efficiency').val('65');
