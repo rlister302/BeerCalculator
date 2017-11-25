@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BeerCalculator.Common.Interface
+namespace BeerCalculator.Calculators.Interface
 {
     public interface IRecipeMetrics
     {
@@ -22,6 +22,6 @@ namespace BeerCalculator.Common.Interface
 
         decimal ExpectedSrm { get; set; }
 
-        WaterInputDTO WaterMetrics { get; set; }
+        IWaterInput WaterMetrics { get; set; }
     }
 }

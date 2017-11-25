@@ -1,7 +1,10 @@
-﻿using BeerCalculator.Common.DTOs;
+﻿using BeerCalculator.Calculators.Implementation;
+using BeerCalculator.Calculators.Interface;
+using BeerCalculator.Common.DTOs;
 using BeerCalculator.Common.Implementation;
 using BeerCalculator.Common.Interface;
 using BeerCalculators.Calculators;
+using BeerCalculators.Calculators.Implementation;
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Unity;
 using System;
@@ -31,8 +34,15 @@ namespace BeerCalculatorService.Controllers
         public ActionResult GetMetrics(RecipeInputDTO recipeInput)
         {
             resolver.ResolveGrainMetaData(recipeInput.Grains);
-            RecipeMetricsDTO metrics = calculator.Calculate(recipeInput);
+            IRecipeInput converted = Convert(recipeInput);
+            IRecipeMetrics metrics = calculator.Calculate(converted);
             return Json(metrics);
+        }
+
+        private IRecipeInput Convert(RecipeInputDTO input)
+        {
+            IRecipeInput converted = new RecipeInput();
+            return converted;
         }
     }
 }

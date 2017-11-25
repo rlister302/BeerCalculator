@@ -6,10 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BeerCalculator.Common.Interface
+namespace BeerCalculator.Calculators.Interface
 {
     public interface IBeerMetricsCalculator
     {
-        RecipeMetricsDTO Calculate(RecipeInputDTO recipeInput);
+        IRecipeMetrics Calculate(IRecipeInput recipeInput);
     }
 }

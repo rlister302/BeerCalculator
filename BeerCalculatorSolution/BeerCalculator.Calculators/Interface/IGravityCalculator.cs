@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BeerCalculator.Common.Interface
+namespace BeerCalculator.Calculators.Interface
 { 
     public interface IGravityCalculator
     {
@@ -17,6 +17,6 @@ namespace BeerCalculator.Common.Interface
 
         decimal FinalVolume { get; set; }
 
-        void Calculate(List<GrainTypeDTO> grains, int expectedEfficiency, decimal boilVolume = 6.5m, decimal finalVolume = 5.5m);
+        void Calculate(List<IGrain> grains, int expectedEfficiency, decimal boilVolume = 6.5m, decimal finalVolume = 5.5m);
     }
 }

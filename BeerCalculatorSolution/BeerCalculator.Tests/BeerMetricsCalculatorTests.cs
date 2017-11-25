@@ -1,9 +1,12 @@
 ﻿using BeerCalculator.Calculators;
+using BeerCalculator.Calculators.Implementation;
+using BeerCalculator.Calculators.Interface;
 using BeerCalculator.Common.Abstract;
 using BeerCalculator.Common.DTOs;
 using BeerCalculator.Common.Implementation;
 using BeerCalculator.Common.Interface;
 using BeerCalculators.Calculators;
+using BeerCalculators.Calculators.Implementation;
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Unity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -34,56 +37,55 @@ namespace BeerCalculator.Tests
         [TestMethod()]
         public void TestRoggenbierMetrics()
         {
-            RecipeInputDTO recipe = new RecipeInputDTO();
-            recipe.WaterInput = new WaterInputDTO();
+            IRecipeInput recipe = new RecipeInput();
 
-            List<GrainTypeDTO> grains;
-            List<HopTypeDTO> hops;
-            YeastTypeDTO yeast;
+            List<IGrain> grains;
+            List<IHop> hops;
+            IYeast yeast;
            
 
             #region Grain init
 
-            GrainTypeDTO grain;
-            grain = new GrainTypeDTO();
+            IGrain grain;
+            grain = new Grain();
             grain.Amount = 2.25m;
             grain.MaximumSugarExtraction = 35;
             grain.MaximumExtractionRate = 76;
 
-            grains = new List<GrainTypeDTO>();
+            grains = new List<IGrain>();
             grains.Add(grain);
 
-            grain = new GrainTypeDTO();
+            grain = new Grain();
             grain.Amount = 2.25m;
             grain.MaximumSugarExtraction = 35;
             grain.MaximumExtractionRate = 81;
             grains.Add(grain);
 
-            grain = new GrainTypeDTO();
+            grain = new Grain();
             grain.Amount = .25m;
             grain.MaximumSugarExtraction = 34;
             grain.MaximumExtractionRate = 75;
             grains.Add(grain);
 
-            grain = new GrainTypeDTO();
+            grain = new Grain();
             grain.Amount = .25m;
             grain.MaximumSugarExtraction = 34;
             grain.MaximumExtractionRate = 75;
             grains.Add(grain);
 
-            grain = new GrainTypeDTO();
+            grain = new Grain();
             grain.Amount = .25m;
             grain.MaximumSugarExtraction = 33;
             grain.MaximumExtractionRate = 75;
             grains.Add(grain);
 
-            grain = new GrainTypeDTO();
+            grain = new Grain();
             grain.Amount = .25m;
             grain.MaximumSugarExtraction = 31;
             grain.MaximumExtractionRate = 75;
             grains.Add(grain);
 
-            grain = new GrainTypeDTO();
+            grain = new Grain();
             grain.Amount = 7;
             grain.MaximumSugarExtraction = 29;
             grain.MaximumExtractionRate = 75;
@@ -91,8 +93,8 @@ namespace BeerCalculator.Tests
             #endregion
 
             #region Hop init
-            hops = new List<HopTypeDTO>();
-            HopTypeDTO hop = new HopTypeDTO();
+            hops = new List<IHop>();
+            IHop hop = new Hop();
 
             hop.AlphaAcid = 3.5m;
             hop.Amount = 1;
@@ -101,13 +103,11 @@ namespace BeerCalculator.Tests
             hops.Add(hop);
             #endregion
 
-            #region Yeast init
-            yeast = new YeastTypeDTO();
-            #endregion
+       
 
             #region WaterMetrics init
 
-            WaterInputDTO waterInput = new WaterInputDTO();
+            WaterInput waterInput = new WaterInput();
             waterInput.BoilRate = 1.0m;
             waterInput.GrainAbsorbtion = .15m;
             waterInput.EquipmentDeadSpace = .19m;
@@ -122,14 +122,13 @@ namespace BeerCalculator.Tests
 
             recipe.Grains = grains;
             recipe.Hops = hops;
-            recipe.Yeast = yeast;
             recipe.ExpectedAttenuation = 75;
             recipe.MashEfficiency = 73;
             waterInput.DesiredBatchSize = 5.25m;
             recipe.WaterInput = waterInput;
 
 
-            RecipeMetricsDTO metrics = calculator.Calculate(recipe);
+            IRecipeMetrics metrics = calculator.Calculate(recipe);
 
             Assert.AreEqual<decimal>(1.055m, metrics.ExpectedOriginalGravity);
             Assert.AreEqual<decimal>(1.011m, metrics.ExpectedFinalGravity);
@@ -142,33 +141,32 @@ namespace BeerCalculator.Tests
         [TestMethod()]
         public void TestHefeweizenMetrics()
         {
-            RecipeInputDTO recipe = new RecipeInputDTO();
+            IRecipeInput recipe = new RecipeInput();
             recipe.ExpectedAttenuation = 76;
 
-            List<GrainTypeDTO> grains;
-            List<HopTypeDTO> hops;
-            YeastTypeDTO yeast;
+            List<IGrain> grains;
+            List<IHop> hops;
 
             #region Grain init
 
-            GrainTypeDTO grain;
-            grain = new GrainTypeDTO();
+            Grain grain;
+            grain = new Grain();
             grain.Amount = 4;
             grain.MaximumSugarExtraction = 37;
             grain.MaximumExtractionRate = 80;
             grain.Lovibond = 1.62m;
 
-            grains = new List<GrainTypeDTO>();
+            grains = new List<IGrain>();
             grains.Add(grain);
 
-            grain = new GrainTypeDTO();
+            grain = new Grain();
             grain.Amount = 6;
             grain.MaximumSugarExtraction = 37;
             grain.MaximumExtractionRate = 79;
             grain.Lovibond = 2.0m;
             grains.Add(grain);
 
-            grain = new GrainTypeDTO();
+            grain = new Grain();
             grain.Amount = 1;
             grain.MaximumSugarExtraction = 0;
             grain.MaximumExtractionRate = 0;
@@ -179,8 +177,8 @@ namespace BeerCalculator.Tests
             #endregion
 
             #region Hop init
-            hops = new List<HopTypeDTO>();
-            HopTypeDTO hop = new HopTypeDTO();
+            hops = new List<IHop>();
+            Hop hop = new Hop();
 
             hop.AlphaAcid = 3.7m;
             hop.Amount = 1;
@@ -189,13 +187,9 @@ namespace BeerCalculator.Tests
             hops.Add(hop);
             #endregion
 
-            #region Yeast init
-            yeast = new YeastTypeDTO();
-            #endregion
-
             #region WaterMetrics init
 
-            WaterInputDTO waterInput = new WaterInputDTO();
+            WaterInput waterInput = new WaterInput();
             waterInput.BoilRate = 1.5m;
             waterInput.GrainAbsorbtion = .15m;
             waterInput.EquipmentDeadSpace = .19m;
@@ -211,11 +205,10 @@ namespace BeerCalculator.Tests
 
             recipe.Grains = grains;
             recipe.Hops = hops;
-            recipe.Yeast = yeast;
             recipe.MashEfficiency = 65;
             recipe.WaterInput = waterInput;
 
-            RecipeMetricsDTO metrics = calculator.Calculate(recipe);
+            IRecipeMetrics metrics = calculator.Calculate(recipe);
 
             Assert.AreEqual<decimal>(1.044m, metrics.ExpectedOriginalGravity);
             Assert.AreEqual<decimal>(1.008m, metrics.ExpectedFinalGravity);

@@ -1,6 +1,5 @@
-﻿using BeerCalculator.Common.DTOs;
-using BeerCalculator.Common.Implementation;
-using BeerCalculator.Common.Interface;
+﻿using BeerCalculator.Calculators.Implementation;
+using BeerCalculator.Calculators.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace BeerCalculator.Calculators
+namespace BeerCalculator.Calculators.Implementation
 {
     public class BeerMetricsCalculator : AbstractBeerMetricsCalculator
     {
@@ -22,15 +21,15 @@ namespace BeerCalculator.Calculators
             WaterCalculator = waterCalculator;
         }
 
-        public override RecipeMetricsDTO Calculate(RecipeInputDTO recipeInput)
+        public override IRecipeMetrics Calculate(IRecipeInput recipeInput)
         {
-            RecipeMetricsDTO metrics = new RecipeMetricsDTO();
+            IRecipeMetrics metrics = new RecipeMetrics();
             CalculateAllMetrics(recipeInput);
             SetMetrics(metrics);
             return metrics;
         }
 
-        private void CalculateAllMetrics(RecipeInputDTO recipeInput)
+        private void CalculateAllMetrics(IRecipeInput recipeInput)
         {
             WaterCalculator.Calculate(recipeInput.WaterInput, recipeInput.Grains);
             GravityCalculator.Calculate(recipeInput.Grains, recipeInput.MashEfficiency, WaterCalculator.BoilVolume, recipeInput.WaterInput.DesiredBatchSize);
@@ -40,7 +39,7 @@ namespace BeerCalculator.Calculators
             SrmCalculator.Calculate(recipeInput.Grains, recipeInput.WaterInput.DesiredBatchSize);
         }
 
-        private void SetMetrics(RecipeMetricsDTO metrics)
+        private void SetMetrics(IRecipeMetrics metrics)
         {
             metrics.ExpectedOriginalGravity = GravityCalculator.OriginalGravity;
             metrics.ExpectedIbu = IbuCalculator.ExpectedIbu;

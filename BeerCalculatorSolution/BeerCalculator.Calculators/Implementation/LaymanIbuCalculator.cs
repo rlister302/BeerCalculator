@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using BeerCalculator.Common.DTOs;
 using BeerCalculator.Common.Interface;
+using BeerCalculator.Calculators.Interface;
 
-namespace BeerCalculator.Calculators
+namespace BeerCalculator.Calculators.Implementation
 {
     public class LaymanIbuCalculator : IIbuCalculator
     {
@@ -27,7 +28,7 @@ namespace BeerCalculator.Calculators
             HopUtilizationTable = table;
         }
 
-        public int Calculate(List<HopTypeDTO> hops, decimal originalGravity)
+        public int Calculate(List<IHop> hops, decimal originalGravity)
         {
             OriginalGravity = originalGravity;
             TotalAlphaAcidUnits = 0;
@@ -35,7 +36,7 @@ namespace BeerCalculator.Calculators
 
             decimal alphaAcidUnits = 0.0m;
 
-            foreach (HopTypeDTO hop in hops)
+            foreach (IHop hop in hops)
             {
                 alphaAcidUnits = (hop.Amount * hop.AlphaAcid);
                 TotalAlphaAcidUnits += alphaAcidUnits;

@@ -83,7 +83,6 @@
     <Compile Include="DTOs\WaterInputDTO.cs" />
     <Compile Include="Interface\IBootStrapper.cs" />
     <Compile Include="Interface\IRecipeMetaDataResolver.cs" />
-    <Compile Include="Interface\IRecipeMetrics.cs" />
     <Compile Include="Interface\IRequestManager.cs" />
     <Compile Include="Abstract\ModelBase.cs" />
     <Compile Include="Communication\GrainTypeRequestManager.cs" />
@@ -98,14 +97,6 @@
     <Compile Include="DTOs\RecipeDTO.cs" />
     <Compile Include="DTOs\YeastDTO.cs" />
     <Compile Include="DTOs\YeastTypeDTO.cs" />
-    <Compile Include="Interface\IAbvCalculator.cs" />
-    <Compile Include="Interface\IAttenuationCalculator.cs" />
-    <Compile Include="Interface\IBeerMetricsCalculator.cs" />
-    <Compile Include="Interface\IGravityCalculator.cs" />
-    <Compile Include="Interface\IHopUtilizationTable.cs" />
-    <Compile Include="Interface\IIbuCalculator.cs" />
-    <Compile Include="Interface\ISrmCalculator.cs" />
-    <Compile Include="Interface\IWaterCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

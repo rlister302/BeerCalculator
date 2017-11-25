@@ -1,7 +1,10 @@
 ﻿using BeerCalculator.Calculators;
+using BeerCalculator.Calculators.Implementation;
+using BeerCalculator.Calculators.Interface;
 using BeerCalculator.Common.DTOs;
 using BeerCalculator.Common.Interface;
 using BeerCalculators.Calculators;
+using BeerCalculators.Calculators.Implementation;
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Unity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -43,8 +46,8 @@ namespace BeerCalculatorTests
         [TestMethod()]
         public void TestAlphaAcidUnits()
         {
-            HopTypeDTO hop = new HopTypeDTO();
-            List<HopTypeDTO> hops = new List<HopTypeDTO>();
+            IHop hop = new Hop();
+            List<IHop> hops = new List<IHop>();
             decimal og = 1.047m;
 
             hop.AlphaAcid = 6.4m;
@@ -63,8 +66,8 @@ namespace BeerCalculatorTests
         [TestMethod()]
         public void TestAlphaAcidUnitsWithMultipleHops()
         {
-            HopTypeDTO hop = new HopTypeDTO();
-            List<HopTypeDTO> hops = new List<HopTypeDTO>();
+            IHop hop = new Hop();
+            List<IHop> hops = new List<IHop>();
             decimal og = 1.080m;
 
             hop.AlphaAcid = 6.4m;
@@ -73,7 +76,7 @@ namespace BeerCalculatorTests
 
             hops.Add(hop);
 
-            hop = new HopTypeDTO();
+            hop = new Hop();
             hop.AlphaAcid = 4.6m;
             hop.Amount = 1.0m;
             hop.BoilTime = 15;
@@ -87,8 +90,8 @@ namespace BeerCalculatorTests
         [TestMethod()]
         public void TestIbuCalculation()
         {
-            HopTypeDTO hop = new HopTypeDTO();
-            List<HopTypeDTO> hops = new List<HopTypeDTO>();
+            IHop hop = new Hop();
+            List<IHop> hops = new List<IHop>();
             decimal og = 1.080m;
 
             hop.AlphaAcid = 6.4m;
@@ -97,7 +100,7 @@ namespace BeerCalculatorTests
 
             hops.Add(hop);
 
-            hop = new HopTypeDTO();
+            hop = new Hop();
             hop.AlphaAcid = 4.6m;
             hop.Amount = 1.0m;
             hop.BoilTime = 15;

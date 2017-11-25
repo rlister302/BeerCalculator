@@ -1,13 +1,11 @@
-﻿using BeerCalculator.Common.DTOs;
-using BeerCalculator.Common.Implementation;
-using BeerCalculator.Common.Interface;
+﻿using BeerCalculator.Calculators.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BeerCalculator.Calculators
+namespace BeerCalculator.Calculators.Implementation
 {
 
     public abstract class AbstractBeerMetricsCalculator : IBeerMetricsCalculator
@@ -24,7 +22,7 @@ namespace BeerCalculator.Calculators
 
         protected IWaterCalculator WaterCalculator { get; set; }
 
-        public abstract RecipeMetricsDTO Calculate(RecipeInputDTO recipeInput);
+        public abstract IRecipeMetrics Calculate(IRecipeInput recipeInput);
 
         public AbstractBeerMetricsCalculator(IAbvCalculator abvCalculator, IAttenuationCalculator attenuationCalculator, IGravityCalculator gravityCalculator, IIbuCalculator ibuCalculator, ISrmCalculator srmCalculator, IWaterCalculator waterCalculator)
         {

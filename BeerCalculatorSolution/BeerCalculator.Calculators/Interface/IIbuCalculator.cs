@@ -1,11 +1,10 @@
-﻿using BeerCalculator.Common.DTOs;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BeerCalculator.Common.Interface
+namespace BeerCalculator.Calculators.Interface
 {
     public interface IIbuCalculator
     {
@@ -17,6 +16,6 @@ namespace BeerCalculator.Common.Interface
 
         int ExpectedIbu { get; set; }
 
-        int Calculate(List<HopTypeDTO> hops, decimal originalGravity);
+        int Calculate(List<IHop> hops, decimal originalGravity);
     }
 }

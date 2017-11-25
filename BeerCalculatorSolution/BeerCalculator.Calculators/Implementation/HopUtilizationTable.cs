@@ -1,11 +1,11 @@
-﻿using BeerCalculator.Common.Interface;
+﻿using BeerCalculator.Calculators.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BeerCalculator.Calculators
+namespace BeerCalculator.Calculators.Implementation
 {
     public class HopUtilizationTable : IHopUtilizationTable
     {

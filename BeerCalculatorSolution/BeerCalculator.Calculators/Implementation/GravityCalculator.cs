@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using BeerCalculator.Common.Interface;
 using BeerCalculator.Common.DTOs;
+using BeerCalculator.Calculators.Interface;
 
-namespace BeerCalculator.Calculators
+namespace BeerCalculator.Calculators.Implementation
 {
     public class GravityCalculator : IGravityCalculator
     {
@@ -20,7 +21,7 @@ namespace BeerCalculator.Calculators
 
         public decimal FinalVolume { get; set; }
 
-        public void Calculate(List<GrainTypeDTO> grains, int expectedEfficiency, decimal boilVolume = 6.5m, decimal finalVolume = 5.5m)
+        public void Calculate(List<IGrain> grains, int expectedEfficiency, decimal boilVolume = 6.5m, decimal finalVolume = 5.5m)
         {
             BoilVolume = boilVolume;
             FinalVolume = finalVolume;
@@ -28,13 +29,13 @@ namespace BeerCalculator.Calculators
             CalculateBoilGravityPoints(grains, expectedEfficiency);
         }
 
-        private void CalculateOriginalGravity(List<GrainTypeDTO> grains, int expectedEfficiency)
+        private void CalculateOriginalGravity(List<IGrain> grains, int expectedEfficiency)
         {
             decimal expectedOG = 1.000m;
 
             decimal totalGravity = 0.0m;
 
-            foreach (GrainTypeDTO grain in grains)
+            foreach (IGrain grain in grains)
             {
                 decimal expectedExtraction = (grain.MaximumSugarExtraction * (expectedEfficiency / 100.0m));
 
@@ -49,13 +50,13 @@ namespace BeerCalculator.Calculators
 
         }
 
-        public void CalculateBoilGravityPoints(List<GrainTypeDTO> grains, int expectedEfficiency)
+        public void CalculateBoilGravityPoints(List<IGrain> grains, int expectedEfficiency)
         {
             decimal boilPoints = decimal.Zero;
 
             decimal points = 0.0m;
 
-            foreach (GrainTypeDTO grain in grains)
+            foreach (IGrain grain in grains)
             {
                 decimal expectedExtraction = (grain.MaximumSugarExtraction * (expectedEfficiency / 100.0m));
 

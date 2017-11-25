@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BeerCalculator.Common.Interface
+namespace BeerCalculator.Calculators.Interface
 {
     public interface IWaterCalculator
     {
@@ -20,6 +20,6 @@ namespace BeerCalculator.Common.Interface
 
         decimal BoilVolume { get; set; }
 
-        void Calculate(WaterInputDTO waterMetrics, List<GrainTypeDTO> grains);
+        void Calculate(IWaterInput waterMetrics, List<IGrain> grains);
     }
 }

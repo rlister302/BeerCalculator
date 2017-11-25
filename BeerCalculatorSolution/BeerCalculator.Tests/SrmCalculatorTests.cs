@@ -1,7 +1,10 @@
 ﻿using BeerCalculator.Calculators;
+using BeerCalculator.Calculators.Implementation;
+using BeerCalculator.Calculators.Interface;
 using BeerCalculator.Common.DTOs;
 using BeerCalculator.Common.Interface;
 using BeerCalculators.Calculators;
+using BeerCalculators.Calculators.Implementation;
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Unity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -32,19 +35,19 @@ namespace BeerCalculator.Tests
         [TestMethod()]
         public void TestRoggenbierSrm()
         {
-            List<GrainTypeDTO> grains = new List<GrainTypeDTO>();
+            List<IGrain> grains = new List<IGrain>();
 
             #region Grain init
 
-            GrainTypeDTO grain;
-            grain = new GrainTypeDTO();
+            Grain grain;
+            grain = new Grain();
             grain.Amount = 2.25m;
             grain.MaximumSugarExtraction = 35;
             grain.MaximumExtractionRate = 76;
             grain.Lovibond = 1.7m;
             grains.Add(grain);
 
-            grain = new GrainTypeDTO();
+            grain = new Grain();
             grain.Amount = 2.25m;
             grain.MaximumSugarExtraction = 35;
             grain.MaximumExtractionRate = 81;
@@ -52,35 +55,35 @@ namespace BeerCalculator.Tests
             grains.Add(grain);
             
 
-            grain = new GrainTypeDTO();
+            grain = new Grain();
             grain.Amount = .25m;
             grain.MaximumSugarExtraction = 34;
             grain.MaximumExtractionRate = 75;
             grain.Lovibond = 30m;
             grains.Add(grain);
 
-            grain = new GrainTypeDTO();
+            grain = new Grain();
             grain.Amount = .25m;
             grain.MaximumSugarExtraction = 34;
             grain.MaximumExtractionRate = 75;
             grain.Lovibond = 70m;
             grains.Add(grain);
 
-            grain = new GrainTypeDTO();
+            grain = new Grain();
             grain.Amount = .25m;
             grain.MaximumSugarExtraction = 33;
             grain.MaximumExtractionRate = 75;
             grain.Lovibond = 120m;
             grains.Add(grain);
 
-            grain = new GrainTypeDTO();
+            grain = new Grain();
             grain.Amount = .25m;
             grain.MaximumSugarExtraction = 31;
             grain.MaximumExtractionRate = 75;
             grain.Lovibond = 175m;
             grains.Add(grain);
 
-            grain = new GrainTypeDTO();
+            grain = new Grain();
             grain.Amount = 7;
             grain.MaximumSugarExtraction = 29;
             grain.MaximumExtractionRate = 75;
@@ -100,12 +103,12 @@ namespace BeerCalculator.Tests
         [TestMethod()]
         public void TestHefeweizenSrm()
         {
-            List<GrainTypeDTO> grains = new List<GrainTypeDTO>();
+            List<IGrain> grains = new List<IGrain>();
 
             #region Grain init
 
-            GrainTypeDTO grain;
-            grain = new GrainTypeDTO();
+            Grain grain;
+            grain = new Grain();
             grain.Amount = 4;
             grain.MaximumSugarExtraction = 37;
             grain.MaximumExtractionRate = 80;
@@ -114,7 +117,7 @@ namespace BeerCalculator.Tests
           
             grains.Add(grain);
 
-            grain = new GrainTypeDTO();
+            grain = new Grain();
             grain.Amount = 6;
             grain.MaximumSugarExtraction = 37;
             grain.MaximumExtractionRate = 79;

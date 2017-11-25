@@ -56,17 +56,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbstractBeerMetricsCalculator.cs" />
-    <Compile Include="AbvCalculator.cs" />
-    <Compile Include="AttenuationCalculator.cs" />
-    <Compile Include="BeerMetricsCalculator.cs" />
-    <Compile Include="CalculatorBootStrapper.cs" />
-    <Compile Include="GravityCalculator.cs" />
-    <Compile Include="HopUtilizationTable.cs" />
-    <Compile Include="LaymanIbuCalculator.cs" />
+    <Compile Include="Implementation\AbstractBeerMetricsCalculator.cs" />
+    <Compile Include="Implementation\AbvCalculator.cs" />
+    <Compile Include="Implementation\AttenuationCalculator.cs" />
+    <Compile Include="Implementation\BeerMetricsCalculator.cs" />
+    <Compile Include="Implementation\CalculatorBootStrapper.cs" />
+    <Compile Include="Implementation\GravityCalculator.cs" />
+    <Compile Include="Implementation\HopUtilizationTable.cs" />
+    <Compile Include="Implementation\Grain.cs" />
+    <Compile Include="Implementation\Hop.cs" />
+    <Compile Include="Implementation\RecipeInput.cs" />
+    <Compile Include="Implementation\RecipeMetrics.cs" />
+    <Compile Include="Implementation\WaterInput.cs" />
+    <Compile Include="Interface\IAbvCalculator.cs" />
+    <Compile Include="Interface\IAttenuationCalculator.cs" />
+    <Compile Include="Interface\IBeerMetricsCalculator.cs" />
+    <Compile Include="Interface\IGrain.cs" />
+    <Compile Include="Interface\IGravityCalculator.cs" />
+    <Compile Include="Interface\IHop.cs" />
+    <Compile Include="Interface\IHopUtilizationTable.cs" />
+    <Compile Include="Interface\IIbuCalculator.cs" />
+    <Compile Include="Interface\IRecipeInput.cs" />
+    <Compile Include="Interface\IRecipeMetrics.cs" />
+    <Compile Include="Interface\ISrmCalculator.cs" />
+    <Compile Include="Interface\IWaterCalculator.cs" />
+    <Compile Include="Interface\IWaterInput.cs" />
+    <Compile Include="Interface\IYeast.cs" />
+    <Compile Include="Implementation\LaymanIbuCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SrmCalculator.cs" />
-    <Compile Include="WaterCalculator.cs" />
+    <Compile Include="Implementation\SrmCalculator.cs" />
+    <Compile Include="Implementation\WaterCalculator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BeerCalculator.Common\BeerCalculator.Common.csproj">
@@ -82,9 +101,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Implementation\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

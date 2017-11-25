@@ -1,9 +1,12 @@
 ﻿using BeerCalculator.Calculators;
+using BeerCalculator.Calculators.Implementation;
+using BeerCalculator.Calculators.Interface;
 using BeerCalculator.Common.Abstract;
 using BeerCalculator.Common.DTOs;
 using BeerCalculator.Common.Implementation;
 using BeerCalculator.Common.Interface;
 using BeerCalculators.Calculators;
+using BeerCalculators.Calculators.Implementation;
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Unity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -34,7 +37,7 @@ namespace BeerCalculator.Tests
         [TestMethod()]
         public void HefeweizenWaterMetricsTest()
         {
-            WaterInputDTO metrics = new WaterInputDTO();
+            IWaterInput metrics = new WaterInput();
 
             metrics.DesiredBatchSize = 5.5m;
             metrics.BoilRate = 1.5m;
@@ -46,10 +49,10 @@ namespace BeerCalculator.Tests
             metrics.InitialGrainTemperature = 75;
 
             #region Grain init
-            List<GrainTypeDTO> grains = new List<GrainTypeDTO>();
+            List<IGrain> grains = new List<IGrain>();
 
-            GrainTypeDTO grain;
-            grain = new GrainTypeDTO();
+            Grain grain;
+            grain = new Grain();
             grain.Amount = 4;
             grain.MaximumSugarExtraction = 37;
             grain.MaximumExtractionRate = 80;
@@ -58,14 +61,14 @@ namespace BeerCalculator.Tests
 
             grains.Add(grain);
 
-            grain = new GrainTypeDTO();
+            grain = new Grain();
             grain.Amount = 6;
             grain.MaximumSugarExtraction = 37;
             grain.MaximumExtractionRate = 79;
             grains.Add(grain);
             grain.Lovibond = 2;
 
-            grain = new GrainTypeDTO();
+            grain = new Grain();
             grain.Amount = 1;
             grain.MaximumSugarExtraction = 37;
             grain.MaximumExtractionRate = 79;

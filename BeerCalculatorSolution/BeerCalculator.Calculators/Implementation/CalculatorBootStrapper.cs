@@ -9,8 +9,10 @@ using BeerCalculator.Calculators;
 using BeerCalculator.Common.Abstract;
 using BeerCalculator.Common.Interface;
 using BeerCalculator.DataAccessLayer.DataAccess;
+using BeerCalculator.Calculators.Interface;
+using BeerCalculator.Calculators.Implementation;
 
-namespace BeerCalculators.Calculators
+namespace BeerCalculators.Calculators.Implementation
 {
     public class CalculatorBootStrapper : BootStrapper
     {

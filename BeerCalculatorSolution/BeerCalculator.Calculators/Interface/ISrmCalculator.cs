@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BeerCalculator.Common.Interface
+namespace BeerCalculator.Calculators.Interface
 {
     public interface ISrmCalculator
     {
@@ -13,6 +13,6 @@ namespace BeerCalculator.Common.Interface
 
         decimal ExpectedMcu { get; set; }
 
-        void Calculate(List<GrainTypeDTO> grains, decimal batchSize);
+        void Calculate(List<IGrain> grains, decimal batchSize);
     }
 }

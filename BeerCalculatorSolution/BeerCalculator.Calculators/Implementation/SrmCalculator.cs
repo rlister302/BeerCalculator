@@ -1,4 +1,5 @@
-﻿using BeerCalculator.Common.DTOs;
+﻿using BeerCalculator.Calculators.Interface;
+using BeerCalculator.Common.DTOs;
 using BeerCalculator.Common.Interface;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace BeerCalculator.Calculators
+namespace BeerCalculator.Calculators.Implementation
 {
     public class SrmCalculator : ISrmCalculator
     {
@@ -21,7 +22,7 @@ namespace BeerCalculator.Calculators
             ExpectedMcu = 0.0m;
         }
 
-        public void Calculate(List<GrainTypeDTO> grains, decimal batchSize)
+        public void Calculate(List<IGrain> grains, decimal batchSize)
         {
             ExpectedSrm = 0.0m;
             ExpectedMcu = 0.0m;
@@ -29,9 +30,9 @@ namespace BeerCalculator.Calculators
             CalculateSrm();
         }
 
-        private void CalculateMcu(List<GrainTypeDTO> grains, decimal batchSize)
+        private void CalculateMcu(List<IGrain> grains, decimal batchSize)
         {
-            foreach (GrainTypeDTO grain in grains)
+            foreach (IGrain grain in grains)
             {
                 decimal mcuContribution = grain.Lovibond * grain.Amount;
                 decimal mcuContributionOverBatch = mcuContribution / batchSize;
