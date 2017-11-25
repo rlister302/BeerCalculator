@@ -1,4 +1,5 @@
 ﻿using BeerCalculator.Common.Abstract;
+using BeerCalculator.Common.Implementation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,6 @@ namespace BeerCalculator.Common.Interface
 
         decimal ExpectedSrm { get; set; }
 
-        IWaterInput WaterMetrics { get; set; }
+        WaterInputDTO WaterMetrics { get; set; }
     }
 }

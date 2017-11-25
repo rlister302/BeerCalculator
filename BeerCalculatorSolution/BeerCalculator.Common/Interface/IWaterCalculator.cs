@@ -1,4 +1,5 @@
 ﻿using BeerCalculator.Common.DTOs;
+using BeerCalculator.Common.Implementation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,6 @@ namespace BeerCalculator.Common.Interface
 
         decimal BoilVolume { get; set; }
 
-        void Calculate(IWaterInput waterMetrics, List<GrainTypeDTO> grains);
+        void Calculate(WaterInputDTO waterMetrics, List<GrainTypeDTO> grains);
     }
 }

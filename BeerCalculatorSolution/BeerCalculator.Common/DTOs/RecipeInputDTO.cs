@@ -1,4 +1,5 @@
 ﻿using BeerCalculator.Common.Abstract;
+using BeerCalculator.Common.Implementation;
 using BeerCalculator.Common.Interface;
 using System;
 using System.Collections.Generic;
@@ -9,8 +10,8 @@ using System.Threading.Tasks;
 namespace BeerCalculator.Common.DTOs
 {
     [Controller("Calculator")]
-    [CreateAction("Calculate")]
-    public class RecipeInputDTO : ModelBase, IRecipeInput
+    [CreateAction("GetMetrics")]
+    public class RecipeInputDTO : ModelBase
     {
         public List<GrainTypeDTO> Grains { get; set; }
 
@@ -18,7 +19,7 @@ namespace BeerCalculator.Common.DTOs
 
         public int MashEfficiency { get; set; }
 
-        public IWaterInput WaterInput { get; set; }
+        public WaterInputDTO WaterInput { get; set; }
 
         public YeastTypeDTO Yeast { get; set; }
 

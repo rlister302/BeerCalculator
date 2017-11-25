@@ -34,7 +34,7 @@ namespace BeerCalculator.Tests
         [TestMethod()]
         public void HefeweizenWaterMetricsTest()
         {
-            IWaterInput metrics = new WaterInput();
+            WaterInputDTO metrics = new WaterInputDTO();
 
             metrics.DesiredBatchSize = 5.5m;
             metrics.BoilRate = 1.5m;

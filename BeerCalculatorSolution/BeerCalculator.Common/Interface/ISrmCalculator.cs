@@ -12,6 +12,7 @@ namespace BeerCalculator.Common.Interface
         decimal ExpectedSrm { get; set; }
 
         decimal ExpectedMcu { get; set; }
+
         void Calculate(List<GrainTypeDTO> grains, decimal batchSize);
     }
 }

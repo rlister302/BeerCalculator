@@ -34,8 +34,8 @@ namespace BeerCalculator.Tests
         [TestMethod()]
         public void TestRoggenbierMetrics()
         {
-            RecipeInput recipe = new RecipeInput();
-            recipe.WaterInput = new WaterInput();
+            RecipeInputDTO recipe = new RecipeInputDTO();
+            recipe.WaterInput = new WaterInputDTO();
 
             List<GrainTypeDTO> grains;
             List<HopTypeDTO> hops;
@@ -107,7 +107,7 @@ namespace BeerCalculator.Tests
 
             #region WaterMetrics init
 
-            WaterInput waterInput = new WaterInput();
+            WaterInputDTO waterInput = new WaterInputDTO();
             waterInput.BoilRate = 1.0m;
             waterInput.GrainAbsorbtion = .15m;
             waterInput.EquipmentDeadSpace = .19m;
@@ -129,7 +129,7 @@ namespace BeerCalculator.Tests
             recipe.WaterInput = waterInput;
 
 
-            IRecipeMetrics metrics = calculator.Calculate(recipe);
+            RecipeMetricsDTO metrics = calculator.Calculate(recipe);
 
             Assert.AreEqual<decimal>(1.055m, metrics.ExpectedOriginalGravity);
             Assert.AreEqual<decimal>(1.011m, metrics.ExpectedFinalGravity);
@@ -142,7 +142,7 @@ namespace BeerCalculator.Tests
         [TestMethod()]
         public void TestHefeweizenMetrics()
         {
-            RecipeInput recipe = new RecipeInput();
+            RecipeInputDTO recipe = new RecipeInputDTO();
             recipe.ExpectedAttenuation = 76;
 
             List<GrainTypeDTO> grains;
@@ -195,7 +195,7 @@ namespace BeerCalculator.Tests
 
             #region WaterMetrics init
 
-            WaterInput waterInput = new WaterInput();
+            WaterInputDTO waterInput = new WaterInputDTO();
             waterInput.BoilRate = 1.5m;
             waterInput.GrainAbsorbtion = .15m;
             waterInput.EquipmentDeadSpace = .19m;
@@ -215,7 +215,7 @@ namespace BeerCalculator.Tests
             recipe.MashEfficiency = 65;
             recipe.WaterInput = waterInput;
 
-            IRecipeMetrics metrics = calculator.Calculate(recipe);
+            RecipeMetricsDTO metrics = calculator.Calculate(recipe);
 
             Assert.AreEqual<decimal>(1.044m, metrics.ExpectedOriginalGravity);
             Assert.AreEqual<decimal>(1.008m, metrics.ExpectedFinalGravity);
@@ -273,7 +273,7 @@ namespace BeerCalculator.Tests
 
             #region WaterMetrics init
 
-            IWaterInput waterInput = new WaterInput();
+            WaterInputDTO waterInput = new WaterInputDTO();
             waterInput.BoilRate = 1.5m;
             waterInput.GrainAbsorbtion = .15m;
             waterInput.EquipmentDeadSpace = .19m;

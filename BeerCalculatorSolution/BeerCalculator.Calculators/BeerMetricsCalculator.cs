@@ -10,23 +10,9 @@ using System.Threading.Tasks;
 
 namespace BeerCalculator.Calculators
 {
-    public class BeerMetricsCalculator : IBeerMetricsCalculator
+    public class BeerMetricsCalculator : AbstractBeerMetricsCalculator
     {
-        public IAbvCalculator AbvCalculator { get; set; }
-
-        public IAttenuationCalculator AttenuationCalculator { get; set; }
-
-        public IGravityCalculator GravityCalculator { get; set; }
-
-        public IIbuCalculator IbuCalculator { get; set; }
-
-        public ISrmCalculator SrmCalculator { get; set; }
-
-        public IWaterCalculator WaterCalculator { get; set; }
-
-        public IRecipeMetaDataResolver MetaDataResolver { get; set; }
-
-        public BeerMetricsCalculator(IAbvCalculator abvCalculator, IAttenuationCalculator attenuationCalculator, IGravityCalculator gravityCalculator, IIbuCalculator ibuCalculator, ISrmCalculator srmCalculator, IWaterCalculator waterCalculator)
+        public BeerMetricsCalculator(IAbvCalculator abvCalculator, IAttenuationCalculator attenuationCalculator, IGravityCalculator gravityCalculator, IIbuCalculator ibuCalculator, ISrmCalculator srmCalculator, IWaterCalculator waterCalculator) : base(abvCalculator, attenuationCalculator, gravityCalculator, ibuCalculator, srmCalculator, waterCalculator)
         {
             AbvCalculator = abvCalculator;
             AttenuationCalculator = attenuationCalculator;
@@ -36,26 +22,32 @@ namespace BeerCalculator.Calculators
             WaterCalculator = waterCalculator;
         }
 
-        public IRecipeMetrics Calculate(RecipeInput recipeInput)
+        public override RecipeMetricsDTO Calculate(RecipeInputDTO recipeInput)
         {
-            IRecipeMetrics metrics = new RecipeMetrics();
+            RecipeMetricsDTO metrics = new RecipeMetricsDTO();
+            CalculateAllMetrics(recipeInput);
+            SetMetrics(metrics);
+            return metrics;
+        }
 
+        private void CalculateAllMetrics(RecipeInputDTO recipeInput)
+        {
             WaterCalculator.Calculate(recipeInput.WaterInput, recipeInput.Grains);
             GravityCalculator.Calculate(recipeInput.Grains, recipeInput.MashEfficiency, WaterCalculator.BoilVolume, recipeInput.WaterInput.DesiredBatchSize);
             IbuCalculator.Calculate(recipeInput.Hops, GravityCalculator.OriginalGravity);
             AttenuationCalculator.Calculate(GravityCalculator.BoilGravityPoints, recipeInput.ExpectedAttenuation);
             AbvCalculator.Calculate(GravityCalculator.OriginalGravity, AttenuationCalculator.FinalGravity);
             SrmCalculator.Calculate(recipeInput.Grains, recipeInput.WaterInput.DesiredBatchSize);
+        }
 
-
+        private void SetMetrics(RecipeMetricsDTO metrics)
+        {
             metrics.ExpectedOriginalGravity = GravityCalculator.OriginalGravity;
             metrics.ExpectedIbu = IbuCalculator.ExpectedIbu;
             metrics.ExpectedFinalGravity = AttenuationCalculator.FinalGravity;
             metrics.ExpectedAbv = AbvCalculator.ExpectedAbv;
             metrics.ExpectedBoilGravityPoints = GravityCalculator.BoilGravityPoints;
             metrics.ExpectedSrm = SrmCalculator.ExpectedSrm;
-
-            return metrics;
         }
     }
 }

@@ -78,16 +78,13 @@
     <Compile Include="Abstract\BootStrapper.cs" />
     <Compile Include="Communication\CalculatorRequestManager.cs" />
     <Compile Include="DTOs\RecipeInputDTO.cs" />
-    <Compile Include="Implementation\RecipeInput.cs" />
-    <Compile Include="Interface\IRecipeInput.cs" />
-    <Compile Include="Implementation\RecipeMetrics.cs" />
-    <Compile Include="Implementation\WaterInput.cs" />
+    <Compile Include="DTOs\WaterMetricsDTO.cs" />
+    <Compile Include="DTOs\RecipeMetricsDTO.cs" />
+    <Compile Include="DTOs\WaterInputDTO.cs" />
     <Compile Include="Interface\IBootStrapper.cs" />
     <Compile Include="Interface\IRecipeMetaDataResolver.cs" />
     <Compile Include="Interface\IRecipeMetrics.cs" />
     <Compile Include="Interface\IRequestManager.cs" />
-    <Compile Include="Interface\IWaterInput.cs" />
-    <Compile Include="Interface\IWaterMetrics.cs" />
     <Compile Include="Abstract\ModelBase.cs" />
     <Compile Include="Communication\GrainTypeRequestManager.cs" />
     <Compile Include="Communication\HopTypeRequestManager.cs" />
@@ -114,6 +111,9 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Implementation\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

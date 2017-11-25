@@ -1,5 +1,6 @@
 ﻿using BeerCalculator.Common.Abstract;
 using BeerCalculator.Common.DTOs;
+using BeerCalculator.Common.Implementation;
 using BeerCalculator.Common.Interface;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,7 @@ namespace BeerCalculator.Calculators
 
         private const decimal boilTime = 60m;
 
-        public void Calculate(IWaterInput waterInput, List<GrainTypeDTO> grains)
+        public void Calculate(WaterInputDTO waterInput, List<GrainTypeDTO> grains)
         {
             totalGrain = grains.Sum(x => x.Amount);
             CalculateBoilVolume(waterInput);
@@ -35,14 +36,14 @@ namespace BeerCalculator.Calculators
             CalculateWaterRequired();
         }
 
-        private void CalculateStrikeVolume(IWaterInput waterInput, List<GrainTypeDTO> grains)
+        private void CalculateStrikeVolume(WaterInputDTO waterInput, List<GrainTypeDTO> grains)
         {
             
             decimal conversion = waterInput.MashThickness / 4;
             StrikeVolume = totalGrain * conversion;
         }
 
-        private void CalculateStrikeTemperature(IWaterInput waterInput, List<GrainTypeDTO> grains)
+        private void CalculateStrikeTemperature(WaterInputDTO waterInput, List<GrainTypeDTO> grains)
         {
             decimal thicknessConversion = .2m / waterInput.MashThickness;
             decimal grainTemperatureCompensation = waterInput.MashTemperature - waterInput.InitialGrainTemperature;
@@ -50,7 +51,7 @@ namespace BeerCalculator.Calculators
             StrikeTemperature = (int)(decimal.Round(magicNumber + waterInput.MashTemperature));
         }
 
-        private void CalculateSpargeVolume(IWaterInput waterInput, decimal boilVolume)
+        private void CalculateSpargeVolume(WaterInputDTO waterInput, decimal boilVolume)
         {
             decimal grainAbsorbtion = waterInput.GrainAbsorbtion * totalGrain;
             decimal equipmentAndGrainLoss = waterInput.EquipmentDeadSpace + grainAbsorbtion;
@@ -65,7 +66,7 @@ namespace BeerCalculator.Calculators
             WaterRequired = Math.Ceiling(rawValue);
         }
 
-        private void CalculateBoilVolume(IWaterInput waterInput)
+        private void CalculateBoilVolume(WaterInputDTO waterInput)
         {
             // batch size + (boilRate * (boilTime / 60)) + TrubLoss
             decimal boilMetrics = waterInput.BoilRate * (boilTime / 60m);

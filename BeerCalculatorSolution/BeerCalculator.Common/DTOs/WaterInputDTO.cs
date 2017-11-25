@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BeerCalculator.Common.Implementation
 {
-    public class WaterInput : IWaterInput
+    public class WaterInputDTO
     {
         public decimal BoilRate { get; set; }
 

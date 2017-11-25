@@ -15,7 +15,7 @@ namespace BeerCalculator.Common.Communication
 {
     public class CalculatorRequestManager
     {
-        public async Task<RecipeMetrics> GetMetrics(RecipeInput recipeInput)
+        public async Task<RecipeMetricsDTO> GetMetrics(RecipeInputDTO recipeInput)
         { 
 
             if (recipeInput is ModelBase)
@@ -34,14 +34,14 @@ namespace BeerCalculator.Common.Communication
 
                     var content = await response.Content.ReadAsStringAsync();
 
-                    return await Task.Run(() => JsonConvert.DeserializeObject<RecipeMetrics>(content));
+                    return await Task.Run(() => JsonConvert.DeserializeObject<RecipeMetricsDTO>(content));
                 }
 
             }
             else
             {
                     // Need to modify the request managers to return a container with object instead of just object
-                return await Task.Run(() => new RecipeMetrics());
+                return await Task.Run(() => new RecipeMetricsDTO());
             }
             
 

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BeerCalculator.Common.Abstract;
 using BeerCalculator.Common.Interface;
+using BeerCalculator.Common.Implementation;
 
 namespace BeerCalculator.Common.DTOs
 {
@@ -42,9 +43,9 @@ namespace BeerCalculator.Common.DTOs
 
         public int ExpectedAttenuation { get; set; }
 
-        public IWaterMetrics WaterMetrics { get; set; }
+        public WaterMetricsDTO WaterMetrics { get; set; }
 
-        public IWaterInput WaterInput { get; set; }
+        public WaterInputDTO WaterInput { get; set; }
 
         public DateTime BrewDate { get; set; }
 
