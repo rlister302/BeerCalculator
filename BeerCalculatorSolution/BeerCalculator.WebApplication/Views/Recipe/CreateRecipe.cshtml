@@ -124,6 +124,7 @@
         recipeInput.Hops = getHops();
         recipeInput.Yeast = getYeast();
         recipeInput.ExpectedAttenuation = $('#expected-attenuation').val();
+        recipeInput.MashEfficiency = $('#expected-efficiency').val();
 
         recipeInput.WaterInput = getWaterInput();
 
@@ -164,12 +165,40 @@
             type: "POST",
             data: recipeInput,
             success: function (response) {
+                initializeRecipeMetricsModal(response);
+                $('#recipe-metrics').modal();
                 console.log(response);
             },
             error: function () {
                 alert("There was an error");
             }
         })
+    }
+
+    function clearRecipeMetricsModal()
+    {
+        $('#expected-abv').val('');
+        $('#expected-original-gravity').val('');
+        $('#expected-final-gravity').val('');
+        $('#expected-ibu').val('');
+        $('#expected-boil-gravity-points').val('');
+        $('#expected-srm').val('');
+    }
+
+    function setRecipeMetrics(recipeMetrics)
+    {
+        $('#expected-abv').val(parseFloat(recipeMetrics.ExpectedAbv).toFixed(2));
+        $('#expected-original-gravity').val(parseFloat(recipeMetrics.ExpectedOriginalGravity).toFixed(3));
+        $('#expected-final-gravity').val(parseFloat(recipeMetrics.ExpectedFinalGravity).toFixed(3));
+        $('#expected-ibu').val(recipeMetrics.ExpectedIbu);
+        $('#expected-boil-gravity-points').val(recipeMetrics.ExpectedBoilGravityPoints);
+        $('#expected-srm').val(recipeMetrics.ExpectedSrm);
+    }
+
+    function initializeRecipeMetricsModal(recipeMetrics)
+    {
+        clearRecipeMetricsModal();
+        setRecipeMetrics(recipeMetrics);
     }
 </script>
 <h2>Create Recipe</h2>
@@ -232,6 +261,9 @@
 
             <div class="col-lg-2"><h4>Initial Grain Temperature</h4></div>
             <div class="col-lg-2"><input id="initial-grain-temperature" /></div>
+
+            <div class="col-lg-2"><h4>Expected Effciency</h4></div>
+            <div class="col-lg-2"><input id="expected-efficiency" /></div>
 
 
         </div>
@@ -363,6 +395,82 @@
     </div>
 </div>
 
+<div id="recipe-metrics" class="modal fade collapse" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Recipe Metrics</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-2">
+                        <label>Expected ABV</label>
+                    </div>
+                    <div class="col-lg-4">
+                        <input id="expected-abv" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-2">
+                        <label>Expected Original Gravity</label>
+                    </div>
+                    <div class="col-lg-4">
+                        <input id="expected-original-gravity" class="form-control" />
+                    </div>
+                </div>
+            
+                <div class="row">
+                    <div class="col-lg-2">
+                        <label>Expected Final Gravity</label>
+                    </div>
+                    <div class="col-lg-4">
+                        <input id="expected-final-gravity" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-2">
+                        <label>Expected IBU</label>
+                    </div>
+                    <div class="col-lg-4">
+                        <input id="expected-ibu" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-2">
+                        <label>Expected Boil Gravity Points</label>
+                    </div>
+                    <div class="col-lg-4">
+                        <input id="expected-boil-gravity-points" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-2">
+                        <label>Expected SRM</label>
+                    </div>
+                    <div class="col-lg-4">
+                        <input id="expected-srm" class="form-control" />
+                    </div>
+                </div>
+            </div> <!-- End of modal -->
+            <div>Footer content</div>
+            @*<div class="modal-footer">
+
+                <input type="button" class="btn btn-success" onclick="saveHop()" value="Save Hop" />
+
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            </div>*@
+        </div>
+
+    </div>
+</div>
+
 
 <script>
     
@@ -376,6 +484,7 @@
         $('#trub-loss').val('.2');
         $('#mash-thickness').val(2);
         $('#initial-grain-temperature').val('75');
+        $('#expected-efficiency').val('65');
     }
 </script>
 
