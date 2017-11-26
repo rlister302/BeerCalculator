@@ -68,6 +68,7 @@
     <Compile Include="Implementation\RecipeInput.cs" />
     <Compile Include="Implementation\RecipeMetrics.cs" />
     <Compile Include="Implementation\WaterInput.cs" />
+    <Compile Include="Implementation\WaterMetrics.cs" />
     <Compile Include="Interface\IAbvCalculator.cs" />
     <Compile Include="Interface\IAttenuationCalculator.cs" />
     <Compile Include="Interface\IBeerMetricsCalculator.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Interface\ISrmCalculator.cs" />
     <Compile Include="Interface\IWaterCalculator.cs" />
     <Compile Include="Interface\IWaterInput.cs" />
+    <Compile Include="Interface\IWaterMetrics.cs" />
     <Compile Include="Interface\IYeast.cs" />
     <Compile Include="Implementation\LaymanIbuCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

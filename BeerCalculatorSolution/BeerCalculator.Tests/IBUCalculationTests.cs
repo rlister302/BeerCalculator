@@ -3,6 +3,7 @@ using BeerCalculator.Calculators.Implementation;
 using BeerCalculator.Calculators.Interface;
 using BeerCalculator.Common.DTOs;
 using BeerCalculator.Common.Interface;
+using BeerCalculator.Tests;
 using BeerCalculators.Calculators;
 using BeerCalculators.Calculators.Implementation;
 using Microsoft.Practices.ServiceLocation;
@@ -27,7 +28,7 @@ namespace BeerCalculatorTests
             IUnityContainer container = new UnityContainer();
             IServiceLocator locator = new UnityServiceLocator(container);
 
-            new CalculatorBootStrapper(container, locator);
+            new CalculatorTestBootStrapper(container, locator);
 
             ibuCalculator = container.Resolve<IIbuCalculator>();
 

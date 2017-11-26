@@ -29,7 +29,7 @@ namespace BeerCalculator.Tests
             IUnityContainer container = new UnityContainer();
             IServiceLocator locator = new UnityServiceLocator(container);
 
-            new CalculatorBootStrapper(container, locator);
+            new CalculatorTestBootStrapper(container, locator);
 
             calculator = container.Resolve<IBeerMetricsCalculator>();
         }
@@ -41,7 +41,6 @@ namespace BeerCalculator.Tests
 
             List<IGrain> grains;
             List<IHop> hops;
-            IYeast yeast;
            
 
             #region Grain init
@@ -283,8 +282,8 @@ namespace BeerCalculator.Tests
             recipe.Hops = hops;
             recipe.Yeast = yeast;
             recipe.ExpectedAttenuation = 76;
-            recipe.MashEfficiency = 65;
-            recipe.BoilVolume = 7.5m;
+            recipe.ExpectedMashEfficiency = 65;
+            //recipe.BoilVolume = 7.5m;
             recipe.FinalVolume = 5.5m;
             recipe.WaterInput = waterInput;
             #endregion

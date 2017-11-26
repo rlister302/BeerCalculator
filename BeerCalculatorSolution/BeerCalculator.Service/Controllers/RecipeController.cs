@@ -7,50 +7,56 @@ using DataAccessLayer.DataAccess;
 using Newtonsoft.Json;
 using BeerCalculator.Common.DTOs;
 using BeerCalculator.DataAccessLayer.DataAccess;
+using BeerCalculator.Service.Converter;
+using BeerCalculator.Calculators.Interface;
+using DataAccessLayer.DataAccess.Interface;
 
 namespace BeerCalculatorService.Controllers
 {
     public class RecipeController : Controller
     {
-        private RecipeDataAccess _dataAccess;
+        private IDataAccess<RecipeDTO> dataAccess;
+        private IConverter converter;
+        private IBeerMetricsCalculator calculator;
 
         public RecipeController()
         {
-            _dataAccess = new RecipeDataAccess();
+            dataAccess = new RecipeDataAccess();
         }
 
         [HttpGet]
         public ActionResult GetAllRecipes()
         {
-            var data = _dataAccess.Get();
+            var data = dataAccess.Get();
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
         public ActionResult GetRecipeDetails(RecipeDTO details)
         {
-            var data = _dataAccess.Get(details);
+            var data = dataAccess.Get(details);
             return Json(data);
         }
 
         [HttpPost]
         public ActionResult CreateRecipe(RecipeDTO create)
         {
-            var data = _dataAccess.Create(create);
+            var data = dataAccess.Create(create);
+            //IRecipeInput input = converter.Convert()
             return Json(data);
         }
 
         [HttpPut]
         public ActionResult UpdateRecipe(RecipeDTO update)
         {
-            var data = _dataAccess.Update(update);
+            var data = dataAccess.Update(update);
             return Json(data);
         }
 
         [HttpDelete]
         public ActionResult DeleteRecipe(RecipeDTO delete)
         {
-            var data = _dataAccess.Create(delete);
+            var data = dataAccess.Create(delete);
             return Json(data);
         }
     }

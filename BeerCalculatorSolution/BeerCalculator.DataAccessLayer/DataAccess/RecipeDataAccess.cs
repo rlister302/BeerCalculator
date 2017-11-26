@@ -13,6 +13,7 @@ namespace BeerCalculator.DataAccessLayer.DataAccess
     {
         public bool Create(RecipeDTO create)
         {
+            return true;
             bool status = false;
 
             using (var context = new BeerCalculatorEntities())
@@ -82,8 +83,8 @@ namespace BeerCalculator.DataAccessLayer.DataAccess
                     recipeDTO.RecipeID = recipe.RecipeID;
                     recipeDTO.RecipeName = recipe.RecipeName;
                     recipeDTO.ExpectedABV = recipe.ExpectedABV;
-                    recipeDTO.ExpectedOG = recipe.ExpectedOG;
-                    recipeDTO.ExpectedFG = recipe.ExpectedFG;
+                    recipeDTO.ExpectedOriginalGravity = recipe.ExpectedOG;
+                    recipeDTO.ExpectedFinalGravity = recipe.ExpectedFG;
                     recipeDTO.IBU = (int)recipe.IBU;
 
                     recipeDTO.Grains = GetGrainsForRecipe(context, recipeDTO.RecipeID);
@@ -108,8 +109,8 @@ namespace BeerCalculator.DataAccessLayer.DataAccess
                 recipeDTO.RecipeID = recipe.RecipeID;
                 recipeDTO.RecipeName = recipe.RecipeName;
                 recipeDTO.ExpectedABV = recipe.ExpectedABV;
-                recipeDTO.ExpectedOG = recipe.ExpectedOG;
-                recipeDTO.ExpectedFG = recipe.ExpectedFG;
+                recipeDTO.ExpectedOriginalGravity = recipe.ExpectedOG;
+                recipeDTO.ExpectedFinalGravity = recipe.ExpectedFG;
                 recipeDTO.IBU = (int)recipe.IBU;
 
                 recipeDTO.Grains = GetGrainsForRecipe(context, recipe.RecipeID);

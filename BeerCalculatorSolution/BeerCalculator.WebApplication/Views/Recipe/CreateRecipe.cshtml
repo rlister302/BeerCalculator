@@ -39,9 +39,16 @@
         recipe.Grains = getGrains();
         recipe.Hops = getHops();
         recipe.Yeast = getYeast();
+        recipe.ExpectedAttenuation = $('#expected-attenuation').val();
+        recipe.ExpectedMashEfficiency = $('#expected-efficiency').val();
+        getRecipeMetrics(recipe);
+        recipe.WaterInput = getWaterInput();
+        recipe.FinalVolume = $('#batch-size').val();
 
         return recipe;
     }
+
+
 
     function getYeast() {
         var yeast = {};
@@ -151,6 +158,11 @@
         $('#expected-ibu').val('');
         $('#expected-boil-gravity-points').val('');
         $('#expected-srm').val('');
+        $('#sparge-volume').val('');
+        $('#strike-temperature').val('');
+        $('#strike-volume').val('');
+        $('#water-required').val('');
+        $('#boil-volume').val('');
     }
 
     function setRecipeMetrics(recipeMetrics) {
@@ -160,6 +172,26 @@
         $('#expected-ibu').val(recipeMetrics.ExpectedIbu);
         $('#expected-boil-gravity-points').val(recipeMetrics.ExpectedBoilGravityPoints);
         $('#expected-srm').val(recipeMetrics.ExpectedSrm);
+        $('#sparge-volume').val(recipeMetrics.WaterMetrics.SpargeVolume);
+        $('#strike-temperature').val(recipeMetrics.WaterMetrics.StrikeTemperature);
+        $('#strike-volume').val(recipeMetrics.WaterMetrics.StrikeVolume);
+        $('#water-required').val(recipeMetrics.WaterMetrics.WaterRequired);
+        $('#boil-volume').val(recipeMetrics.WaterMetrics.BoilVolume);
+    }
+
+    function getRecipeMetrics(recipeDto) {
+        recipeDto.ExpectedABV = $('#expected-abv').val();
+        recipeDto.ExpectedOriginalGravity = $('#expected-original-gravity').val();
+        recipeDto.ExpectedFinalGravity = $('#expected-final-gravity').val();
+        recipeDto.IBU = $('#expected-ibu').val();
+        recipeDto.ExpectedBoilGravityPoints = $('#expected-boil-gravity-points').val();
+        recipeDto.ExpectedSrm = $('#expected-srm').val();
+        recipeDto.WaterMetrics = {};
+        recipeDto.WaterMetrics.SpargeVolume = $('#sparge-volume').val();
+        recipeDto.WaterMetrics.StrikeTemperature = $('#strike-temperature').val();
+        recipeDto.WaterMetrics.StrikeVolume = $('#strike-volume').val();
+        recipeDto.WaterMetrics.WaterRequired = $('#water-required').val();
+        recipeDto.WaterMetrics.BoilVolume = $('#boil-volume').val();
     }
 
     function initializeRecipeMetricsModal(recipeMetrics) {
@@ -420,6 +452,53 @@
                         <input id="expected-srm" class="form-control" />
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-lg-2">
+                        <label>Sparge Volume</label>
+                    </div>
+                    <div class="col-lg-4">
+                        <input id="sparge-volume" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-2">
+                        <label>Strike Temperature</label>
+                    </div>
+                    <div class="col-lg-4">
+                        <input id="strike-temperature" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-2">
+                        <label>Strike Volume</label>
+                    </div>
+                    <div class="col-lg-4">
+                        <input id="strike-volume" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-2">
+                        <label>Water Required</label>
+                    </div>
+                    <div class="col-lg-4">
+                        <input id="water-required" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-2">
+                        <label>Boil Volume</label>
+                    </div>
+                    <div class="col-lg-4">
+                        <input id="boil-volume" class="form-control" />
+                    </div>
+                </div>
+                
+
             </div> <!-- End of modal -->
             <div class="modal-footer">
 

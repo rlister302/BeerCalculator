@@ -180,6 +180,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Bootstrapper\ServiceBootstapper.cs" />
     <Compile Include="Controllers\CalculatorController.cs" />
     <Compile Include="Controllers\GrainTypeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -187,6 +188,9 @@
     <Compile Include="Controllers\IngredientController.cs" />
     <Compile Include="Controllers\RecipeController.cs" />
     <Compile Include="Controllers\YeastTypeController.cs" />
+    <Compile Include="Converter\IConverter.cs" />
+    <Compile Include="Converter\RecipeInputConverter.cs" />
+    <Compile Include="Converter\Extensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

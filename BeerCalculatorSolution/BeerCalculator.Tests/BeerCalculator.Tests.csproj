@@ -73,6 +73,7 @@
     <Compile Include="AbvCalculationTests.cs" />
     <Compile Include="AttenuationCalculationTests.cs" />
     <Compile Include="BeerMetricsCalculatorTests.cs" />
+    <Compile Include="CalculatorTestBootStrapper.cs" />
     <Compile Include="GravityCalculationTests.cs" />
     <Compile Include="IBUCalculationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

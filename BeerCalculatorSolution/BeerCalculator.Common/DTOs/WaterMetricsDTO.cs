@@ -8,7 +8,7 @@ namespace BeerCalculator.Common.DTOs
 {
     public class WaterMetricsDTO
     {
-        public int WaterRequired { get; set; }
+        public decimal WaterRequired { get; set; }
 
         public decimal StrikeVolume { get; set; }
 

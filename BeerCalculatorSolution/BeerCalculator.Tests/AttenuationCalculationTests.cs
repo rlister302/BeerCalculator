@@ -24,7 +24,7 @@ namespace BeerCalculator.Tests
             IUnityContainer container = new UnityContainer();
             IServiceLocator locator = new UnityServiceLocator(container);
 
-            new CalculatorBootStrapper(container, locator);
+            new CalculatorTestBootStrapper(container, locator);
 
             attenuationCalculator = container.Resolve<IAttenuationCalculator>();
         }

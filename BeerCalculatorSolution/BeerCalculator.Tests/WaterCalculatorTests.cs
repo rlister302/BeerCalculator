@@ -29,7 +29,7 @@ namespace BeerCalculator.Tests
             IUnityContainer container = new UnityContainer();
             IServiceLocator locator = new UnityServiceLocator(container);
 
-            new CalculatorBootStrapper(container, locator);
+            new CalculatorTestBootStrapper(container, locator);
 
             calculator = container.Resolve<IWaterCalculator>();
         }
@@ -37,16 +37,16 @@ namespace BeerCalculator.Tests
         [TestMethod()]
         public void HefeweizenWaterMetricsTest()
         {
-            IWaterInput metrics = new WaterInput();
+            IWaterInput input = new WaterInput();
 
-            metrics.DesiredBatchSize = 5.5m;
-            metrics.BoilRate = 1.5m;
-            metrics.GrainAbsorbtion = .15m;
-            metrics.EquipmentDeadSpace = .19m;
-            metrics.TrubLoss = .5m;
-            metrics.MashThickness = 2;
-            metrics.MashTemperature = 152;
-            metrics.InitialGrainTemperature = 75;
+            input.DesiredBatchSize = 5.5m;
+            input.BoilRate = 1.5m;
+            input.GrainAbsorbtion = .15m;
+            input.EquipmentDeadSpace = .19m;
+            input.TrubLoss = .5m;
+            input.MashThickness = 2;
+            input.MashTemperature = 152;
+            input.InitialGrainTemperature = 75;
 
             #region Grain init
             List<IGrain> grains = new List<IGrain>();
@@ -78,13 +78,13 @@ namespace BeerCalculator.Tests
 
             #endregion
 
-            calculator.Calculate(metrics, grains);
+            IWaterMetrics metrics = calculator.Calculate(input, grains);
 
-            Assert.AreEqual<decimal>(5.5m, calculator.StrikeVolume);
-            Assert.AreEqual<int>(160, calculator.StrikeTemperature);
-            Assert.AreEqual<decimal>(3.84m, calculator.SpargeVolume);
-            Assert.AreEqual<decimal>(10, calculator.WaterRequired);
-            Assert.AreEqual<decimal>(7.5m, calculator.BoilVolume);
+            Assert.AreEqual<decimal>(5.5m, metrics.StrikeVolume);
+            Assert.AreEqual<int>(160, metrics.StrikeTemperature);
+            Assert.AreEqual<decimal>(3.84m, metrics.SpargeVolume);
+            Assert.AreEqual<decimal>(10, metrics.WaterRequired);
+            Assert.AreEqual<decimal>(7.5m, metrics.BoilVolume);
 
 
         }

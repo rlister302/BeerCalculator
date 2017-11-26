@@ -10,6 +10,7 @@ using BeerCalculator.Common.Interface;
 using BeerCalculator.Calculators.Interface;
 using BeerCalculator.Calculators.Implementation;
 using BeerCalculators.Calculators.Implementation;
+using BeerCalculator.Tests;
 
 namespace BeerCalculatorTests
 {
@@ -24,7 +25,7 @@ namespace BeerCalculatorTests
             IUnityContainer container = new UnityContainer();
             IServiceLocator locator = new UnityServiceLocator(container);
 
-            new CalculatorBootStrapper(container, locator);
+            new CalculatorTestBootStrapper(container, locator);
 
             gravityCalculator = container.Resolve<IGravityCalculator>();
 

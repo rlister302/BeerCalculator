@@ -23,23 +23,24 @@ namespace BeerCalculator.Calculators.Implementation
 
         public override IRecipeMetrics Calculate(IRecipeInput recipeInput)
         {
-            IRecipeMetrics metrics = new RecipeMetrics();
-            CalculateAllMetrics(recipeInput);
-            SetMetrics(metrics);
+            IRecipeMetrics metrics = CalculateAllMetrics(recipeInput);
             return metrics;
         }
 
-        private void CalculateAllMetrics(IRecipeInput recipeInput)
+        private IRecipeMetrics CalculateAllMetrics(IRecipeInput recipeInput)
         {
-            WaterCalculator.Calculate(recipeInput.WaterInput, recipeInput.Grains);
-            GravityCalculator.Calculate(recipeInput.Grains, recipeInput.MashEfficiency, WaterCalculator.BoilVolume, recipeInput.WaterInput.DesiredBatchSize);
+            IRecipeMetrics recipeMetrics = new RecipeMetrics();
+            IWaterMetrics waterMetrics = WaterCalculator.Calculate(recipeInput.WaterInput, recipeInput.Grains);
+            GravityCalculator.Calculate(recipeInput.Grains, recipeInput.MashEfficiency, waterMetrics.BoilVolume, recipeInput.WaterInput.DesiredBatchSize);
             IbuCalculator.Calculate(recipeInput.Hops, GravityCalculator.OriginalGravity);
             AttenuationCalculator.Calculate(GravityCalculator.BoilGravityPoints, recipeInput.ExpectedAttenuation);
             AbvCalculator.Calculate(GravityCalculator.OriginalGravity, AttenuationCalculator.FinalGravity);
             SrmCalculator.Calculate(recipeInput.Grains, recipeInput.WaterInput.DesiredBatchSize);
+            SetMetrics(recipeMetrics, waterMetrics);
+            return recipeMetrics;
         }
 
-        private void SetMetrics(IRecipeMetrics metrics)
+        private void SetMetrics(IRecipeMetrics metrics, IWaterMetrics waterMetrics)
         {
             metrics.ExpectedOriginalGravity = GravityCalculator.OriginalGravity;
             metrics.ExpectedIbu = IbuCalculator.ExpectedIbu;
@@ -47,6 +48,7 @@ namespace BeerCalculator.Calculators.Implementation
             metrics.ExpectedAbv = AbvCalculator.ExpectedAbv;
             metrics.ExpectedBoilGravityPoints = GravityCalculator.BoilGravityPoints;
             metrics.ExpectedSrm = SrmCalculator.ExpectedSrm;
+            metrics.WaterMetrics = waterMetrics;
         }
     }
 }

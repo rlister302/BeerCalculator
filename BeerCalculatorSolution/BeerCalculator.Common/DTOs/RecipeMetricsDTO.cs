@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BeerCalculator.Common.Interface;
+using BeerCalculator.Common.DTOs;
 
 namespace BeerCalculator.Common.Implementation
 {
-    public class RecipeMetricsDTO 
+    public class RecipeMetricsDTO
     {
         public decimal ExpectedAbv { get; set; }
 
@@ -20,5 +21,7 @@ namespace BeerCalculator.Common.Implementation
         public decimal ExpectedBoilGravityPoints { get; set; }
 
         public decimal ExpectedSrm { get; set; }
+
+        public WaterMetricsDTO WaterMetrics { get; set; }
     }
 }

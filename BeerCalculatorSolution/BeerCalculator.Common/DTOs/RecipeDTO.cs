@@ -23,25 +23,31 @@ namespace BeerCalculator.Common.DTOs
 
         public decimal ExpectedABV { get; set; }
 
-        public decimal ActualABV { get; set; }
+        public decimal? ActualABV { get; set; }
 
-        public decimal ExpectedOG { get; set; }
+        public decimal ExpectedOriginalGravity { get; set; }
 
-        public decimal ActualOG { get; set; }
+        public decimal? ActualOriginalGravity { get; set; }
 
-        public decimal ExpectedFG { get; set; }
+        public decimal ExpectedFinalGravity { get; set; }
 
-        public decimal ActualFG { get; set; }
+        public decimal? ActualFinalGravity { get; set; }
 
         public int IBU { get; set; }
 
-        public int MashEfficiency { get; set; }
+        public int ExpectedMashEfficiency { get; set; }
 
-        public decimal BoilVolume { get; set; }
+        public int? AcutalMashEfficiency { get; set; }
 
         public decimal FinalVolume { get; set; }
 
         public int ExpectedAttenuation { get; set; }
+
+        public int? ActualAttenuation { get; set; }
+
+        public decimal ExpectedBoilGravityPoints { get; set; }
+
+        public decimal ExpectedSrm { get; set; }
 
         public WaterMetricsDTO WaterMetrics { get; set; }
 

@@ -21,6 +21,6 @@ namespace BeerCalculator.Calculators.Implementation
 
         public decimal ExpectedSrm { get; set; }
 
-        public IWaterInput WaterMetrics { get; set; }
+        public IWaterMetrics WaterMetrics { get; set; }
     }
 }
