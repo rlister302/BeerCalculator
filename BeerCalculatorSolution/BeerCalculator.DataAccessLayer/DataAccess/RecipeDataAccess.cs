@@ -13,7 +13,6 @@ namespace BeerCalculator.DataAccessLayer.DataAccess
     {
         public bool Create(RecipeDTO create)
         {
-            return true;
             bool status = false;
 
             using (var context = new BeerCalculatorEntities())
@@ -83,8 +82,8 @@ namespace BeerCalculator.DataAccessLayer.DataAccess
                     recipeDTO.RecipeID = recipe.RecipeID;
                     recipeDTO.RecipeName = recipe.RecipeName;
                     recipeDTO.ExpectedABV = recipe.ExpectedABV;
-                    recipeDTO.ExpectedOriginalGravity = recipe.ExpectedOG;
-                    recipeDTO.ExpectedFinalGravity = recipe.ExpectedFG;
+                    recipeDTO.ExpectedOriginalGravity = recipe.ExpectedOriginalGravity;
+                    recipeDTO.ExpectedFinalGravity = recipe.ExpectedFinalGravity;
                     recipeDTO.IBU = (int)recipe.IBU;
 
                     recipeDTO.Grains = GetGrainsForRecipe(context, recipeDTO.RecipeID);
@@ -109,8 +108,8 @@ namespace BeerCalculator.DataAccessLayer.DataAccess
                 recipeDTO.RecipeID = recipe.RecipeID;
                 recipeDTO.RecipeName = recipe.RecipeName;
                 recipeDTO.ExpectedABV = recipe.ExpectedABV;
-                recipeDTO.ExpectedOriginalGravity = recipe.ExpectedOG;
-                recipeDTO.ExpectedFinalGravity = recipe.ExpectedFG;
+                recipeDTO.ExpectedOriginalGravity = recipe.ExpectedOriginalGravity;
+                recipeDTO.ExpectedFinalGravity = recipe.ExpectedFinalGravity;
                 recipeDTO.IBU = (int)recipe.IBU;
 
                 recipeDTO.Grains = GetGrainsForRecipe(context, recipe.RecipeID);
@@ -181,16 +180,26 @@ namespace BeerCalculator.DataAccessLayer.DataAccess
             var recipeEntity = new Recipe();
 
             recipeEntity.RecipeName = recipe.RecipeName;
-
-                //TODO: This will eventually be calculated... for now just mock
-            //recipeEntity.ExpectedABV = (double)recipe.ExpectedABV;
-            //recipeEntity.ExpectedOG = (double)recipe.ExpectedOG;
-            //recipeEntity.ExpectedFG = (double)recipe.ExpectedFG;
-            recipeEntity.ExpectedABV = 4.2m;
-            recipeEntity.ExpectedOG = 0.000m;
-            recipeEntity.ExpectedFG = 0.000m;
-            recipeEntity.ExpectedMashEfficiency = 70;
-            recipeEntity.IBU = (int)recipe.IBU;
+            recipeEntity.ExpectedABV = recipe.ExpectedABV;
+            recipeEntity.ExpectedOriginalGravity = recipe.ExpectedOriginalGravity;
+            recipeEntity.ExpectedFinalGravity = recipe.ExpectedFinalGravity;
+            recipeEntity.ExpectedMashEfficiency = recipe.ExpectedMashEfficiency;
+            recipeEntity.IBU = recipe.IBU;
+            recipeEntity.BoilVolume = recipe.WaterMetrics.BoilVolume;
+            recipeEntity.FinalVolume = recipe.FinalVolume;
+            recipeEntity.BoilRate = recipe.WaterInput.BoilRate;
+            recipeEntity.EquipmentDeadSpace = recipe.WaterInput.EquipmentDeadSpace;
+            recipeEntity.GrainAbsorbtion = recipe.WaterInput.GrainAbsorbtion;
+            recipeEntity.MashTemperature = (int)recipe.WaterInput.MashTemperature;
+            recipeEntity.MashThickness = recipe.WaterInput.MashThickness;
+            recipeEntity.TrubLoss = recipe.WaterInput.TrubLoss;
+            recipeEntity.InitialGrainTemperature = recipe.WaterInput.InitialGrainTemperature;
+            recipeEntity.WaterRequired = (int)recipe.WaterMetrics.WaterRequired;
+            recipeEntity.StrikeTemperature = recipe.WaterMetrics.StrikeTemperature;
+            recipeEntity.StrikeVolume = recipe.WaterMetrics.StrikeVolume;
+            recipeEntity.SpargeVolume = recipe.WaterMetrics.SpargeVolume;
+            recipeEntity.SpargeTemperature = 170;
+            recipeEntity.ExpectedBoilGravityPoints = recipe.ExpectedBoilGravityPoints;
 
             return recipeEntity;
         }

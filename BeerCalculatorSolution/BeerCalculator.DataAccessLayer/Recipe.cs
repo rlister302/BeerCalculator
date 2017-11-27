@@ -26,15 +26,28 @@ namespace BeerCalculator.DataAccessLayer
         public string RecipeName { get; set; }
         public decimal ExpectedABV { get; set; }
         public Nullable<decimal> ActualABV { get; set; }
-        public decimal ExpectedOG { get; set; }
-        public Nullable<decimal> ActualOG { get; set; }
-        public decimal ExpectedFG { get; set; }
-        public Nullable<decimal> ActualFG { get; set; }
+        public decimal ExpectedOriginalGravity { get; set; }
+        public Nullable<decimal> ActualOriginalGravity { get; set; }
+        public decimal ExpectedFinalGravity { get; set; }
+        public Nullable<decimal> ActualFinalGravity { get; set; }
         public int IBU { get; set; }
-        public int ExpectedMashEfficiency { get; set; }
-        public Nullable<int> ActualMashEfficiency { get; set; }
         public decimal BoilVolume { get; set; }
         public decimal FinalVolume { get; set; }
+        public int ExpectedMashEfficiency { get; set; }
+        public Nullable<int> ActualMashEfficiency { get; set; }
+        public decimal BoilRate { get; set; }
+        public decimal EquipmentDeadSpace { get; set; }
+        public decimal GrainAbsorbtion { get; set; }
+        public int MashTemperature { get; set; }
+        public decimal MashThickness { get; set; }
+        public decimal TrubLoss { get; set; }
+        public decimal InitialGrainTemperature { get; set; }
+        public int WaterRequired { get; set; }
+        public decimal StrikeVolume { get; set; }
+        public int StrikeTemperature { get; set; }
+        public decimal SpargeVolume { get; set; }
+        public int SpargeTemperature { get; set; }
+        public decimal ExpectedBoilGravityPoints { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Grain> Grains { get; set; }

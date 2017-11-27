@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="BeerCalculatorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="BeerCalculatorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Grain">
           <Key>
             <PropertyRef Name="GrainID" />
@@ -51,15 +51,28 @@
           <Property Name="RecipeName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ExpectedABV" Type="decimal" Precision="4" Scale="1" Nullable="false" />
           <Property Name="ActualABV" Type="decimal" Precision="4" Scale="1" />
-          <Property Name="ExpectedOG" Type="decimal" Precision="4" Scale="3" Nullable="false" />
-          <Property Name="ActualOG" Type="decimal" Precision="4" Scale="3" />
-          <Property Name="ExpectedFG" Type="decimal" Precision="4" Scale="3" Nullable="false" />
-          <Property Name="ActualFG" Type="decimal" Precision="4" Scale="3" />
+          <Property Name="ExpectedOriginalGravity" Type="decimal" Precision="4" Scale="3" Nullable="false" />
+          <Property Name="ActualOriginalGravity" Type="decimal" Precision="4" Scale="3" />
+          <Property Name="ExpectedFinalGravity" Type="decimal" Precision="4" Scale="3" Nullable="false" />
+          <Property Name="ActualFinalGravity" Type="decimal" Precision="4" Scale="3" />
           <Property Name="IBU" Type="int" Nullable="false" />
           <Property Name="BoilVolume" Type="decimal" Precision="4" Scale="2" Nullable="false" />
           <Property Name="FinalVolume" Type="decimal" Precision="4" Scale="2" Nullable="false" />
           <Property Name="ExpectedMashEfficiency" Type="int" Nullable="false" />
           <Property Name="ActualMashEfficiency" Type="int" />
+          <Property Name="BoilRate" Type="decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="EquipmentDeadSpace" Type="decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="GrainAbsorbtion" Type="decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="MashTemperature" Type="int" Nullable="false" />
+          <Property Name="MashThickness" Type="decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="TrubLoss" Type="decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="InitialGrainTemperature" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="WaterRequired" Type="int" Nullable="false" />
+          <Property Name="StrikeVolume" Type="decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="StrikeTemperature" Type="int" Nullable="false" />
+          <Property Name="SpargeVolume" Type="decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="SpargeTemperature" Type="int" Nullable="false" />
+          <Property Name="ExpectedBoilGravityPoints" Type="decimal" Precision="5" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="Yeast">
           <Key>
@@ -186,7 +199,8 @@
             <End Role="Yeast" EntitySet="Yeast" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BeerCalculatorModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -209,8 +223,8 @@
           <Property Name="GrainName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MaximumSugarExtraction" Type="Int32" Nullable="false" />
           <Property Name="MaximumExtractionRate" Type="Int32" Nullable="false" />
+          <Property Name="Lovibond" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
           <NavigationProperty Name="Grains" Relationship="Self.FK__Grain__GrainType__2B3F6F97" FromRole="GrainType" ToRole="Grain" />
-          <Property Name="Lovibond" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
         </EntityType>
         <EntityType Name="Hop">
           <Key>
@@ -221,9 +235,9 @@
           <Property Name="Amount" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
           <Property Name="AlphaAcid" Type="Decimal" Precision="3" Scale="1" Nullable="false" />
           <Property Name="RecipeID" Type="Int32" Nullable="false" />
+          <Property Name="BoilTime" Type="Int32" Nullable="false" />
           <NavigationProperty Name="HopType" Relationship="Self.FK__Hop__HopTypeID__2F10007B" FromRole="Hop" ToRole="HopType" />
           <NavigationProperty Name="Recipe" Relationship="Self.FK__Hop__RecipeID__300424B4" FromRole="Hop" ToRole="Recipe" />
-          <Property Name="BoilTime" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="HopType">
           <Key>
@@ -242,18 +256,31 @@
           <Property Name="RecipeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ExpectedABV" Type="Decimal" Precision="4" Scale="1" Nullable="false" />
           <Property Name="ActualABV" Type="Decimal" Precision="4" Scale="1" />
-          <Property Name="ExpectedOG" Type="Decimal" Precision="4" Scale="3" Nullable="false" />
-          <Property Name="ActualOG" Type="Decimal" Precision="4" Scale="3" />
-          <Property Name="ExpectedFG" Type="Decimal" Precision="4" Scale="3" Nullable="false" />
-          <Property Name="ActualFG" Type="Decimal" Precision="4" Scale="3" />
+          <Property Name="ExpectedOriginalGravity" Type="Decimal" Precision="4" Scale="3" Nullable="false" />
+          <Property Name="ActualOriginalGravity" Type="Decimal" Precision="4" Scale="3" />
+          <Property Name="ExpectedFinalGravity" Type="Decimal" Precision="4" Scale="3" Nullable="false" />
+          <Property Name="ActualFinalGravity" Type="Decimal" Precision="4" Scale="3" />
           <Property Name="IBU" Type="Int32" Nullable="false" />
+          <Property Name="BoilVolume" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="FinalVolume" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
           <Property Name="ExpectedMashEfficiency" Type="Int32" Nullable="false" />
           <Property Name="ActualMashEfficiency" Type="Int32" />
+          <Property Name="BoilRate" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="EquipmentDeadSpace" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="GrainAbsorbtion" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="MashTemperature" Type="Int32" Nullable="false" />
+          <Property Name="MashThickness" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="TrubLoss" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="InitialGrainTemperature" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="WaterRequired" Type="Int32" Nullable="false" />
+          <Property Name="StrikeVolume" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="StrikeTemperature" Type="Int32" Nullable="false" />
+          <Property Name="SpargeVolume" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="SpargeTemperature" Type="Int32" Nullable="false" />
+          <Property Name="ExpectedBoilGravityPoints" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
           <NavigationProperty Name="Grains" Relationship="Self.FK__Grain__RecipeID__2C3393D0" FromRole="Recipe" ToRole="Grain" />
           <NavigationProperty Name="Hops" Relationship="Self.FK__Hop__RecipeID__300424B4" FromRole="Recipe" ToRole="Hop" />
           <NavigationProperty Name="Yeasts" Relationship="Self.FK__Yeast__RecipeID__33D4B598" FromRole="Recipe" ToRole="Yeast" />
-          <Property Name="BoilVolume" Type="Decimal" Nullable="false" Precision="4" Scale="2" />
-          <Property Name="FinalVolume" Type="Decimal" Nullable="false" Precision="4" Scale="2" />
         </EntityType>
         <EntityType Name="Yeast">
           <Key>
@@ -402,23 +429,23 @@
           <EntitySetMapping Name="GrainTypes">
             <EntityTypeMapping TypeName="BeerCalculatorModel.GrainType">
               <MappingFragment StoreEntitySet="GrainType">
-                <ScalarProperty Name="Lovibond" ColumnName="Lovibond" />
                 <ScalarProperty Name="GrainTypeID" ColumnName="GrainTypeID" />
                 <ScalarProperty Name="GrainName" ColumnName="GrainName" />
                 <ScalarProperty Name="MaximumSugarExtraction" ColumnName="MaximumSugarExtraction" />
                 <ScalarProperty Name="MaximumExtractionRate" ColumnName="MaximumExtractionRate" />
+                <ScalarProperty Name="Lovibond" ColumnName="Lovibond" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Hops">
             <EntityTypeMapping TypeName="BeerCalculatorModel.Hop">
               <MappingFragment StoreEntitySet="Hop">
-                <ScalarProperty Name="BoilTime" ColumnName="BoilTime" />
                 <ScalarProperty Name="HopID" ColumnName="HopID" />
                 <ScalarProperty Name="HopTypeID" ColumnName="HopTypeID" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="AlphaAcid" ColumnName="AlphaAcid" />
                 <ScalarProperty Name="RecipeID" ColumnName="RecipeID" />
+                <ScalarProperty Name="BoilTime" ColumnName="BoilTime" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -434,19 +461,32 @@
           <EntitySetMapping Name="Recipes">
             <EntityTypeMapping TypeName="BeerCalculatorModel.Recipe">
               <MappingFragment StoreEntitySet="Recipe">
-                <ScalarProperty Name="FinalVolume" ColumnName="FinalVolume" />
-                <ScalarProperty Name="BoilVolume" ColumnName="BoilVolume" />
                 <ScalarProperty Name="RecipeID" ColumnName="RecipeID" />
                 <ScalarProperty Name="RecipeName" ColumnName="RecipeName" />
                 <ScalarProperty Name="ExpectedABV" ColumnName="ExpectedABV" />
                 <ScalarProperty Name="ActualABV" ColumnName="ActualABV" />
-                <ScalarProperty Name="ExpectedOG" ColumnName="ExpectedOG" />
-                <ScalarProperty Name="ActualOG" ColumnName="ActualOG" />
-                <ScalarProperty Name="ExpectedFG" ColumnName="ExpectedFG" />
-                <ScalarProperty Name="ActualFG" ColumnName="ActualFG" />
+                <ScalarProperty Name="ExpectedOriginalGravity" ColumnName="ExpectedOriginalGravity" />
+                <ScalarProperty Name="ActualOriginalGravity" ColumnName="ActualOriginalGravity" />
+                <ScalarProperty Name="ExpectedFinalGravity" ColumnName="ExpectedFinalGravity" />
+                <ScalarProperty Name="ActualFinalGravity" ColumnName="ActualFinalGravity" />
                 <ScalarProperty Name="IBU" ColumnName="IBU" />
+                <ScalarProperty Name="BoilVolume" ColumnName="BoilVolume" />
+                <ScalarProperty Name="FinalVolume" ColumnName="FinalVolume" />
                 <ScalarProperty Name="ExpectedMashEfficiency" ColumnName="ExpectedMashEfficiency" />
                 <ScalarProperty Name="ActualMashEfficiency" ColumnName="ActualMashEfficiency" />
+                <ScalarProperty Name="BoilRate" ColumnName="BoilRate" />
+                <ScalarProperty Name="EquipmentDeadSpace" ColumnName="EquipmentDeadSpace" />
+                <ScalarProperty Name="GrainAbsorbtion" ColumnName="GrainAbsorbtion" />
+                <ScalarProperty Name="MashTemperature" ColumnName="MashTemperature" />
+                <ScalarProperty Name="MashThickness" ColumnName="MashThickness" />
+                <ScalarProperty Name="TrubLoss" ColumnName="TrubLoss" />
+                <ScalarProperty Name="InitialGrainTemperature" ColumnName="InitialGrainTemperature" />
+                <ScalarProperty Name="WaterRequired" ColumnName="WaterRequired" />
+                <ScalarProperty Name="StrikeVolume" ColumnName="StrikeVolume" />
+                <ScalarProperty Name="StrikeTemperature" ColumnName="StrikeTemperature" />
+                <ScalarProperty Name="SpargeVolume" ColumnName="SpargeVolume" />
+                <ScalarProperty Name="SpargeTemperature" ColumnName="SpargeTemperature" />
+                <ScalarProperty Name="ExpectedBoilGravityPoints" ColumnName="ExpectedBoilGravityPoints" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
