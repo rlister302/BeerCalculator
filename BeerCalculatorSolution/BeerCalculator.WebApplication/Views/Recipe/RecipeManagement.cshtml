@@ -13,10 +13,16 @@
                             Recipe Name
                         </td>
                         <td>
-                            Original Gravity
+                            Expected Original Gravity
+                        </td>
+                        <td>
+                            Expected Final Gravity
                         </td>
                         <td>
                             ABV
+                        </td>
+                        <td>
+                            IBU
                         </td>
                     </tr>
                 </thead>
@@ -25,16 +31,22 @@
                     {
                         <tr>
                             <td>
-                                @recipe.RecipeID
+                                <a href="javascript:void(0)" onclick="getRecipe(@recipe.RecipeID)">@recipe.RecipeID</a>
                             </td>
                             <td>
                                 @recipe.RecipeName
                             </td>
                             <td>
-                                @recipe.ExpectedOG.ToString("0.000")
+                                @recipe.ExpectedOriginalGravity
+                            </td>
+                            <td>
+                                @recipe.ExpectedFinalGravity
                             </td>
                             <td>
                                 @recipe.ExpectedABV
+                            </td>
+                            <td>
+                                @recipe.IBU
                             </td>
                         </tr>
                     }
@@ -42,3 +54,19 @@
             </table>
         </div>
     </div>
+
+    <script>
+        function getRecipe(recipeId)
+        {
+            $.ajax({
+                url: "/Recipe/GetRecipe/?get=" + recipeId,
+                type: "GET",
+                success: function (response) {
+                    $('#body').html(response);
+                },
+                error: function () {
+                    alert("There was an error");
+                }
+            })
+        }
+    </script>

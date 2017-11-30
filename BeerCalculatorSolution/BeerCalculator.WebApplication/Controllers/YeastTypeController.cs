@@ -7,44 +7,56 @@ using System.Threading.Tasks;
 using BeerCalculator.Common.Interface;
 using BeerCalculator.Common.Communication;
 using BeerCalculator.Common.DTOs;
+using Microsoft.Practices.Unity;
+using BeerCalculator.WebApplication.BootStrapper;
+using Microsoft.Practices.ServiceLocation;
 
 namespace BeerCalculatorWebApplication.Controllers
 {
     public class YeastTypeController : Controller
     {
-        private IRequestManager<YeastTypeDTO> yeastTypeRequestManager = new YeastTypeRequestManager();
+        private IRequestManager requestManager;
+
+        public YeastTypeController()
+        {
+            IUnityContainer container = new UnityContainer();
+            IServiceLocator locator = new UnityServiceLocator(container);
+            new WebAppBootStrapper(container, locator);
+            requestManager = container.Resolve<IRequestManager>();
+        }
+
         [HttpGet]
         public async Task<ActionResult> YeastManagement()
         {
-            var model = await yeastTypeRequestManager.RetreiveAll(new YeastTypeDTO());
+            var model = await requestManager.GetAll(new YeastTypeDTO(), typeof(MessageContainer<IEnumerable<YeastTypeDTO>>));
             return PartialView(model);
         }
 
         [HttpGet]
         public async Task<ActionResult> GetYeastType(YeastTypeDTO get)
         {
-            var result = await yeastTypeRequestManager.Retreive(get);
+            var result = await requestManager.Get(get, typeof(MessageContainer<YeastTypeDTO>));
             return Json(result);
         }
 
         [HttpPost]
         public async Task<ActionResult> CreateYeastType(YeastTypeDTO create)
         {
-            var result = await yeastTypeRequestManager.Create(create);
+            var result = await requestManager.Create(create, typeof(MessageContainer<bool>));
             return Json(result);
         }
 
         [HttpPut]
         public async Task<ActionResult> UpdateYeastType(YeastTypeDTO update)
         {
-            var result = await yeastTypeRequestManager.Update(update);
+            var result = await requestManager.Update(update, typeof(MessageContainer<bool>));
             return Json(result);
         }
 
         [HttpDelete]
         public async Task<ActionResult> DeleteYeastType(YeastTypeDTO delete)
         {
-            var result = await yeastTypeRequestManager.Delete(delete);
+            var result = await requestManager.Delete(delete, typeof(MessageContainer<bool>));
             return Json(result);
         }
     }

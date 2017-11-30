@@ -1,4 +1,4 @@
-﻿@model List<BeerCalculator.Common.DTOs.HopTypeDTO>
+﻿@model BeerCalculator.Common.DTOs.MessageContainer<IEnumerable<BeerCalculator.Common.DTOs.HopTypeDTO>>
 <h2>Hop Management</h2>
 <div>
     <div>
@@ -17,7 +17,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach(var hopType in Model)
+                @foreach(var hopType in Model.Data)
                 {
                     <tr>
                         <td>

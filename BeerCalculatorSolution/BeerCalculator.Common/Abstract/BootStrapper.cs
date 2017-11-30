@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Unity;
-using Common.Common.Interface;
+using BeerCalculator.Common.Interface;
 
 namespace BeerCalculator.Common.Abstract
 {

@@ -1,6 +1,7 @@
-﻿@model BeerCalculator.Common.DTOs.MessageContainer<BeerCalculator.Common.DTOs.IngredientDTO>
+﻿
+@model BeerCalculator.Common.DTOs.IngredientDTO
 
-<h2>Create Recipe</h2>
+<h2>Recipe Details</h2>
 <div>
     <div class="row">
 
@@ -76,6 +77,22 @@
         <div class="bottom-border bottom-margin-push"></div>
 
         <div class="grain-table">
+            @foreach (var recipeGrain in Model.Recipe.Grains)
+            {
+                <select class="form-control grain-selection">
+                    @foreach (var ingredient in Model.Ingredients.GrainTypes)
+                    {
+                        if (recipeGrain.GrainTypeID == ingredient.GrainTypeID)
+                        {
+                            <option selected value="@ingredient.GrainTypeID">@ingredient.GrainName</option>
+                        }
+                        else
+                        {
+                            <option value="@ingredient.GrainTypeID">@ingredient.GrainName</option>
+                        }
+                    }
+                </select>
+            }
 
         </div>
 
@@ -114,7 +131,7 @@
 
         <div class="col-lg-3">
             <select class="yeast-selection form-control">
-                @foreach (var yeast in Model.Data.YeastTypes)
+                @foreach (var yeast in Model.YeastTypes)
                 {
                     <option value="@yeast.YeastTypeID">@yeast.YeastName</option>
                 }
@@ -131,10 +148,6 @@
 
     <div class="bottom-margin-push"></div>
 
-    @*<div class="float-right">
-        <input type="button" value="Create Recipe" onclick="createRecipe()" class="btn btn-sm btn-success" />
-    </div>*@
-
     <div class="float-right">
         <input type="button" value="Calculate Metrics" onclick="calculateMetrics()" class="btn btn-sm btn-info" />
     </div>
@@ -145,7 +158,7 @@
     <div class="grain-prototype row bottom-margin-push">
         <div class="col-lg-3">
             <select class="form-control grain-selection">
-                @foreach (var grain in Model.Data.GrainTypes)
+                @foreach (var grain in Model.GrainTypes)
                 {
                     <option value="@grain.GrainTypeID">@grain.GrainName</option>
                 }
@@ -160,7 +173,7 @@
     <div class="hop-prototype row bottom-margin-push">
         <div class="col-lg-3">
             <select class="form-control hop-selection">
-                @foreach (var hop in Model.Data.HopTypes)
+                @foreach (var hop in Model.HopTypes)
                 {
                     <option value="@hop.HopTypeID">@hop.HopName</option>
                 }
@@ -298,7 +311,7 @@
                         <input id="boil-volume" class="form-control" />
                     </div>
                 </div>
-                
+
 
             </div> <!-- End of modal -->
             <div class="modal-footer">
@@ -311,21 +324,4 @@
 
     </div>
 </div>
-
-
-<script>
-
-    function init() {
-        $('#batch-size').val('5.5');
-        $('#mash-efficiency').val('65');
-        $('#mash-temperature').val('152');
-        $('#boil-off-rate').val('1.5');
-        $('#grain-absorbtion').val('.2');
-        $('#equipment-dead-space').val('.2');
-        $('#trub-loss').val('.2');
-        $('#mash-thickness').val(2);
-        $('#initial-grain-temperature').val('75');
-        $('#expected-efficiency').val('65');
-    }
-</script>
 

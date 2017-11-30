@@ -1,4 +1,4 @@
-﻿@model List<BeerCalculator.Common.DTOs.GrainTypeDTO> 
+﻿@model BeerCalculator.Common.DTOs.MessageContainer<IEnumerable<BeerCalculator.Common.DTOs.GrainTypeDTO>> 
 
 <h2>Grain Management</h2>
 <div>
@@ -18,7 +18,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var grainType in Model)
+                @foreach (var grainType in Model.Data)
                 {
                     <tr>
                         <td>

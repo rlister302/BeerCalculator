@@ -10,53 +10,71 @@ using BeerCalculator.DataAccessLayer.DataAccess;
 using BeerCalculator.Service.Converter;
 using BeerCalculator.Calculators.Interface;
 using DataAccessLayer.DataAccess.Interface;
+using Microsoft.Practices.Unity;
+using Microsoft.Practices.ServiceLocation;
+using BeerCalculator.Service.Bootstrapper;
 
 namespace BeerCalculatorService.Controllers
 {
     public class RecipeController : Controller
     {
-        private IDataAccess<RecipeDTO> dataAccess;
-        private IConverter converter;
-        private IBeerMetricsCalculator calculator;
+        private IDataAccess<RecipeDTO> recipeDataAccess;
+        private IDataAccess<IngredientDTO> ingredientDataAccess;
 
         public RecipeController()
         {
-            dataAccess = new RecipeDataAccess();
+            recipeDataAccess = new RecipeDataAccess();
+        }
+
+        private void ResolveDependencies()
+        {
+            IUnityContainer container = new UnityContainer();
+            IServiceLocator locator = new UnityServiceLocator(container);
+            new ServiceBootstapper(container, locator);
+            recipeDataAccess = container.Resolve<IDataAccess<RecipeDTO>>();
+            ingredientDataAccess = container.Resolve<IDataAccess<IngredientDTO>>();
         }
 
         [HttpGet]
         public ActionResult GetAllRecipes()
         {
-            var data = dataAccess.Get();
+            var data = recipeDataAccess.Get();
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
         public ActionResult GetRecipeDetails(RecipeDTO details)
         {
-            var data = dataAccess.Get(details);
+            RecipeDetailsDTO data = GetRecipeDetailDTO(details);
             return Json(data);
+        }
+
+        private RecipeDetailsDTO GetRecipeDetailDTO(RecipeDTO details)
+        {
+            RecipeDetailsDTO data = new RecipeDetailsDTO();
+            data.Ingredients = ingredientDataAccess.Get(new IngredientDTO());
+            data.Recipe = recipeDataAccess.Get(details);
+            return data;
         }
 
         [HttpPost]
         public ActionResult CreateRecipe(RecipeDTO create)
         {
-            var data = dataAccess.Create(create);
-            //IRecipeInput input = converter.Convert()
+            var data = recipeDataAccess.Create(create);
             return Json(data);
         }
 
         [HttpPut]
         public ActionResult UpdateRecipe(RecipeDTO update)
         {
-            var data = dataAccess.Update(update);
+            var data = recipeDataAccess.Update(update);
             return Json(data);
         }
 
         [HttpDelete]
         public ActionResult DeleteRecipe(RecipeDTO delete)
         {
-            var data = dataAccess.Create(delete);
+            var data = recipeDataAccess.Create(delete);
             return Json(data);
         }
     }

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common.Common.Interface
+namespace BeerCalculator.Common.Interface
 {
     public interface IBootStrapper
     { 

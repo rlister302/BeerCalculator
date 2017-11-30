@@ -35,6 +35,7 @@ namespace BeerCalculator.Service.Bootstrapper
             Container.RegisterType<IBeerMetricsCalculator, BeerMetricsCalculator>();
             Container.RegisterType<IConverter, RecipeInputConverter>();
             Container.RegisterType<IDataAccess<RecipeDTO>, RecipeDataAccess>();
+            Container.RegisterType<IDataAccess<IngredientDTO>, IngredientDataAccess>();
         }
     }
 }

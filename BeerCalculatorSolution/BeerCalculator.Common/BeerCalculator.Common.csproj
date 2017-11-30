@@ -74,9 +74,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\AbstractRequestManager.cs" />
     <Compile Include="Abstract\BootStrapper.cs" />
-    <Compile Include="Communication\CalculatorRequestManager.cs" />
+    <Compile Include="Communication\IRequestManager.cs" />
+    <Compile Include="Communication\RequestManager.cs" />
+    <Compile Include="DTOs\MessageContainer.cs" />
+    <Compile Include="DTOs\RecipeDetailsDTO.cs" />
     <Compile Include="DTOs\RecipeInputDTO.cs" />
     <Compile Include="DTOs\WaterMetricsDTO.cs" />
     <Compile Include="DTOs\RecipeMetricsDTO.cs" />
@@ -85,11 +87,6 @@
     <Compile Include="Interface\IRecipeMetaDataResolver.cs" />
     <Compile Include="Interface\IRequestManager.cs" />
     <Compile Include="Abstract\ModelBase.cs" />
-    <Compile Include="Communication\GrainTypeRequestManager.cs" />
-    <Compile Include="Communication\HopTypeRequestManager.cs" />
-    <Compile Include="Communication\IngredientRequestManager.cs" />
-    <Compile Include="Communication\RecipeRequestManager.cs" />
-    <Compile Include="Communication\YeastTypeRequestManager.cs" />
     <Compile Include="DTOs\GrainTypeDTO.cs" />
     <Compile Include="DTOs\HopDTO.cs" />
     <Compile Include="DTOs\HopTypeDTO.cs" />

@@ -20,7 +20,8 @@ namespace BeerCalculatorService.Controllers
         public ActionResult GetAllHopTypes()
         {
             var response = _hopTypeDataAccess.Get();
-            return Json(response, JsonRequestBehavior.AllowGet);
+            MessageContainer<IEnumerable<HopTypeDTO>> container = new MessageContainer<IEnumerable<HopTypeDTO>>() { Data = response };
+            return Json(container, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -34,7 +35,7 @@ namespace BeerCalculatorService.Controllers
         public ActionResult CreateHopType(HopTypeDTO create)
         {
             var response = _hopTypeDataAccess.Create(create);
-            return Json(response);
+            return Json(new MessageContainer<bool>() { Data = response });
         }
 
         [HttpPut]

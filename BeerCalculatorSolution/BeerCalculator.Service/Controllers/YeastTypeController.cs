@@ -18,7 +18,8 @@ namespace BeerCalculatorService.Controllers
         public ActionResult GetAllYeastTypes()
         {
             var yeastTypes = yeastTypeDataAccess.Get();
-            return Json(yeastTypes, JsonRequestBehavior.AllowGet);
+            var container = new MessageContainer<IEnumerable<YeastTypeDTO>>() { Data = yeastTypes };
+            return Json(container, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -33,7 +34,8 @@ namespace BeerCalculatorService.Controllers
         public ActionResult CreateYeastType(YeastTypeDTO create)
         {
             var data = yeastTypeDataAccess.Create(create);
-            return Json(data);
+            var container = new MessageContainer<bool>() { Data = data };
+            return Json(container);
         }
 
         [HttpPut]

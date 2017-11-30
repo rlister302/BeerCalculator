@@ -12,6 +12,12 @@ namespace BeerCalculator.Service.Converter
     {
         public static RecipeMetricsDTO ToDTO(this IRecipeMetrics metrics)
         {
+            RecipeMetricsDTO metricsToReturn = SetMetrics(metrics);
+            return metricsToReturn;
+        }
+
+        private static RecipeMetricsDTO SetMetrics(this IRecipeMetrics metrics)
+        {
             RecipeMetricsDTO metricsToReturn = new RecipeMetricsDTO();
             metricsToReturn.ExpectedAbv = metrics.ExpectedAbv;
             metricsToReturn.ExpectedBoilGravityPoints = metrics.ExpectedBoilGravityPoints;
@@ -20,7 +26,6 @@ namespace BeerCalculator.Service.Converter
             metricsToReturn.ExpectedSrm = metrics.ExpectedSrm;
             metricsToReturn.ExpectedOriginalGravity = metrics.ExpectedOriginalGravity;
             metricsToReturn.WaterMetrics = ConvertWaterMetrics(metrics.WaterMetrics);
-
             return metricsToReturn;
         }
 

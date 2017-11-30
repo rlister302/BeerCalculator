@@ -18,7 +18,8 @@ namespace BeerCalculatorService.Controllers
         public ActionResult GetAllGrainTypes()
         {
             var result = _dataAccess.Get();
-            return Json(result, JsonRequestBehavior.AllowGet);
+            var container = new MessageContainer<IEnumerable<GrainTypeDTO>>() { Data = result };
+            return Json(container, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -32,7 +33,8 @@ namespace BeerCalculatorService.Controllers
         public ActionResult CreateGrainType(GrainTypeDTO create)
         {
             bool result = _dataAccess.Create(create);
-            return Json(result);
+            var container = new MessageContainer<bool>() { Data = result };
+            return Json(container);
         }
 
         [HttpPut]

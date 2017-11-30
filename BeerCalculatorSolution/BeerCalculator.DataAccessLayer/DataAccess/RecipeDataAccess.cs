@@ -86,10 +86,6 @@ namespace BeerCalculator.DataAccessLayer.DataAccess
                     recipeDTO.ExpectedFinalGravity = recipe.ExpectedFinalGravity;
                     recipeDTO.IBU = (int)recipe.IBU;
 
-                    recipeDTO.Grains = GetGrainsForRecipe(context, recipeDTO.RecipeID);
-                    recipeDTO.Hops = GetHopsForRecipe(context, recipeDTO.RecipeID);
-                    recipeDTO.Yeast = GetYeastForRecipe(context, recipeDTO.RecipeID);
-
                     recipes.Add(recipeDTO);
                 }
             }

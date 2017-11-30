@@ -217,6 +217,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="BootStrapper\WebAppBootStrapper.cs" />
     <Compile Include="Controllers\CalculatorController.cs" />
     <Compile Include="Controllers\GrainTypeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -312,6 +313,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\NavigationScripts\Navigation.js" />
+    <Content Include="Scripts\RecipeScripts\RecipeScripts.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -351,6 +353,7 @@
     <Content Include="Views\Recipe\CreateRecipe.cshtml" />
     <Content Include="Views\YeastType\YeastManagement.cshtml" />
     <Content Include="Views\Recipe\RecipeManagement.cshtml" />
+    <Content Include="Views\Recipe\RecipeDetails.cshtml" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>
@@ -358,7 +361,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="IOC\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
