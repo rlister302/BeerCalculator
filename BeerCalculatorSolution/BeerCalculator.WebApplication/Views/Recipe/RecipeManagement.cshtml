@@ -59,8 +59,9 @@
         function getRecipe(recipeId)
         {
             $.ajax({
-                url: "/Recipe/GetRecipe/?get=" + recipeId,
+                url: "/Recipe/GetRecipe/" + recipeId,
                 type: "GET",
+                data: { id : recipeId },
                 success: function (response) {
                     $('#body').html(response);
                 },

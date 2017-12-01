@@ -39,7 +39,8 @@ namespace BeerCalculatorWebApplication
                 "~/Scripts/NavigationScripts/Navigation.js",
                 "~/Scripts/HopScripts/HopScripts.js",
                 "~/Scripts/RecipeScripts/RecipeScripts.js",
-                "~/Scripts/YeastScripts/YeastScripts.js"));
+                "~/Scripts/YeastScripts/YeastScripts.js",
+                "~/Scripts/GrainScripts/GrainScripts.js"));
 
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
