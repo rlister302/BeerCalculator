@@ -11,7 +11,7 @@ namespace DataAccessLayer.DataAccess.Interface
     {
         bool Create(T create);
         IEnumerable<T> Get();
-        T Get(T details);
+        T Get(int details);
         bool Update(T update);
         bool Delete(int delete);
     }

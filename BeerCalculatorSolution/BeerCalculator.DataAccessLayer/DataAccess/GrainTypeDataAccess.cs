@@ -65,13 +65,13 @@ namespace BeerCalculator.DataAccessLayer.DataAccess
             return grainTypes;
         }
 
-        public GrainTypeDTO Get(GrainTypeDTO details)
+        public GrainTypeDTO Get(int id)
         {
-            var grainDTO = new GrainTypeDTO();
+            GrainTypeDTO grainDTO = new GrainTypeDTO();
 
             using (var context = new BeerCalculatorEntities())
             {
-                var grainEntity = context.GrainTypes.Find(details.GrainTypeID);
+                var grainEntity = context.GrainTypes.Find(id);
 
                 if (grainEntity != null)
                 {

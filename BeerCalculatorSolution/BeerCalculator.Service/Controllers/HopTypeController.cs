@@ -25,9 +25,9 @@ namespace BeerCalculatorService.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetHopTypeDetails(HopTypeDTO details)
+        public ActionResult GetHopTypeDetails(int id)
         {
-            var response = _hopTypeDataAccess.Get(details);
+            var response = _hopTypeDataAccess.Get(id);
             return Json(response, JsonRequestBehavior.AllowGet);
         }
         

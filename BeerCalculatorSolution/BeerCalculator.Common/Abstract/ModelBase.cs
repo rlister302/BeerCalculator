@@ -104,7 +104,7 @@ namespace BeerCalculator.Common.Abstract
         {
             if (Attribute.IsDefined(GetType(), typeof(GetDetailsActionAttribute)))
             {
-                var action = (GetAllActionAttribute)Attribute.GetCustomAttribute(GetType(), typeof(GetDetailsActionAttribute));
+                var action = (GetDetailsActionAttribute)Attribute.GetCustomAttribute(GetType(), typeof(GetDetailsActionAttribute));
                 return action.Name;
             }
 

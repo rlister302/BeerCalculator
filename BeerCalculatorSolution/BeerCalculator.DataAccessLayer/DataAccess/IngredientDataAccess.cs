@@ -26,7 +26,7 @@ namespace BeerCalculator.DataAccessLayer.DataAccess
             throw new NotImplementedException();
         }
 
-        public IngredientDTO Get(IngredientDTO details)
+        public IngredientDTO Get(int id)
         {
             var grains = new GrainTypeDataAccess().Get();
 

@@ -18,12 +18,9 @@ namespace BeerCalculator.DataAccessLayer.DataAccess
             using (var context = new BeerCalculatorEntities())
             {
                 var entity = new YeastType();
-                entity.YeastName = create.YeastName;
-                entity.HighAttenuationRate = create.HighAttenuationRate;
-                entity.LowAttenuationRate = create.LowAttenuationRate;
-                entity.LowTemperatureRange = create.LowTemperatureRange;
-                entity.HighTemperatureRange = create.HighTemperatureRange;
-                entity.Description = create.YeastDescription;
+
+                UpdateYeastEntityProperties(entity, create);
+                entity.YeastTypeID = 0;
                 context.YeastTypes.Add(entity);
                 context.SaveChanges();
                 status = true;
@@ -59,15 +56,7 @@ namespace BeerCalculator.DataAccessLayer.DataAccess
             {
                 foreach (var yeastEntity in context.YeastTypes)
                 {
-                    var yeastTypeDTO = new YeastTypeDTO();
-
-                    yeastTypeDTO.YeastTypeID = yeastEntity.YeastTypeID;
-                    yeastTypeDTO.YeastName = yeastEntity.YeastName;
-                    yeastTypeDTO.LowAttenuationRate = (int)yeastEntity.LowAttenuationRate;
-                    yeastTypeDTO.HighAttenuationRate = (int)yeastEntity.HighAttenuationRate;
-                    yeastTypeDTO.LowTemperatureRange = (int)yeastEntity.LowTemperatureRange;
-                    yeastTypeDTO.HighTemperatureRange = (int)yeastEntity.HighTemperatureRange;
-
+                    YeastTypeDTO yeastTypeDTO = ConvertYeastEntityToDTO(yeastEntity);
                     yeastTypes.Add(yeastTypeDTO);
                 }
             }
@@ -75,20 +64,14 @@ namespace BeerCalculator.DataAccessLayer.DataAccess
             return yeastTypes;
         }
 
-        public YeastTypeDTO Get(YeastTypeDTO details)
+        public YeastTypeDTO Get(int id)
         {
             var yeastTypeDTO = new YeastTypeDTO();
 
             using (var context = new BeerCalculatorEntities())
             {
-                var yeastEntity = context.YeastTypes.Find(details.YeastTypeID);
-
-                yeastTypeDTO.YeastTypeID = yeastEntity.YeastTypeID;
-                yeastTypeDTO.YeastName = yeastEntity.YeastName;
-                yeastTypeDTO.LowAttenuationRate = (int)yeastEntity.LowAttenuationRate;
-                yeastTypeDTO.HighAttenuationRate = (int)yeastEntity.HighAttenuationRate;
-                yeastTypeDTO.LowTemperatureRange = (int)yeastEntity.LowTemperatureRange;
-                yeastTypeDTO.HighTemperatureRange = (int)yeastEntity.HighTemperatureRange;
+                var yeastEntity = context.YeastTypes.Find(id);
+                yeastTypeDTO = ConvertYeastEntityToDTO(yeastEntity);
             }
 
             return yeastTypeDTO;
@@ -104,16 +87,40 @@ namespace BeerCalculator.DataAccessLayer.DataAccess
 
                 if (yeastEntity != null)
                 {
-                    yeastEntity.YeastTypeID = update.YeastTypeID;
-                    yeastEntity.YeastName = yeastEntity.YeastName;
-                    yeastEntity.LowAttenuationRate = update.LowAttenuationRate;
-                    yeastEntity.HighAttenuationRate = update.HighAttenuationRate;
-                    yeastEntity.LowTemperatureRange = update.LowTemperatureRange;
-                    yeastEntity.HighTemperatureRange = update.HighTemperatureRange;
+                    UpdateYeastEntityProperties(yeastEntity, update);
+                    context.SaveChanges();
+                    status = true;
                 }
             }
 
             return status;
         }
+
+        #region Private Methods
+        private YeastTypeDTO ConvertYeastEntityToDTO(YeastType yeastEntity)
+        {
+            var yeastTypeDTO = new YeastTypeDTO();
+
+            yeastTypeDTO.YeastTypeID = yeastEntity.YeastTypeID;
+            yeastTypeDTO.YeastName = yeastEntity.YeastName;
+            yeastTypeDTO.LowAttenuationRate = (int)yeastEntity.LowAttenuationRate;
+            yeastTypeDTO.HighAttenuationRate = (int)yeastEntity.HighAttenuationRate;
+            yeastTypeDTO.LowTemperatureRange = (int)yeastEntity.LowTemperatureRange;
+            yeastTypeDTO.HighTemperatureRange = (int)yeastEntity.HighTemperatureRange;
+            yeastTypeDTO.YeastDescription = yeastEntity.Description;
+            return yeastTypeDTO;
+        }
+
+        private void UpdateYeastEntityProperties(YeastType yeastEntity, YeastTypeDTO yeastType)
+        {
+            yeastEntity.YeastTypeID = yeastType.YeastTypeID;
+            yeastEntity.YeastName = yeastType.YeastName;
+            yeastEntity.LowAttenuationRate = yeastType.LowAttenuationRate;
+            yeastEntity.HighAttenuationRate = yeastType.HighAttenuationRate;
+            yeastEntity.LowTemperatureRange = yeastType.LowTemperatureRange;
+            yeastEntity.HighTemperatureRange = yeastType.HighTemperatureRange;
+            yeastEntity.Description = yeastType.YeastDescription;
+        }
+        #endregion
     }
 }

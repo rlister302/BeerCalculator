@@ -23,11 +23,11 @@ namespace BeerCalculatorService.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetYeastTypeDetails(YeastTypeDTO details)
+        public ActionResult GetYeastTypeDetails(int id)
         {
-
-            var yeastTypes = yeastTypeDataAccess.Get(details);
-            return Json(yeastTypes, JsonRequestBehavior.AllowGet);
+            var yeastType = yeastTypeDataAccess.Get(id);
+            var container = new MessageContainer<YeastTypeDTO>() { Data = yeastType };
+            return Json(container, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -42,14 +42,16 @@ namespace BeerCalculatorService.Controllers
         public ActionResult UpdateYeastType(YeastTypeDTO update)
         {
             var data = yeastTypeDataAccess.Update(update);
-            return Json(data);
+            var container = new MessageContainer<bool>() { Data = data };
+            return Json(container);
         }
 
         [HttpDelete]
-        public ActionResult DeleteYeastType(YeastTypeDTO delete)
+        public ActionResult DeleteYeastType(int id)
         {
-            var data = yeastTypeDataAccess.Delete(delete.YeastTypeID);
-            return Json(data);
+            var data = yeastTypeDataAccess.Delete(id);
+            var container = new MessageContainer<bool>() { Data = data };
+            return Json(container);
         }
     }
 }

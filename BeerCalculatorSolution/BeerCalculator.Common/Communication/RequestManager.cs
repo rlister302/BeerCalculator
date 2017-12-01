@@ -49,7 +49,7 @@ namespace BeerCalculator.Common.Communication
             {
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
                 string targetUrl = GetTargetUrl(create.GetControllerName(), create.GetCreateAction());
-                StringContent content = new StringContent(JsonConvert.SerializeObject(create));
+                StringContent content = new StringContent(JsonConvert.SerializeObject(create), Encoding.UTF8, "application/json");
                 var rawResponse = await client.PostAsync(targetUrl, content);
                 var response = await rawResponse.Content.ReadAsStringAsync();
                 return await Task.Run(() => Deserialize(response, deserializeTo));
@@ -62,7 +62,7 @@ namespace BeerCalculator.Common.Communication
             {
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
                 string targetUrl = GetTargetUrl(update.GetControllerName(), update.GetUpdateAction());
-                StringContent httpContent = new StringContent(JsonConvert.SerializeObject(update));
+                StringContent httpContent = new StringContent(JsonConvert.SerializeObject(update), Encoding.UTF8, "application/json");
                 var response = await client.PutAsync(targetUrl, httpContent);
                 var content = await response.Content.ReadAsStringAsync();
                 return await Task.Run(() => Deserialize(content, deserializeTo));

@@ -46,12 +46,12 @@ namespace BeerCalculator.DataAccessLayer.DataAccess
             return hopTypes;
         }
 
-        public HopTypeDTO Get(HopTypeDTO details)
+        public HopTypeDTO Get(int id)
         {
             var hopType = new HopTypeDTO();
             using (var context = new BeerCalculatorEntities())
             {
-                var entity = context.HopTypes.Find(details.HopTypeID);
+                var entity = context.HopTypes.Find(id);
                 if (entity != null)
                 {
                     hopType.HopTypeID = entity.HopTypeID;

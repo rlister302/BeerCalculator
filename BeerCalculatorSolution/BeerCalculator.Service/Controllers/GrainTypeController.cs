@@ -23,9 +23,9 @@ namespace BeerCalculatorService.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetGrainTypeDetails(GrainTypeDTO details)
+        public ActionResult GetGrainTypeDetails(int id)
         {
-            var result = _dataAccess.Get(details);
+            var result = _dataAccess.Get(id);
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
@@ -44,9 +44,9 @@ namespace BeerCalculatorService.Controllers
             return Json(result);
         }
         [HttpDelete]
-        public ActionResult DeleteGrainType(GrainTypeDTO delete)
+        public ActionResult DeleteGrainType(int id)
         {
-            bool result = _dataAccess.Delete(delete.GrainTypeID);
+            bool result = _dataAccess.Delete(id);
             return Json(result);
         }
     }

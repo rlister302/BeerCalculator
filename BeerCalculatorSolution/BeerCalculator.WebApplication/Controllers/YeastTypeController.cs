@@ -33,10 +33,11 @@ namespace BeerCalculatorWebApplication.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetYeastType(YeastTypeDTO get)
+        public async Task<ActionResult> GetYeastTypeDetails(int get)
         {
-            var result = await requestManager.Get(get, typeof(MessageContainer<YeastTypeDTO>));
-            return Json(result);
+            YeastTypeDTO yeast = new YeastTypeDTO() { YeastTypeID = get };
+            var result = await requestManager.Get(yeast, typeof(MessageContainer<YeastTypeDTO>));
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -54,9 +55,10 @@ namespace BeerCalculatorWebApplication.Controllers
         }
 
         [HttpDelete]
-        public async Task<ActionResult> DeleteYeastType(YeastTypeDTO delete)
+        public async Task<ActionResult> DeleteYeastType(int id)
         {
-            var result = await requestManager.Delete(delete, typeof(MessageContainer<bool>));
+            YeastTypeDTO yeast = new YeastTypeDTO() { YeastTypeID = id };
+            var result = await requestManager.Delete(yeast, typeof(MessageContainer<bool>));
             return Json(result);
         }
     }

@@ -38,7 +38,8 @@ namespace BeerCalculatorWebApplication
             bundles.Add(new ScriptBundle("~/Scripts/customScripts").Include(
                 "~/Scripts/NavigationScripts/Navigation.js",
                 "~/Scripts/HopScripts/HopScripts.js",
-                "~/Scripts/RecipeScripts/RecipeScripts.js"));
+                "~/Scripts/RecipeScripts/RecipeScripts.js",
+                "~/Scripts/YeastScripts/YeastScripts.js"));
 
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're

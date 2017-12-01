@@ -52,8 +52,8 @@ namespace BeerCalculatorService.Controllers
         private RecipeDetailsDTO GetRecipeDetailDTO(RecipeDTO details)
         {
             RecipeDetailsDTO data = new RecipeDetailsDTO();
-            data.Ingredients = ingredientDataAccess.Get(new IngredientDTO());
-            data.Recipe = recipeDataAccess.Get(details);
+            data.Ingredients = ingredientDataAccess.Get(0);
+            data.Recipe = recipeDataAccess.Get(details.RecipeID);
             return data;
         }
 

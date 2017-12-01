@@ -1,40 +1,6 @@
 ﻿@model BeerCalculator.Common.DTOs.MessageContainer<IEnumerable<BeerCalculator.Common.DTOs.YeastTypeDTO>>
 <script>
-    function saveYeast() {
-        var yeast = getYeast();
-        sendYeastToServer(yeast);
-    }
-
-    function getYeast() {
-
-        var yeast = {};
-
-        yeast.YeastName = $('#yeast-name').val();
-        yeast.LowAttenuationRate = $('#low-attenuation-rate').val();
-        yeast.HighAttenuationRate = $('#high-attenuation-rate').val();;
-        yeast.LowTemperatureRange = $('#low-temperature-range').val();;
-        yeast.HighTemperatureRange = $('#high-temperature-range').val();;
-        yeast.YeastDescription = $('#yeast-description').val();
-
-        return yeast;
-    }
-
-    function sendYeastToServer(yeast)
-    {
-        console.log(yeast);
-        $.ajax({
-            url: "/YeastType/CreateYeastType",
-            type: "POST",
-            data: yeast,
-            success: function (response) {
-                console.log(response);
-                $('#yeast-modal').modal('toggle');
-            },
-            error: function () {
-                alert("There was an error");
-            }
-        })
-    }
+    
 </script>
 <h2>Yeast Management</h2>
 <div>
@@ -60,33 +26,39 @@
                     <td>
                         High Temperature Range
                     </td>
+                    <td>
+                        Actions
+                    </td>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var yeastType in Model.Data)
                 {
                     <tr>
-                        <td>
-                            @yeastType.YeastTypeID
-                        </td>
-                        <td>
-                            @yeastType.YeastName
-                        </td>
-                        <td>
-                            @yeastType.LowAttenuationRate
-                        </td>
-                        <td>
-                            @yeastType.HighAttenuationRate
-                        </td>
-                        <td>
-                            @yeastType.LowTemperatureRange
-                        </td>
-                        <td>
-                            @yeastType.HighTemperatureRange
-                        </td>
+                    <td>
+                        <div class="yeast-id">@yeastType.YeastTypeID</div>
+                    </td>
+                    <td>
+                        <div class="yeast-name">@yeastType.YeastName</div>
+                    </td>
+                    <td>
+                         <div class="low-attenuation-rate">@yeastType.LowAttenuationRate</div>
+                    </td>
+                    <td>
+                        <div class="high-attenuation-rate">@yeastType.HighAttenuationRate</div>
+                    </td>
+                    <td>
+                        <div class="low-temperature-range">@yeastType.LowTemperatureRange</div>
+                    </td>
+                    <td>
+                        <div class="high-temperature-range">@yeastType.HighTemperatureRange</div>
+                    </td>
+                    <td>
+                        <button class="btn-sm btn-primary btn-size" data-toggle="modal" data-target="#edit-yeast" onclick="getYeastInformation(this)">Edit</button>
+                        <button class="btn-sm btn-danger btn-size" onclick="deleteYeastType(@yeastType.YeastTypeID)">Delete</button>
+                    </td>
                     </tr>
                 }
-
             </tbody>
         </table>
     </div>
@@ -97,7 +69,7 @@
     <div id="yeast-modal" class="modal fade collapse" role="dialog">
         <div class="modal-dialog">
 
-            <!-- Modal content-->
+<!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -170,7 +142,88 @@
             </div>
         </div>
     </div>
+
+    <div id="edit-yeast" class="modal fade collapse" role="dialog">
+        <div class="modal-dialog">
+
+<!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Edit Yeast Type</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row bottom-margin-push">
+                        <div class="col-lg-6">
+                            <label>Name:</label>
+                        </div>
+                        <div class="col-lg-6">
+                            <input id="edit-yeast-name" class="form-control" />
+                        </div>
+                    </div>
+
+
+                    <div class="row bottom-margin-push">
+                        <div class="col-lg-6">
+                            <label>Low Attenutation Rate:</label>
+                        </div>
+                        <div class="col-lg-6">
+                            <input id="edit-low-attenuation-rate" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="row bottom-margin-push">
+                        <div class="col-lg-6">
+                            <label>High Attenutation Rate:</label>
+                        </div>
+                        <div class="col-lg-6">
+                            <input id="edit-high-attenuation-rate" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="row bottom-margin-push">
+                        <div class="col-lg-6">
+                            <label>Low Temperature Range:</label>
+                        </div>
+                        <div class="col-lg-6">
+                            <input id="edit-low-temperature-range" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="row bottom-margin-push">
+                        <div class="col-lg-6">
+                            <label>High Temperature Range:</label>
+                        </div>
+                        <div class="col-lg-6">
+                            <input id="edit-high-temperature-range" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="row bottom-margin-push">
+                        <div class="col-lg-12">
+                            <label>Description:</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <textarea id="edit-yeast-description" class="form-control"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-success" onclick="editYeast()" value="Edit Yeast" />
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <input class="hidden" id="edit-yeast-id"/>
 </div>
+
+
 
 
 

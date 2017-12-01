@@ -93,13 +93,13 @@ namespace BeerCalculator.DataAccessLayer.DataAccess
             return recipes;
         }
 
-        public RecipeDTO Get(RecipeDTO details)
+        public RecipeDTO Get(int id)
         {
             RecipeDTO recipeDTO = new RecipeDTO();
 
             using (var context = new BeerCalculatorEntities())
             {
-                var recipe = context.Recipes.Where(x => x.RecipeID == details.RecipeID).Single();
+                var recipe = context.Recipes.Where(x => x.RecipeID == id).Single();
 
                 recipeDTO.RecipeID = recipe.RecipeID;
                 recipeDTO.RecipeName = recipe.RecipeName;

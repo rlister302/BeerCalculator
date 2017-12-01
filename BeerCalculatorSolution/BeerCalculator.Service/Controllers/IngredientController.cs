@@ -16,7 +16,7 @@ namespace BeerCalculatorService.Controllers
         [HttpGet]
         public ActionResult GetAllIngredients()
         {
-            var returnObject = dataAccess.Get(new IngredientDTO());
+            var returnObject = dataAccess.Get(0);
             var container = new MessageContainer<IngredientDTO>() { Data = returnObject };
             return Json(container, JsonRequestBehavior.AllowGet);
         }

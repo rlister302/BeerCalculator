@@ -15,6 +15,7 @@ namespace BeerCalculator.Common.DTOs
     [DeleteAction("DeleteYeastType")]
     public class YeastTypeDTO : ModelBase
     {
+        [PrimaryKey]
         public int YeastTypeID { get; set; }
         public int YeastID { get; set; }
         public int? RecipeID { get; set; }
