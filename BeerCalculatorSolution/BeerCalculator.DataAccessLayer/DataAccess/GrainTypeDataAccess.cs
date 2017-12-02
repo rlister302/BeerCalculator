@@ -53,21 +53,27 @@ namespace BeerCalculator.DataAccessLayer.DataAccess
             {
                 foreach (var grainEntity in context.GrainTypes)
                 {
-                    var grainType = new GrainTypeDTO();
-                    grainType.GrainTypeID = grainEntity.GrainTypeID;
-                    grainType.GrainName = grainEntity.GrainName;
-                    grainType.Lovibond = grainEntity.Lovibond;
-                    grainType.MaximumSugarExtraction = (int)grainEntity.MaximumSugarExtraction;
-                    grainTypes.Add(grainType);
+                    grainTypes.Add(ConvertEntityToDTO(grainEntity));
                 }
             }
 
             return grainTypes;
         }
 
-        public GrainTypeDTO Get(int id)
+        private GrainTypeDTO ConvertEntityToDTO(GrainType entity)
         {
             GrainTypeDTO grainDTO = new GrainTypeDTO();
+            grainDTO.GrainTypeID = entity.GrainTypeID;
+            grainDTO.MaximumSugarExtraction = (int)entity.MaximumSugarExtraction;
+            grainDTO.MaximumExtractionRate = entity.MaximumExtractionRate;
+            grainDTO.GrainName = entity.GrainName;
+            grainDTO.Lovibond = entity.Lovibond;
+            return grainDTO;
+        }
+
+        public GrainTypeDTO Get(int id)
+        {
+            GrainTypeDTO grainDTO = null;
 
             using (var context = new BeerCalculatorEntities())
             {
@@ -75,10 +81,7 @@ namespace BeerCalculator.DataAccessLayer.DataAccess
 
                 if (grainEntity != null)
                 {
-                    grainDTO.GrainTypeID = grainEntity.GrainTypeID;
-                    grainDTO.MaximumSugarExtraction = (int)grainEntity.MaximumSugarExtraction;
-                    grainDTO.GrainName = grainEntity.GrainName;
-                    grainDTO.Lovibond = grainEntity.Lovibond;
+                    grainDTO = ConvertEntityToDTO(grainEntity);
                 }
             }
 

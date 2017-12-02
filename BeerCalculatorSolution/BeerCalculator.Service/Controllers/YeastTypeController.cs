@@ -7,13 +7,30 @@ using DataAccessLayer.DataAccess; // Use Unity and DI to remove this dependency 
 using DataAccessLayer.DataAccess.Interface;
 using BeerCalculator.Common.DTOs;
 using BeerCalculator.DataAccessLayer.DataAccess;
+using Microsoft.Practices.Unity;
+using Microsoft.Practices.ServiceLocation;
+using BeerCalculator.Service.Bootstrapper;
 
 namespace BeerCalculatorService.Controllers
 {
     public class YeastTypeController : Controller
     {
-        private IDataAccess<YeastTypeDTO> yeastTypeDataAccess = new YeastTypeDataAccess();
-            
+        private IDataAccess<YeastTypeDTO> yeastTypeDataAccess;
+
+        public YeastTypeController()
+        {
+            ResolveDependencies();
+        }
+
+        public void ResolveDependencies()
+        {
+            IUnityContainer container = new UnityContainer();
+            IServiceLocator locator = new UnityServiceLocator(container);
+            new ServiceBootstapper(container, locator);
+            yeastTypeDataAccess = container.Resolve<IDataAccess<YeastTypeDTO>>();
+
+        }
+
         [HttpGet]
         public ActionResult GetAllYeastTypes()
         {

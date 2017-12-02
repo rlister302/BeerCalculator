@@ -6,20 +6,34 @@ using DataAccessLayer.DataAccess;
 using System.Web.Mvc;
 using BeerCalculator.DataAccessLayer.DataAccess;
 using BeerCalculator.Common.DTOs;
+using Microsoft.Practices.Unity;
+using Microsoft.Practices.ServiceLocation;
+using BeerCalculator.Service.Bootstrapper;
+using DataAccessLayer.DataAccess.Interface;
 
 namespace BeerCalculatorService.Controllers
 {
     public class HopTypeController : Controller
     {
-        private HopTypeDataAccess _hopTypeDataAccess;
+        private IDataAccess<HopTypeDTO> hopTypeDataAccess;
+
         public HopTypeController()
         {
-            _hopTypeDataAccess = new HopTypeDataAccess();
+            ResolveDependencies();
         }
+
+        public void ResolveDependencies()
+        {
+            IUnityContainer container = new UnityContainer();
+            IServiceLocator locator = new UnityServiceLocator(container);
+            new ServiceBootstapper(container, locator);
+            hopTypeDataAccess = container.Resolve<IDataAccess<HopTypeDTO>>();
+        }
+
         [HttpGet]
         public ActionResult GetAllHopTypes()
         {
-            var response = _hopTypeDataAccess.Get();
+            var response = hopTypeDataAccess.Get();
             MessageContainer<IEnumerable<HopTypeDTO>> container = new MessageContainer<IEnumerable<HopTypeDTO>>() { Data = response };
             return Json(container, JsonRequestBehavior.AllowGet);
         }
@@ -27,29 +41,33 @@ namespace BeerCalculatorService.Controllers
         [HttpGet]
         public ActionResult GetHopTypeDetails(int id)
         {
-            var response = _hopTypeDataAccess.Get(id);
-            return Json(response, JsonRequestBehavior.AllowGet);
+            var response = hopTypeDataAccess.Get(id);
+            MessageContainer<HopTypeDTO> container = new MessageContainer<HopTypeDTO>() { Data = response };
+            return Json(container, JsonRequestBehavior.AllowGet);
         }
         
         [HttpPost]
         public ActionResult CreateHopType(HopTypeDTO create)
         {
-            var response = _hopTypeDataAccess.Create(create);
-            return Json(new MessageContainer<bool>() { Data = response });
+            var response = hopTypeDataAccess.Create(create);
+            MessageContainer<bool> container = new MessageContainer<bool>() { Data = response };
+            return Json(container);
         }
 
         [HttpPut]
         public ActionResult UpdateHopType(HopTypeDTO update)
         {
-            var response = _hopTypeDataAccess.Update(update);
-            return Json(response);
+            var response = hopTypeDataAccess.Update(update);
+            MessageContainer<bool> container = new MessageContainer<bool>() { Data = response };
+            return Json(container);
         }
 
         [HttpDelete]
         public ActionResult DeleteHopType(int delete)
         {
-            var response = _hopTypeDataAccess.Delete(delete);
-            return Json(response);
+            var response = hopTypeDataAccess.Delete(delete);
+            MessageContainer<bool> container = new MessageContainer<bool>() { Data = response };
+            return Json(container);
         }
     }
 }

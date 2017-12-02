@@ -19,7 +19,6 @@
 
     function sendYeastToServer(yeast)
     {
-        console.log(yeast);
         $.ajax({
             url: "/YeastType/CreateYeastType",
             type: "POST",
@@ -33,17 +32,12 @@
         })
     }
 
-    function getYeastInformation(htmlElement)
+    function getYeastInformation(yeastTypeId)
     {
-        var parentElement = $(htmlElement).parent().parent();
-        var id = $(parentElement).find('.yeast-id').html();
-        console.log(id);
-        var yeast = {};
-        yeast.YeastTypeID = id;
         $.ajax({
             url: "/YeastType/GetYeastTypeDetails",
             type: "GET",
-            data: {get : id},
+            data: { id : yeastTypeId },
             success: function (response) {
                 initializeEditYeastModal(response.Data);
             },
@@ -51,7 +45,6 @@
                 alert("There was an error");
             }
         })
-
     }
 
     function deleteYeastType(yeastTypeId)
@@ -107,7 +100,6 @@
 
     function initializeEditYeastModal(yeast)
     {
-
         $('#edit-yeast-id').val(yeast.YeastTypeID);
         $('#edit-yeast-name').val(yeast.YeastName);
         $('#edit-low-attenuation-rate').val(yeast.LowAttenuationRate);

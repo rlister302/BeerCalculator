@@ -54,7 +54,7 @@
                         <div class="high-temperature-range">@yeastType.HighTemperatureRange</div>
                     </td>
                     <td>
-                        <button class="btn-sm btn-primary btn-size" data-toggle="modal" data-target="#edit-yeast" onclick="getYeastInformation(this)">Edit</button>
+                        <button class="btn-sm btn-primary btn-size" data-toggle="modal" data-target="#edit-yeast" onclick="getYeastInformation(@yeastType.YeastTypeID)">Edit</button>
                         <button class="btn-sm btn-danger btn-size" onclick="deleteYeastType(@yeastType.YeastTypeID)">Delete</button>
                     </td>
                     </tr>

@@ -156,3 +156,4 @@ $RECYCLE.BIN/
 .DS_Store
 /BeerCalculatorSolution/.vs/config
 /BeerCalculatorSolution/packages
+/BeerCalculatorSolution/.vs/BeerCalculatorSolution/v15/Server/sqlite3

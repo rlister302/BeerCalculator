@@ -36,6 +36,10 @@ namespace BeerCalculator.Service.Bootstrapper
             Container.RegisterType<IConverter, RecipeInputConverter>();
             Container.RegisterType<IDataAccess<RecipeDTO>, RecipeDataAccess>();
             Container.RegisterType<IDataAccess<IngredientDTO>, IngredientDataAccess>();
+            Container.RegisterType<IDataAccess<GrainTypeDTO>, GrainTypeDataAccess>();
+            Container.RegisterType<IDataAccess<YeastTypeDTO>, YeastTypeDataAccess>();
+            Container.RegisterType<IDataAccess<HopTypeDTO>, HopTypeDataAccess>();
+            Container.RegisterType<IDataAccess<IngredientDTO>, IngredientDataAccess>();
         }
     }
 }

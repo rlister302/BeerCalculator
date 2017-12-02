@@ -33,9 +33,9 @@ namespace BeerCalculatorWebApplication.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetYeastTypeDetails(int get)
+        public async Task<ActionResult> GetYeastTypeDetails(int id)
         {
-            YeastTypeDTO yeast = new YeastTypeDTO() { YeastTypeID = get };
+            YeastTypeDTO yeast = new YeastTypeDTO() { YeastTypeID = id };
             var result = await requestManager.Get(yeast, typeof(MessageContainer<YeastTypeDTO>));
             return Json(result, JsonRequestBehavior.AllowGet);
         }

@@ -39,18 +39,17 @@ namespace BeerCalculatorWebApplication.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetHopTypeDetails(HopTypeDTO details)
+        public async Task<ActionResult> GetHopTypeDetails(int id)
         {
-            var response = await requestManager.Get(details, typeof(MessageContainer<HopTypeDTO>));
+            var response = await requestManager.Get(new HopTypeDTO() { HopTypeID = id }, typeof(MessageContainer<HopTypeDTO>));
             return Json(response, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         public async Task<ActionResult> CreateHopType(HopTypeDTO create)
         {
-            var rawResponse = await requestManager.Create(create, new MessageContainer<bool>().GetType());
-            MessageContainer<bool> container = (MessageContainer<bool>)rawResponse;
-            return Json(container);
+            var response = await requestManager.Create(create, new MessageContainer<bool>().GetType());
+            return Json(response);
         }
 
         [HttpPut]
@@ -61,9 +60,9 @@ namespace BeerCalculatorWebApplication.Controllers
         }
 
         [HttpDelete]
-        public async Task<ActionResult> DeleteHopType(HopTypeDTO delete)
+        public async Task<ActionResult> DeleteHopType(int id)
         {
-            var response = await requestManager.Delete(delete, typeof(MessageContainer<bool>));
+            var response = await requestManager.Delete(new HopTypeDTO() { HopTypeID = id }, typeof(MessageContainer<bool>));
             return Json(response);
         }
     }

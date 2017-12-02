@@ -14,6 +14,9 @@
                     <td>
                         Flavor Notes
                     </td>
+                    <td>
+                        Actions
+                    </td>
                 </tr>
             </thead>
             <tbody>
@@ -28,6 +31,10 @@
                         </td>
                         <td>
                             @hopType.FlavorNotes
+                        </td>
+                        <td>
+                            <button class="btn-sm btn-primary" data-toggle="modal" data-target="#edit-hop-modal" onclick="getEditHopType(@hopType.HopTypeID)">Edit</button>
+                            <button class="btn-sm btn-danger" onclick="deleteHopType(@hopType.HopTypeID)">Delete</button>
                         </td>
                     </tr>
                 }
@@ -80,6 +87,48 @@
         </div>
     </div>
 
+    <div id="edit-hop-modal" class="modal fade collapse" role="dialog">
+        <div class="modal-dialog">
 
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Edit Hop Type</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <label>Name:</label>
+                        </div>
+                        <div class="col-lg-4">
+                            <input id="edit-hop-name" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top:5px">
+                        <div class="col-lg-3">
+                            <label>Flavor Notes</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <textarea id="edit-flavor-notes" class="form-control" style="height:250px"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+
+                    <input type="button" class="btn btn-success" onclick="editHop()" value="Edit Hop" />
+
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <input class="hidden" id="edit-hop-type-id" />
 </div>
 

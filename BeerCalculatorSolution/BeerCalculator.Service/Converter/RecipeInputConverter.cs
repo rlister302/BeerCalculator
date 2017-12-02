@@ -29,17 +29,20 @@ namespace BeerCalculator.Service.Converter
 
             foreach (GrainTypeDTO grain in grains)
             {
-                IGrain g = new Grain();
-                g.Amount = grain.Amount;
-                g.Lovibond = grain.Lovibond;
-                g.MaximumExtractionRate = grain.MaximumExtractionRate;
-                g.MaximumSugarExtraction = grain.MaximumSugarExtraction;
-                grainToReturn.Add(g);
-
-
+                grainToReturn.Add(ConvertGrain(grain));
             }
 
             return grainToReturn;
+        }
+
+        private IGrain ConvertGrain(GrainTypeDTO grain)
+        {
+            IGrain g = new Grain();
+            g.Amount = grain.Amount;
+            g.Lovibond = grain.Lovibond;
+            g.MaximumExtractionRate = grain.MaximumExtractionRate;
+            g.MaximumSugarExtraction = grain.MaximumSugarExtraction;
+            return g;
         }
 
         private List<IHop> ConvertHops(List<HopTypeDTO> hops)
@@ -48,14 +51,19 @@ namespace BeerCalculator.Service.Converter
 
             foreach (HopTypeDTO hop in hops)
             {
-                IHop h = new Hop();
-                h.AlphaAcid = hop.AlphaAcid;
-                h.Amount = hop.Amount;
-                h.BoilTime = hop.BoilTime;
-                hopsToReturn.Add(h);
+                hopsToReturn.Add(ConvertHop(hop));
             }
 
             return hopsToReturn;
+        }
+
+        private IHop ConvertHop(HopTypeDTO hop)
+        {
+            IHop h = new Hop();
+            h.AlphaAcid = hop.AlphaAcid;
+            h.Amount = hop.Amount;
+            h.BoilTime = hop.BoilTime;
+            return h;
         }
 
         private IWaterInput ConvertWaterInput(WaterInputDTO input)
@@ -70,7 +78,6 @@ namespace BeerCalculator.Service.Converter
             w.TrubLoss = input.TrubLoss;
             w.InitialGrainTemperature = input.InitialGrainTemperature;
             return w;
-
         }
     }
 }

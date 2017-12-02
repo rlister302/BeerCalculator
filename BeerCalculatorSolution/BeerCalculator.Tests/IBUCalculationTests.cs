@@ -113,6 +113,30 @@ namespace BeerCalculatorTests
         }
 
         [TestMethod()]
+        public void TestRoggenBierIBU()
+        {
+            IHop hop = new Hop();
+            List<IHop> hops = new List<IHop>();
+            decimal og = 1.055m;
+
+            hop.AlphaAcid = 3.5m;
+            hop.Amount = 1.0m;
+            hop.BoilTime = 60;
+
+            hops.Add(hop);
+
+            hop = new Hop();
+            hop.AlphaAcid = 3.5m;
+            hop.Amount = 1.0m;
+            hop.BoilTime = 0;
+            hops.Add(hop);
+
+            int ibu = ibuCalculator.Calculate(hops, og);
+
+            Assert.AreEqual<int>(12, ibu);
+        }
+
+        [TestMethod()]
         public void TestRoundingWithModulo()
         {
             decimal gravity = 1.047m;

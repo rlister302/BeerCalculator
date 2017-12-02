@@ -7,12 +7,29 @@ using DataAccessLayer.DataAccess;
 using BeerCalculator.DataAccessLayer.DataAccess;
 using BeerCalculator.Common.DTOs;
 using DataAccessLayer.DataAccess.Interface;
+using Microsoft.Practices.Unity;
+using Microsoft.Practices.ServiceLocation;
+using BeerCalculator.Service.Bootstrapper;
 
 namespace BeerCalculatorService.Controllers
 {
     public class IngredientController : Controller
     {
-        private IDataAccess<IngredientDTO> dataAccess = new IngredientDataAccess();
+        private IDataAccess<IngredientDTO> dataAccess;
+
+        public IngredientController()
+        {
+            ResolveDependencies();
+        }
+
+        public void ResolveDependencies()
+        {
+            IUnityContainer container = new UnityContainer();
+            IServiceLocator locator = new UnityServiceLocator(container);
+            new ServiceBootstapper(container, locator);
+            dataAccess = container.Resolve<IDataAccess<IngredientDTO>>();
+        }
+
         [HttpGet]
         public ActionResult GetAllIngredients()
         {

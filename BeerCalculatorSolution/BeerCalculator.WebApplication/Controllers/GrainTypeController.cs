@@ -39,10 +39,10 @@ namespace BeerCalculatorWebApplication.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetGrainTypeDetails(GrainTypeDTO details)
+        public async Task<ActionResult> GetGrainTypeDetails(int id)
         {
-            var result = await requestManager.Get(details, typeof(MessageContainer<GrainTypeDTO>));
-            return Json(result);
+            var result = await requestManager.Get(new GrainTypeDTO() { GrainTypeID = id }, typeof(MessageContainer<GrainTypeDTO>));
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -60,9 +60,9 @@ namespace BeerCalculatorWebApplication.Controllers
         }
 
         [HttpDelete]
-        public async Task<ActionResult> DeleteGrainType(GrainTypeDTO delete)
+        public async Task<ActionResult> DeleteGrainType(int id)
         {
-            var result = await requestManager.Delete(delete, typeof(MessageContainer<bool>));
+            var result = await requestManager.Delete(new GrainTypeDTO() { GrainTypeID = id }, typeof(MessageContainer<bool>));
             return Json(result);
         }
     }

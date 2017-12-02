@@ -6,48 +6,67 @@ using System.Web.Mvc;
 using DataAccessLayer.DataAccess;
 using BeerCalculator.DataAccessLayer.DataAccess;
 using BeerCalculator.Common.DTOs;
+using DataAccessLayer.DataAccess.Interface;
+using Microsoft.Practices.Unity;
+using Microsoft.Practices.ServiceLocation;
+using BeerCalculator.Service.Bootstrapper;
 
 namespace BeerCalculatorService.Controllers
 {
     public class GrainTypeController : Controller
     {
-            // TODO: Use Unity
-        GrainTypeDataAccess _dataAccess = new GrainTypeDataAccess();
+        private IDataAccess<GrainTypeDTO> dataAccess;
+        public GrainTypeController()
+        {
+            ResolveDependencies();
+        }
+
+        public void ResolveDependencies()
+        {
+            IUnityContainer container = new UnityContainer();
+            IServiceLocator locator = new UnityServiceLocator(container);
+            new ServiceBootstapper(container, locator);
+            dataAccess = container.Resolve<IDataAccess<GrainTypeDTO>>();
+  
+        }
 
         [HttpGet]
         public ActionResult GetAllGrainTypes()
         {
-            var result = _dataAccess.Get();
-            var container = new MessageContainer<IEnumerable<GrainTypeDTO>>() { Data = result };
+            var result = dataAccess.Get();
+            MessageContainer<IEnumerable<GrainTypeDTO>> container = new MessageContainer<IEnumerable<GrainTypeDTO>>() { Data = result };
             return Json(container, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
         public ActionResult GetGrainTypeDetails(int id)
         {
-            var result = _dataAccess.Get(id);
-            return Json(result, JsonRequestBehavior.AllowGet);
+            var result = dataAccess.Get(id);
+            MessageContainer<GrainTypeDTO> container = new MessageContainer<GrainTypeDTO>() { Data = result };
+            return Json(container, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         public ActionResult CreateGrainType(GrainTypeDTO create)
         {
-            bool result = _dataAccess.Create(create);
-            var container = new MessageContainer<bool>() { Data = result };
+            bool result = dataAccess.Create(create);
+            MessageContainer<bool> container = new MessageContainer<bool>() { Data = result };
             return Json(container);
         }
 
         [HttpPut]
         public ActionResult UpdateGrainType(GrainTypeDTO update)
         {
-            bool result = _dataAccess.Update(update);
-            return Json(result);
+            bool result = dataAccess.Update(update);
+            MessageContainer<bool> container = new MessageContainer<bool>() { Data = result };
+            return Json(container);
         }
         [HttpDelete]
         public ActionResult DeleteGrainType(int id)
         {
-            bool result = _dataAccess.Delete(id);
-            return Json(result);
+            bool result = dataAccess.Delete(id);
+            MessageContainer<bool> container = new MessageContainer<bool>() { Data = result };
+            return Json(container);
         }
     }
 }

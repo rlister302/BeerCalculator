@@ -1,5 +1,6 @@
 ﻿using BeerCalculator.Calculators.Interface;
 using BeerCalculator.Common.DTOs;
+using BeerCalculator.Common.Implementation;
 using BeerCalculator.Common.Interface;
 using BeerCalculator.Service.Bootstrapper;
 using BeerCalculator.Service.Converter;
@@ -37,7 +38,7 @@ namespace BeerCalculatorService.Controllers
             resolver.ResolveGrainMetaData(recipeInput.Grains);
             IRecipeInput converted = converter.Convert(recipeInput);
             IRecipeMetrics metrics = calculator.Calculate(converted);
-            return Json(metrics.ToDTO());
+            return Json(new MessageContainer<RecipeMetricsDTO>() { Data = metrics.ToDTO() });
         }
     }
 }

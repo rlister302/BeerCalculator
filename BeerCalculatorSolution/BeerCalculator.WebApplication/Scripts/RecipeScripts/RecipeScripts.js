@@ -132,14 +132,14 @@
 
     function sendMetricsToServer(recipeInput) {
         var data = JSON.stringify(recipeInput);
-        console.log(data);
 
         $.ajax({
             url: "/Calculator/Calculate",
             type: "POST",
             data: recipeInput,
             success: function (response) {
-                initializeRecipeMetricsModal(response);
+                console.log(response);
+                initializeRecipeMetricsModal(response.Data);
                 $('#recipe-metrics').modal();
             },
             error: function () {
