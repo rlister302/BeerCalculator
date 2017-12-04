@@ -10,12 +10,15 @@ using Microsoft.Practices.Unity;
 using Microsoft.Practices.ServiceLocation;
 using BeerCalculator.Service.Bootstrapper;
 using DataAccessLayer.DataAccess.Interface;
+using BeerCalculator.DataAccessLayer;
+using BeerCalculator.DataAccessLayer.DataAccess.Interface;
 
 namespace BeerCalculatorService.Controllers
 {
     public class HopTypeController : Controller
     {
-        private IDataAccess<HopTypeDTO> hopTypeDataAccess;
+
+        private IDataAccess<HopTypeDTO, HopType> hopTypeDataAccess;
 
         public HopTypeController()
         {
@@ -27,7 +30,7 @@ namespace BeerCalculatorService.Controllers
             IUnityContainer container = new UnityContainer();
             IServiceLocator locator = new UnityServiceLocator(container);
             new ServiceBootstapper(container, locator);
-            hopTypeDataAccess = container.Resolve<IDataAccess<HopTypeDTO>>();
+            hopTypeDataAccess = container.Resolve<IDataAccess<HopTypeDTO, HopType>>();
         }
 
         [HttpGet]

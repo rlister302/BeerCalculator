@@ -3,7 +3,10 @@ using BeerCalculator.Calculators.Interface;
 using BeerCalculator.Common.Abstract;
 using BeerCalculator.Common.DTOs;
 using BeerCalculator.Common.Interface;
+using BeerCalculator.DataAccessLayer;
 using BeerCalculator.DataAccessLayer.DataAccess;
+using BeerCalculator.DataAccessLayer.DataAccess.Implementation;
+using BeerCalculator.DataAccessLayer.DataAccess.Interface;
 using BeerCalculator.Service.Converter;
 using DataAccessLayer.DataAccess.Interface;
 using Microsoft.Practices.ServiceLocation;
@@ -34,12 +37,11 @@ namespace BeerCalculator.Service.Bootstrapper
             Container.RegisterType<IRecipeMetaDataResolver, RecipeMetaDataResolver>();
             Container.RegisterType<IBeerMetricsCalculator, BeerMetricsCalculator>();
             Container.RegisterType<IConverter, RecipeInputConverter>();
-            Container.RegisterType<IDataAccess<RecipeDTO>, RecipeDataAccess>();
-            Container.RegisterType<IDataAccess<IngredientDTO>, IngredientDataAccess>();
-            Container.RegisterType<IDataAccess<GrainTypeDTO>, GrainTypeDataAccess>();
-            Container.RegisterType<IDataAccess<YeastTypeDTO>, YeastTypeDataAccess>();
-            Container.RegisterType<IDataAccess<HopTypeDTO>, HopTypeDataAccess>();
-            Container.RegisterType<IDataAccess<IngredientDTO>, IngredientDataAccess>();
+            Container.RegisterType<IDataAccess<RecipeDTO, Recipe>, RecipeDataAccess>();
+            Container.RegisterType<IDataAccess<IngredientDTO, Recipe>, IngredientDataAccess>();
+            Container.RegisterType<IDataAccess<GrainTypeDTO, GrainType>, GrainTypeDataAccess>();
+            Container.RegisterType<IDataAccess<YeastTypeDTO, YeastType>, YeastTypeDataAccess>();
+            Container.RegisterType<IDataAccess<HopTypeDTO, HopType>, HopTypeDataAccess>();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model List<BeerCalculator.Common.DTOs.RecipeDTO>
+﻿@model BeerCalculator.Common.DTOs.MessageContainer<IEnumerable<BeerCalculator.Common.DTOs.RecipeDTO>>
 
     <h2>Recipe Management</h2>
     <div>
@@ -27,7 +27,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var recipe in Model)
+                    @foreach (var recipe in Model.Data)
                     {
                         <tr>
                             <td>

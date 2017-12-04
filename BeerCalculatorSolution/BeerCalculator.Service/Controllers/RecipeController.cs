@@ -23,7 +23,7 @@ namespace BeerCalculatorService.Controllers
 
         public RecipeController()
         {
-            recipeDataAccess = new RecipeDataAccess();
+            ResolveDependencies();
         }
 
         private void ResolveDependencies()
@@ -39,14 +39,16 @@ namespace BeerCalculatorService.Controllers
         public ActionResult GetAllRecipes()
         {
             var data = recipeDataAccess.Get();
-            return Json(data, JsonRequestBehavior.AllowGet);
+            MessageContainer<IEnumerable<RecipeDTO>> container = new MessageContainer<IEnumerable<RecipeDTO>>() { Data = data };
+            return Json(container, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
         public ActionResult GetRecipeDetails(RecipeDTO details)
         {
             RecipeDetailsDTO data = GetRecipeDetailDTO(details);
-            return Json(data);
+            MessageContainer<RecipeDetailsDTO> container = new MessageContainer<RecipeDetailsDTO>() { Data = data };
+            return Json(container);
         }
 
         private RecipeDetailsDTO GetRecipeDetailDTO(RecipeDTO details)
@@ -54,6 +56,7 @@ namespace BeerCalculatorService.Controllers
             RecipeDetailsDTO data = new RecipeDetailsDTO();
             data.Ingredients = ingredientDataAccess.Get(0);
             data.Recipe = recipeDataAccess.Get(details.RecipeID);
+            MessageContainer<RecipeDetailsDTO> container = new MessageContainer<RecipeDetailsDTO>() { Data = data };
             return data;
         }
 
@@ -61,21 +64,24 @@ namespace BeerCalculatorService.Controllers
         public ActionResult CreateRecipe(RecipeDTO create)
         {
             var data = recipeDataAccess.Create(create);
-            return Json(data);
+            MessageContainer<bool> container = new MessageContainer<bool>() { Data = data };
+            return Json(container);
         }
 
         [HttpPut]
         public ActionResult UpdateRecipe(RecipeDTO update)
         {
             var data = recipeDataAccess.Update(update);
-            return Json(data);
+            MessageContainer<bool> container = new MessageContainer<bool>() { Data = data };
+            return Json(container);
         }
 
         [HttpDelete]
         public ActionResult DeleteRecipe(RecipeDTO delete)
         {
             var data = recipeDataAccess.Create(delete);
-            return Json(data);
+            MessageContainer<bool> container = new MessageContainer<bool>() { Data = data };
+            return Json(container);
         }
     }
 }

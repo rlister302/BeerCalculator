@@ -1,32 +1,31 @@
-﻿using System;
+﻿using BeerCalculator.Common.DTOs;
+using BeerCalculator.DataAccessLayer.DataAccess.Interface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataAccessLayer.DataAccess.Interface;
-using DataAccessLayer.DataAccess;
-using BeerCalculator.Common.DTOs;
 
-namespace BeerCalculator.DataAccessLayer.DataAccess
+namespace BeerCalculator.DataAccessLayer.DataAccess.Implementation
 {
-    public class IngredientDataAccess : IDataAccess<IngredientDTO>
+    public class IngredientDataAccess : AbstractDataAccess<IngredientDTO, Recipe>
     {
-        public bool Create(IngredientDTO create)
+        protected override Recipe ConvertDTOToEntity(IngredientDTO dto)
         {
             throw new NotImplementedException();
         }
 
-        public bool Delete(int delete)
+        protected override IngredientDTO ConvertEntityToDTO(Recipe entity)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<IngredientDTO> Get()
+        protected override void SetEntityProperties(IngredientDTO dto, Recipe entity)
         {
             throw new NotImplementedException();
         }
 
-        public IngredientDTO Get(int id)
+        public override IngredientDTO Get(int details)
         {
             var grains = new GrainTypeDataAccess().Get();
 
@@ -43,11 +42,6 @@ namespace BeerCalculator.DataAccessLayer.DataAccess
             ingredientDTO.YeastTypes = yeast.ToList();
 
             return ingredientDTO;
-        }
-
-        public bool Update(IngredientDTO update)
-        {
-            throw new NotImplementedException();
         }
     }
 }

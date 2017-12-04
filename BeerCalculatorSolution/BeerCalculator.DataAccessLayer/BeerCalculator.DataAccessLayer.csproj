@@ -91,13 +91,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BeerModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="DataAccess\GrainTypeDataAccess.cs" />
-    <Compile Include="DataAccess\HopTypeDataAccess.cs" />
-    <Compile Include="DataAccess\IngredientDataAccess.cs" />
+    <Compile Include="DataAccess\Implementation\HopTypeDataAccess.cs" />
+    <Compile Include="DataAccess\Implementation\IDataAccess.cs" />
+    <Compile Include="DataAccess\Implementation\GrainTypeDataAccess.cs" />
+    <Compile Include="DataAccess\Implementation\IngredientDataAccess.cs" />
+    <Compile Include="DataAccess\Implementation\RecipeDataAccess.cs" />
+    <Compile Include="DataAccess\Implementation\YeastTypeDataAccess.cs" />
+    <Compile Include="DataAccess\Interface\AbstractDataAccess.cs" />
     <Compile Include="DataAccess\Interface\IDataAccess.cs" />
-    <Compile Include="DataAccess\RecipeDataAccess.cs" />
     <Compile Include="DataAccess\RecipeMetaDataResolver.cs" />
-    <Compile Include="DataAccess\YeastTypeDataAccess.cs" />
     <Compile Include="Grain.cs">
       <DependentUpon>BeerModel.tt</DependentUpon>
     </Compile>
