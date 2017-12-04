@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using DataAccessLayer.DataAccess;
 using System.Web.Mvc;
 using BeerCalculator.DataAccessLayer.DataAccess;
 using BeerCalculator.Common.DTOs;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.ServiceLocation;
 using BeerCalculator.Service.Bootstrapper;
-using DataAccessLayer.DataAccess.Interface;
 using BeerCalculator.DataAccessLayer;
 using BeerCalculator.DataAccessLayer.DataAccess.Interface;
 

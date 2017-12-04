@@ -8,7 +8,6 @@ using BeerCalculator.DataAccessLayer.DataAccess;
 using BeerCalculator.DataAccessLayer.DataAccess.Implementation;
 using BeerCalculator.DataAccessLayer.DataAccess.Interface;
 using BeerCalculator.Service.Converter;
-using DataAccessLayer.DataAccess.Interface;
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Unity;
 using System;

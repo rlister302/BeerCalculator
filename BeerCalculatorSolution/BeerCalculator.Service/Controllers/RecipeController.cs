@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using DataAccessLayer.DataAccess;
 using Newtonsoft.Json;
 using BeerCalculator.Common.DTOs;
 using BeerCalculator.DataAccessLayer.DataAccess;
 using BeerCalculator.Service.Converter;
 using BeerCalculator.Calculators.Interface;
-using DataAccessLayer.DataAccess.Interface;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.ServiceLocation;
 using BeerCalculator.Service.Bootstrapper;
+using BeerCalculator.DataAccessLayer;
+using BeerCalculator.DataAccessLayer.DataAccess.Interface;
 
 namespace BeerCalculatorService.Controllers
 {
     public class RecipeController : Controller
     {
-        private IDataAccess<RecipeDTO> recipeDataAccess;
-        private IDataAccess<IngredientDTO> ingredientDataAccess;
+        private IDataAccess<RecipeDTO, Recipe> recipeDataAccess;
+        private IDataAccess<IngredientDTO, Recipe> ingredientDataAccess;
 
         public RecipeController()
         {
@@ -31,8 +31,8 @@ namespace BeerCalculatorService.Controllers
             IUnityContainer container = new UnityContainer();
             IServiceLocator locator = new UnityServiceLocator(container);
             new ServiceBootstapper(container, locator);
-            recipeDataAccess = container.Resolve<IDataAccess<RecipeDTO>>();
-            ingredientDataAccess = container.Resolve<IDataAccess<IngredientDTO>>();
+            recipeDataAccess = container.Resolve<IDataAccess<RecipeDTO, Recipe>>();
+            ingredientDataAccess = container.Resolve<IDataAccess<IngredientDTO, Recipe>>();
         }
 
         [HttpGet]

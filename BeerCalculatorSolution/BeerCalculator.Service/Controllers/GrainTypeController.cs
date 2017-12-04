@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using DataAccessLayer.DataAccess;
 using BeerCalculator.DataAccessLayer.DataAccess;
 using BeerCalculator.Common.DTOs;
-using DataAccessLayer.DataAccess.Interface;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.ServiceLocation;
 using BeerCalculator.Service.Bootstrapper;
+using BeerCalculator.DataAccessLayer;
+using BeerCalculator.DataAccessLayer.DataAccess.Interface;
 
 namespace BeerCalculatorService.Controllers
 {
     public class GrainTypeController : Controller
     {
-        private IDataAccess<GrainTypeDTO> dataAccess;
+        private IDataAccess<GrainTypeDTO, GrainType> dataAccess;
         public GrainTypeController()
         {
             ResolveDependencies();
@@ -26,7 +26,7 @@ namespace BeerCalculatorService.Controllers
             IUnityContainer container = new UnityContainer();
             IServiceLocator locator = new UnityServiceLocator(container);
             new ServiceBootstapper(container, locator);
-            dataAccess = container.Resolve<IDataAccess<GrainTypeDTO>>();
+            dataAccess = container.Resolve<IDataAccess<GrainTypeDTO, GrainType>>();
   
         }
 

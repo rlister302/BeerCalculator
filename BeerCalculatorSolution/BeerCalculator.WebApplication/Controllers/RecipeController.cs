@@ -8,7 +8,6 @@ using BeerCalculator.Common.Communication;
 using BeerCalculator.Common.DTOs;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.ServiceLocation;
-using BeerCalculator.WebApplication.BootStrapper;
 
 namespace BeerCalculatorWebApplication.Controllers
 {
@@ -20,7 +19,7 @@ namespace BeerCalculatorWebApplication.Controllers
         {
             IUnityContainer container = new UnityContainer();
             IServiceLocator locator = new UnityServiceLocator(container);
-            new WebAppBootStrapper(container, locator);
+            new BeerCalculator.WebApplication.BootStrapper.WebAppBootStrapper(container, locator);
             requestManager = container.Resolve<IRequestManager>();
         }
 

@@ -1,5 +1,4 @@
 ﻿using BeerCalculator.Common.Abstract;
-using DataAccessLayer.DataAccess.Interface;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
